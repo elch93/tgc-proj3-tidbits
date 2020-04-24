@@ -5,12 +5,14 @@ $(function () {
         height: 100
     });
 
-    alert('js is working');
-
     $('#sb').click(function(){
         console.log($('#summernote').summernote('code'));
-        alert('clicked')
     });
     
+    $('#formtoggle').click(function(){
+        $('#registerform').toggle()
+        $('#loginform').toggle()
+    })
+
 
 }) //jquery end
