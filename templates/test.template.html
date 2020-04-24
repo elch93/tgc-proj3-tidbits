@@ -1,0 +1,22 @@
+{% extends 'index.template.html' %}
+
+{% block test %}
+
+{% for r in results %}
+<p>{{r.user}}</p>
+<p>{{r.notes}}</p>
+{% endfor %}
+
+
+<div class="container-fluid gbor">css is working</div>
+<div id="summernote">
+    <p>Hello Summernote</p>
+</div>
+<button type="submit" id="sb">Submit</button>
+
+
+
+
+
+
+{% endblock %}
