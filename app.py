@@ -86,8 +86,7 @@ def process_input():
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
                 flask_login.login_user(logged_in_user)
-                state = "default"
-                return render_template('index.template.html', state=state)
+                return render_template('index.template.html', state="default")
             else:
                 return "USER FOUND BUT WRONG PASSWORD"
         else:

@@ -86,7 +86,8 @@ a {
 
 #profilepic {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
+    background-color: white;
 }
 
