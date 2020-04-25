@@ -54,34 +54,50 @@
     <!-- login panel -->
     <div id="loginpanel">
       <form method="POST">
-        <h3><a onclick="showlform()"><span id="login">Login</span></a> | <a onclick="showrform()"><span id="register">Register</span></a><a onclick="hideforms()"><i
-              class="fas fa-times"></i></a></h3>
+        <div class="row justify-content-between">
+          <div class="col-3">
+            <h3>
+              <a onclick="showlform()"><span id="login">Login</span></a>
+            </h3>
+          </div>
+          <div class="col-3">
+            <h3>
+              <a onclick="showrform()"><span id="register">Register</span></a>
+            </h3>
+          </div>
+          <div class="col-3">
+            <a onclick="hideforms()"><i class="fas fa-times"></i></a>
+          </div>
+        </div>
+        <br>
+        <br>
         <div id="lform">
-          <h3>Enter your</h3>
-          <br>
           <label for="loginemail">Email: </label>
+          <br>
           <input type="email" name="loginemail" placeholder="enter your email">
           <br>
           <br>
           <label for="loginpw">Password: </label>
+          <br>
           <input type="password" name="loginpw" placeholder="enter your password">
         </div>
         <div id="rform">
-          <h3>Create an Account</h3>
-          <br>
           <label for="registername">Display Name: </label>
+          <br>
           <input type="email" name="registername" placeholder="enter a display name">
           <br>
           <br>
           <label for="registeremail">Email: </label>
+          <br>
           <input type="email" name="registeremail" placeholder="enter your email">
           <br>
           <br>
           <label for="registerpw">Password: </label>
+          <br>
           <input type="password" name="registerpw" placeholder="enter your password">
         </div>
         <br>
-        <input type="submit" value="SUBMIT" id="submitlr">
+        <input type="submit" value="Continue" id="submitlr">
         <br>
       </form>
     </div>

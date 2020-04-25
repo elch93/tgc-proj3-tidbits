@@ -1,7 +1,7 @@
 function showlform() {
     $('#lform').show();
     $('#rform').hide();
-    $("#login").css('border-bottom','gold 3px solid');
+    $("#login").css('border-bottom','gold 5px solid');
     $("#register").css('border-bottom','none');
 }
 
@@ -9,7 +9,7 @@ function showrform() {
     $('#rform').show();
     $('#lform').hide();
     $("#login").css('border-bottom','none');
-    $("#register").css('border-bottom','gold 3px solid');
+    $("#register").css('border-bottom','gold 5px solid');
 }
 
 function hideforms() {
@@ -29,8 +29,8 @@ $(function () {
         $('#getstarted').fadeToggle();
         $('#herotxt').fadeToggle();
         $('#loginbg').css('transform', 'scale(100)');
-        $("#loginpanel").fadeToggle(800);
-        $("#login").css('border-bottom','gold 3px solid');
+        $("#loginpanel").fadeToggle();
+        $("#login").css('border-bottom','gold 5px solid');
     })
 
     // summernote
