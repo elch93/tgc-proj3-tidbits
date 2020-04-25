@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="/static/styles.css">
   <!-- Bootstrap CSS -->
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -21,10 +21,77 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 
+  <!-- my script -->
+  <script src="/static/script.js"></script>
   <title>Hello, world!</title>
 </head>
 
 <body>
+  <main>
+    <!-- {% if not current_user.is_authenicated %} -->
+    <!-- welcome page -->
+    <div class="container-fluid" id="defaultindex">
+      <div class="row">
+        <div class="col-12">
+          <div id="herotxt">
+            <h1>Let's Teach and Learn.</h1>
+            <h1>Together.</h1>
+            <br>
+            <p>Fill in your knowledge gaps with notes by others,
+              or help others by sharing your knowledge.
+            </p>
+            <br>
+            <span id="loginbg"></span>
+            <button id="getstarted">Get Started!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- login panel -->
+    <div id="loginpanel">
+      <form method="POST">
+        <h3><a onclick="showlform()">Login</a> | <a onclick="showrform()">Register</a></h3>
+        <div id="lform">
+          <h3>Enter your</h3>
+          <br>
+          <label for="loginemail">Email: </label>
+          <input type="email" name="loginemail" placeholder="enter your email">
+          <br>
+          <br>
+          <label for="loginpw">Password: </label>
+          <input type="password" name="loginpw" placeholder="enter your password">
+        </div>
+        <div id="rform">
+          <h3>Create an Account</h3>
+          <br>
+          <label for="registeremail">Email: </label>
+          <input type="email" name="registeremail" placeholder="enter your email">
+          <br>
+          <br>
+          <label for="registerpw">Password: </label>
+          <input type="password" name="registerpw" placeholder="enter your password">
+        </div>
+        <br>
+        <input type="submit" value="SUBMIT" id="submitlr">
+        <br>
+      </form>
+    </div>
+    <!-- {% endif %} -->
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 
   <a href="{{url_for('index')}}">HOME PAGE</a>
   <br>
   <a href="{{url_for('test')}}">TESTING PAGE</a>
@@ -48,12 +115,22 @@
     <input type="submit" value="SUBMIT">
   </form>
   <br>
-  <button id="formtoggle">Switch to Login</button>
+  <button id="formtoggle">Switch to Login</button> -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-  <script src="/static/script.js"></script>
 
+  <script>
+    function showlform() {
+      $('#lform').show();
+      $('#rform').hide();
+    }
+
+    function showrform() {
+      $('#rform').show();
+      $('#lform').hide();
+    }
+  </script>
 </body>
 
 </html>

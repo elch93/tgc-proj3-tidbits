@@ -1,7 +1,75 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 .gbor {
     border: 3px solid gold;
 }
 
-#loginform {
+/* #loginform {
     display: none;
+} */
+
+/* welcomme page */
+#defaultindex .col-12 {
+    min-height: 800px;
+}
+
+#herotxt {
+    position: relative;
+    top: 200px;
+    left:100px;
+    width: 430px;
+}
+
+#herotxt p {
+    text-align: justify;
+}
+
+#herotxt button {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: gold;
+}
+
+#loginbg {
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    position: absolute;
+    left: 15px;
+    background-color: #212121;
+    transform: scale(1);
+    transition: 0.9s ease-in-out;
+    z-index:-1;
+}
+
+/* login panel */
+#loginpanel {
+    color: white;
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 300px;
+    margin: 100px;
+}
+
+#loginpanel form {
+    font-weight: bold;
+    text-align: left;
+}
+
+#rform {
+    display: none;
+}
+
+a {
+    cursor: pointer;
 }

@@ -100,10 +100,7 @@ def logout():
     return "logged out!"
 
 
-# flask_login.logout_user()
-# return logged out
-
-# testing
+# test route
 @app.route('/test')
 def test():
     results = client.sample_proj3.studynotes.find()
