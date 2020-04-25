@@ -48,17 +48,17 @@ def index():
     return render_template('index.template.html')
 
 #if logged in, home page
-@app.route('/newhomepage')
-@flask_login.login_required
-def index_logged_in():
-    return redirect(url_for('test'))
+# @app.route('/newhomepage')
+# @flask_login.login_required
+# def index_logged_in():
+#     return redirect(url_for('test'))
 
 # signup & login
 @app.route('/', methods=["POST"])
 def process_input():
     # user is trying to sign up
-    if request.form.get('email') and request.form.get('password'):
-        create_email, create_pw = request.form.get('email'), request.form.get('password')
+    if request.form.get('registeremail') and request.form.get('registerpw'):
+        create_email, create_pw = request.form.get('registeremail'), request.form.get('registerpw')
         # first check if email already exists in database
         if not client[dbname]['registered_users'].find_one({
             "email": create_email
@@ -77,8 +77,8 @@ def process_input():
             
 
     # user is trying to login
-    if request.form.get('registered_email') and request.form.get('registered_password'):
-        login_email, login_pw = request.form.get('registered_email'), request.form.get('registered_password')
+    if request.form.get('loginemail') and request.form.get('loginpw'):
+        login_email, login_pw = request.form.get('loginemail'), request.form.get('loginpw')
         if client[dbname]['registered_users'].find_one({"email": login_email}):
             # email exists, check pw now
             user_data = client[dbname]['registered_users'].find_one({"email": login_email})
@@ -86,7 +86,8 @@ def process_input():
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
                 flask_login.login_user(logged_in_user)
-                return "USER CORRECT N LOGGED IN"
+                state = "default"
+                return render_template('index.template.html', state=state)
             else:
                 return "USER FOUND BUT WRONG PASSWORD"
         else:

@@ -28,7 +28,7 @@
 
 <body>
   <main>
-    <!-- {% if not current_user.is_authenicated %} -->
+    {% if current_user.is_anonymous %}
     <!-- welcome page -->
     <div class="container-fluid" id="defaultindex">
       <div class="row">
@@ -77,7 +77,33 @@
         <br>
       </form>
     </div>
-    <!-- {% endif %} -->
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <!-- controller page CRUD -->
+    <div class="container-fluid" id="controller">
+      <div class="row">
+        <div class="col-3">
+          <div id="profilepic"></div>
+          <h3>Username</h3>
+          <div>
+            <a>Create Note</a>
+            <a>My Notes</a>
+            <a>Following</a>
+            <a href="{{url_for('logout')}}"><button>Logout</button></a>
+          </div>
+        </div>
+        <div class="col-9">
+          {% if state == "default" %}
+          <div id="summernote">
+            <p>Hello Summernote</p>
+          </div>
+          <button type="submit" id="sb">Submit</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
   </main>
 
 
