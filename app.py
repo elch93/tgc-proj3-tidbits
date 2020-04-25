@@ -25,13 +25,13 @@ class User(flask_login.UserMixin):
     pass
 
 @login_manager.user_loader
-def user_loader(password):
-    user_data = client.sample_proj3.users.find_one(
-        {"password": password}
-    )
+def user_loader(email):
+    user_data = client["projtidbits"]['registered_users'].find_one({
+        'email': email
+    })
 
     logged_in_user = User()
-    logged_in_user.id = user_data["email"]
+    logged_in_user.id = user_data['email']
     return logged_in_user
 
 # encrypt user's password
@@ -45,8 +45,13 @@ def verify_password(user_input, encrypted_password):
 # home page
 @app.route('/', methods=["GET"])
 def index():
-    if request.method == "GET":
-        return render_template('index.template.html')
+    return render_template('index.template.html')
+
+#if logged in, home page
+@app.route('/newhomepage')
+@flask_login.login_required
+def index_logged_in():
+    return redirect(url_for('test'))
 
 # signup & login
 @app.route('/', methods=["POST"])
@@ -78,21 +83,23 @@ def process_input():
             # email exists, check pw now
             user_data = client[dbname]['registered_users'].find_one({"email": login_email})
             if verify_password(login_pw, user_data['password']):
-            
-                return "LOGIN SUCCESSFUL"
+                logged_in_user = User()
+                logged_in_user.id = user_data['email']
+                flask_login.login_user(logged_in_user)
+                return "USER CORRECT N LOGGED IN"
             else:
                 return "USER FOUND BUT WRONG PASSWORD"
         else:
             return "USER NOT FOUND" 
 
 
-# protected session
-# @app.route("/protected")
-# @flask_login.login_required
-# def private_session():
-#     return something
-
 # logout
+@app.route('/logout')
+def logout():
+    flask_login.logout_user()
+    return "logged out!"
+
+
 # flask_login.logout_user()
 # return logged out
 

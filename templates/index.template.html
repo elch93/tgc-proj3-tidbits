@@ -29,8 +29,10 @@
   <br>
   <a href="{{url_for('test')}}">TESTING PAGE</a>
   <br>
-  
-  <h1>HOME PAGE</h1>
+  {% if current_user.is_authenticated %}
+  <p>Welcome!</p>
+  {% endif %}
+
   {% block test %}
   {% endblock %}
   <form method="POST" id="registerform">
