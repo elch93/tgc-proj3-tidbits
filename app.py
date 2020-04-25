@@ -106,7 +106,7 @@ def process_input():
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return render_template('index.template.html')
+    return redirect(url_for('index'))
 
 
 # test route

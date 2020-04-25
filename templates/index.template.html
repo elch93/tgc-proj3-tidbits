@@ -16,7 +16,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
   </script>
-
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
   <!-- include summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
@@ -32,7 +34,7 @@
     <!-- welcome page -->
     <div class="container-fluid" id="defaultindex">
       <div class="row">
-        <div class="col-12">
+        <div class="col-6">
           <div id="herotxt">
             <h1>Let's Teach and Learn.</h1>
             <h1>Together.</h1>
@@ -41,17 +43,19 @@
               or help others by sharing your knowledge.
             </p>
             <br>
-            <span id="loginbg"></span>
-            <button id="getstarted">Get Started!</button>
           </div>
+          <span id="loginbg"></span>
+          <button id="getstarted">Get Started!</button>
         </div>
+        <div class="col-6" id="heroimg"></div>
       </div>
     </div>
 
     <!-- login panel -->
     <div id="loginpanel">
       <form method="POST">
-        <h3><a onclick="showlform()">Login</a> | <a onclick="showrform()">Register</a></h3>
+        <h3><a onclick="showlform()"><span id="login">Login</span></a> | <a onclick="showrform()"><span id="register">Register</span></a><a onclick="hideforms()"><i
+              class="fas fa-times"></i></a></h3>
         <div id="lform">
           <h3>Enter your</h3>
           <br>
@@ -64,6 +68,10 @@
         </div>
         <div id="rform">
           <h3>Create an Account</h3>
+          <br>
+          <label for="registername">Display Name: </label>
+          <input type="email" name="registername" placeholder="enter a display name">
+          <br>
           <br>
           <label for="registeremail">Email: </label>
           <input type="email" name="registeremail" placeholder="enter your email">
@@ -78,6 +86,9 @@
       </form>
     </div>
     {% endif %}
+
+
+
     {% if current_user.is_authenticated %}
     <!-- controller page CRUD -->
     <div class="container-fluid" id="controller">
@@ -101,7 +112,7 @@
             <textarea id="summernote" name="editordata"></textarea>
             <input type="submit" value="Create Note">
           </form>
-          
+
           {% endif %}
         </div>
       </div>
@@ -149,18 +160,6 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-
-  <script>
-    function showlform() {
-      $('#lform').show();
-      $('#rform').hide();
-    }
-
-    function showrform() {
-      $('#rform').show();
-      $('#lform').hide();
-    }
-  </script>
 </body>
 
 </html>
