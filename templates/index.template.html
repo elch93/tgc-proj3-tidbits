@@ -97,10 +97,11 @@
         </div>
         <div class="col-9">
           {% if state == "default" %}
-          <div id="summernote">
-            <p>Hello Summernote</p>
-          </div>
-          <button type="submit" id="sb">Submit</button>
+          <form method="POST">
+            <textarea id="summernote" name="editordata"></textarea>
+            <input type="submit" value="Create Note">
+          </form>
+          
           {% endif %}
         </div>
       </div>

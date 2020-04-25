@@ -47,11 +47,6 @@ def verify_password(user_input, encrypted_password):
 def index():
     return render_template('index.template.html')
 
-#if logged in, home page
-# @app.route('/newhomepage')
-# @flask_login.login_required
-# def index_logged_in():
-#     return redirect(url_for('test'))
 
 # signup & login
 @app.route('/', methods=["POST"])
@@ -91,13 +86,27 @@ def process_input():
                 return "USER FOUND BUT WRONG PASSWORD"
         else:
             return "USER NOT FOUND" 
+    
+    # create note
+    if request.form.get('editordata'):
+        created_note = request.form.get('editordata')
+        print(created_note)
+        return "Work in progress"
 
+# CRUD user panel
+# Create Note
+# @app.route('/create')
+# @flask_login.login_required
+# def create():
+#     created_note = request.form.get('editordata')
+#     print(created_note)
+#     return "Work in progress"
 
 # logout
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return "logged out!"
+    return render_template('index.template.html')
 
 
 # test route

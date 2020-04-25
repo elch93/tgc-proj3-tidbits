@@ -14,9 +14,7 @@ $(function () {
         height: 500
     });
 
-    $('#sb').click(function () {
-        console.log($('#summernote').summernote('code'));
-    });
+    // $('#summernote').summernote('code')
 
 
 
