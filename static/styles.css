@@ -1,5 +1,6 @@
 /* general */
-html, body {
+html,
+body {
     padding: 0px;
     margin: 0px;
 }
@@ -31,7 +32,7 @@ a {
 #herotxt {
     position: relative;
     top: 150px;
-    left:50px;
+    left: 50px;
     width: 430px;
 }
 
@@ -42,7 +43,7 @@ a {
 #defaultindex button {
     position: relative;
     top: 150px;
-    left:50px;
+    left: 50px;
     border-radius: 10px;
     border: none;
     padding: 10px 20px;
@@ -60,15 +61,15 @@ a {
 #loginbg {
     position: absolute;
     top: 375px;
-    left:120px;
+    left: 120px;
     border-radius: 50%;
     width: 30px;
     height: 30px;
     background-color: #212121;
     transform: scale(1);
     transition: 1.5s ease-in-out;
-    z-index:-1;
-    
+    z-index: -1;
+
 }
 
 
@@ -88,7 +89,8 @@ a {
     text-align: left;
 }
 
-#login, #register {
+#login,
+#register {
     transition: 0.3s ease-in-out;
     padding: 5px;
 }
@@ -97,7 +99,8 @@ a {
     display: none;
 }
 
-#submitl, #submitr {
+#submitl,
+#submitr {
     border: none;
     border-radius: 10px;
     font-weight: bold;
@@ -106,7 +109,11 @@ a {
     transition: 0.4s ease-in-out;
 }
 
-#submitl:hover, #submitr:hover, #login:hover, #register:hover {
+#submitl:hover,
+#submitr:hover,
+#login:hover,
+#register:hover,
+#controller button:hover {
     background-color: white;
     color: #212121;
 }
@@ -114,8 +121,9 @@ a {
 
 
 /* CRUD page */
-#controller .col-3, #controller .col-9 {
-    min-height: 800px ;
+#controller .col-3,
+#controller .col-9 {
+    min-height: 800px;
 }
 
 /* profile picture */
@@ -136,13 +144,27 @@ a {
     text-align: center;
 }
 
-#controller .col-3 .mt-3 a{
-    margin: 0px 20px;
+#controller .col-3 .mt-3 a {
+    margin: 0px 40px;
     transition: 0.3s ease-in-out;
 }
 
-#controller .col-3 .mt-3 a:hover{
-    border-bottom: 5px gold solid;
+/* search */
+#Rpanel .container-fluid {
+    text-align: center;
 }
 
+#controller button,
+#searchbtn {
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: gold;
+    padding: 5px 10px;
+    transition: 0.4s ease-in-out;
+}
 
+#searchbtn:hover {
+    background-color: #212121;
+    color: white;
+}
