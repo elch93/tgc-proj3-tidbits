@@ -83,7 +83,7 @@ def process_input():
 
             logged_in_user.id = user_data['email']
             flask_login.login_user(logged_in_user)
-            return render_template('index.template.html', state="default")
+            return render_template('index.template.html', username = user_data['displayname'])
 
         else:
             # if found, prevent creation
@@ -102,7 +102,7 @@ def process_input():
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
                 flask_login.login_user(logged_in_user)
-                return render_template('index.template.html', state="default")
+                return render_template('index.template.html', username = user_data['displayname'])
             else:
                 return "USER FOUND BUT WRONG PASSWORD"
         else:

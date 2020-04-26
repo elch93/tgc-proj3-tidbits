@@ -97,7 +97,7 @@ a {
     display: none;
 }
 
-#loginpanel #submitlr {
+#submitl, #submitr {
     border: none;
     border-radius: 10px;
     font-weight: bold;
@@ -106,7 +106,7 @@ a {
     transition: 0.4s ease-in-out;
 }
 
-#loginpanel #submitlr:hover, #login:hover, #register:hover {
+#submitl:hover, #submitr:hover, #login:hover, #register:hover {
     background-color: white;
     color: #212121;
 }
@@ -118,15 +118,31 @@ a {
     min-height: 800px ;
 }
 
-#controller .col-3 {
-    background-color: #212121;
-    color: white;
-}
-
+/* profile picture */
 #profilepic {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     background-color: white;
+    margin: 20px auto;
 }
+
+#controller .col-3 {
+    background-color: #212121;
+    color: white;
+}
+
+#controller .col-3 h4 {
+    text-align: center;
+}
+
+#controller .col-3 .mt-3 a{
+    margin: 0px 20px;
+    transition: 0.3s ease-in-out;
+}
+
+#controller .col-3 .mt-3 a:hover{
+    border-bottom: 5px gold solid;
+}
+
 
