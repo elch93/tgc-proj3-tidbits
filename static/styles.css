@@ -48,7 +48,14 @@ a {
     padding: 10px 20px;
     font-weight: bold;
     background-color: gold;
+    transition: 0.4s ease-in-out;
 }
+
+#defaultindex button:hover {
+    background-color: #212121;
+    color: white;
+}
+
 
 #loginbg {
     position: absolute;
@@ -83,6 +90,7 @@ a {
 
 #login, #register {
     transition: 0.3s ease-in-out;
+    padding: 5px;
 }
 
 #rform {
@@ -95,6 +103,12 @@ a {
     font-weight: bold;
     background-color: gold;
     padding: 10px 20px;
+    transition: 0.4s ease-in-out;
+}
+
+#loginpanel #submitlr:hover, #login:hover, #register:hover {
+    background-color: white;
+    color: #212121;
 }
 
 

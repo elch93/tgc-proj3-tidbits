@@ -21,10 +21,9 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
-
-
 class User(flask_login.UserMixin):
     pass
+
 
 
 @login_manager.user_loader
@@ -37,22 +36,25 @@ def user_loader(email):
     logged_in_user.id = user_data['email']
     return logged_in_user
 
+
+
 # encrypt user's password
-
-
 def password_encryptor(user_password):
     return pbkdf2_sha256.hash(user_password)
 
+
+
 # verify user's password
-
-
 def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
+
+
 
 # home page
 @app.route('/', methods=["GET"])
 def index():
     return render_template('index.template.html')
+
 
 
 # signup & login
@@ -112,20 +114,14 @@ def process_input():
         print(created_note)
         return "Work in progress"
 
-# CRUD user panel
-# Create Note
-# @app.route('/create')
-# @flask_login.login_required
-# def create():
-#     created_note = request.form.get('editordata')
-#     print(created_note)
-#     return "Work in progress"
+
 
 # logout
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
+
 
 
 # test route

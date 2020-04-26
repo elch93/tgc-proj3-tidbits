@@ -28,15 +28,12 @@
   <title>Hello, world!</title>
 </head>
 
+<!-- if user is anonymous/unregistered -->
+{% if current_user.is_anonymous %}
+
 <body>
   <main>
-    {% if current_user.is_anonymous %}
     <!-- welcome page -->
-    {% if myalert %}
-    <script>
-      alert('{{myalert}}')
-    </script>
-    {% endif %}
     <div class="container-fluid" id="defaultindex">
       <div class="row">
         <div class="col-6">
@@ -105,11 +102,21 @@
         <br>
       </form>
     </div>
-    {% endif %}
+  </main>
+  <!-- warning alert if user creates an account with a registered email -->
+  {% if myalert %}
+  <script>
+    alert('{{myalert}}')
+  </script>
+  {% endif %}
+</body>
+{% endif %}
 
+<!-- for registered users -->
+{% if current_user.is_authenticated %}
 
-
-    {% if current_user.is_authenticated %}
+<body>
+  <main>
     <!-- controller page CRUD -->
     <div class="container-fluid" id="controller">
       <div class="row">
@@ -137,49 +144,8 @@
         </div>
       </div>
     </div>
-
-    {% endif %}
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- 
-  <a href="{{url_for('index')}}">HOME PAGE</a>
-  <br>
-  <a href="{{url_for('test')}}">TESTING PAGE</a>
-  <br>
-  {% if current_user.is_authenticated %}
-  <p>Welcome!</p>
-  {% endif %}
-
-  {% block test %}
-  {% endblock %}
-  <form method="POST" id="registerform">
-    <h3>register</h3>
-    <input type="text" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" value="SUBMIT">
-  </form>
-  <form method="POST" id="loginform">
-    <h3>login</h3>
-    <input type="text" name="registered_email" placeholder="login with email">
-    <input type="password" name="registered_password" placeholder="login with password">
-    <input type="submit" value="SUBMIT">
-  </form>
-  <br>
-  <button id="formtoggle">Switch to Login</button> -->
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 </body>
+{% endif %}
 
 </html>

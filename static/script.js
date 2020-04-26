@@ -32,7 +32,9 @@ $(function () {
         setTimeout(function(){
             $("#loginpanel").fadeToggle();
         },600)
+        $("#register").css('border-bottom','none');
         $("#login").css('border-bottom','gold 5px solid');
+
     })
 
     // summernote
