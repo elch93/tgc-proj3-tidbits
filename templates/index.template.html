@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
   <!-- include summernote css/js -->
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
   <!-- my script -->
   <script src="/static/script.js"></script>
@@ -125,7 +125,7 @@
     <!-- controller page CRUD -->
     <div class="container-fluid" id="controller">
       <div class="row">
-        <div class="col-3">
+        <div class="col-3" id="leftpanel">
           <div id="profilepic"></div>
           <h4>{{username}}</h4>
           <!-- user controls -->
@@ -145,7 +145,8 @@
           </div>
         </div>
         <!-- carousel -->
-        <div class="col-9">
+        <div class="col-9" id="rightpanel">
+          <!-- Search Read from database -->
           <div class="mycarousel" id="Rpanel">
             <div class="container-fluid">
               <form method="POST" id="searchform">
@@ -163,11 +164,23 @@
                 <input type="submit" value="Search" id="searchbtn">
               </form>
             </div>
+            <div class="row mt-5 justify-content-around">
+              <div class="col-4 gbor">result 1</div>
+              <div class="col-4 gbor">result 2</div>
+              <div class="col-4 gbor">result 3</div>
+              <div class="col-4 gbor">result 4</div>
+              <div class="col-4 gbor">result 5</div>
+              <div class="col-4 gbor">result 6</div>
+              <div class="col-4 gbor">result 7</div>
+              <div class="col-4 gbor">result 8</div>
+              <div class="col-4 gbor">result 9</div>
+            </div>
           </div>
+          <!-- Create a note and save it into the database -->
           <div class="mycarousel" id="Cpanel">
             <form method="POST">
               <textarea id="summernote" name="editordata"></textarea>
-              <input type="submit" value="Create Note">
+              <input type="submit" value="Create Note" id="submitnotebtn">
             </form>
           </div>
           <div class="mycarousel" id="UDpanel">
