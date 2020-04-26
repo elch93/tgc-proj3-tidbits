@@ -32,14 +32,18 @@
   <main>
     {% if current_user.is_anonymous %}
     <!-- welcome page -->
+    {% if myalert %}
+    <script>
+      alert('{{myalert}}')
+    </script>
+    {% endif %}
     <div class="container-fluid" id="defaultindex">
       <div class="row">
         <div class="col-6">
           <div id="herotxt">
-            <h1>Let's Teach and Learn.</h1>
-            <h1>Together.</h1>
+            <h1>Share Your Notes & Ideas</h1>
             <br>
-            <p>Fill in your knowledge gaps with notes by others,
+            <p>Fill in your knowledge gaps with study notes shared by others,
               or help others by sharing your knowledge.
             </p>
             <br>

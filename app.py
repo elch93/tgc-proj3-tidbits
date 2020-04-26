@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, render_template, url_for, request, flash
+from flask import Flask, redirect, render_template, url_for, request
 from dotenv import load_dotenv
 import pymongo
 import flask_login  # for handling logins/logouts
@@ -85,8 +85,8 @@ def process_input():
 
         else:
             # if found, prevent creation
-            flash(create_email + ' is already in use. Please try again.')
-            return redirect(url_for('index'))
+            myalert = create_email + ' is already in use. Please try again.'
+            return render_template('index.template.html',myalert=myalert)
 
     # user is trying to login
     if request.form.get('loginemail') and request.form.get('loginpw'):

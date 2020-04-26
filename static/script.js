@@ -29,7 +29,9 @@ $(function () {
         $('#getstarted').fadeToggle();
         $('#herotxt').fadeToggle();
         $('#loginbg').css('transform', 'scale(100)');
-        $("#loginpanel").fadeToggle();
+        setTimeout(function(){
+            $("#loginpanel").fadeToggle();
+        },600)
         $("#login").css('border-bottom','gold 5px solid');
     })
 
