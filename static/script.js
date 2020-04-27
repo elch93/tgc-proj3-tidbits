@@ -28,7 +28,38 @@ function showPanel(panelname) {
     $('#' + panelname).fadeToggle();
 }
 
+// alter topic list 
+function onSubjChange() {
+    let chosenSubj = $('#selectsubj').val()
+    let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
+    let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
+    let geogtopics = ['Our Dynamic Planet', 'Our Changing World', 'Geographical Skills & Investigations']
+    let mathtopics = ['Number & Algebra','Geometry & Measurement','Statistics & Probablity']
 
+    function appendTopics(subj){
+        for (topic of subj) {
+            $('#selecttopics').append(`
+            <option value="${topic}">${topic}</option>
+        `)
+        }
+    }
+
+    $('#selecttopics').empty()
+    if (chosenSubj == 'Physics') {
+        appendTopics(physicstopics)
+    }
+    else if (chosenSubj == 'Chemistry') {
+        appendTopics(chemtopics)
+    }
+    else if (chosenSubj == 'Math') {
+        appendTopics(mathtopics)
+    }
+    else if (chosenSubj == 'Geography') {
+        appendTopics(geogtopics)
+    }
+
+    
+}
 
 
 
@@ -54,7 +85,7 @@ $(function () {
         placeholder: 'Hello Bootstrap 4',
         tabsize: 2,
         height: 300,
-        width: 500
+        width: 700
     });
 
 
@@ -64,7 +95,13 @@ $(function () {
         $('.mycarousel').eq(i).hide();
     }
 
-
+    // create topic list
+    let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
+    for (i of physicstopics) {
+        $('#selecttopics').append(`
+            <option value="${i}">${i}</option>
+        `)
+    }
 
 
 

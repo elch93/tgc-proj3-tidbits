@@ -146,22 +146,19 @@
         </div>
         <!-- carousel -->
         <div class="col-9" id="rightpanel">
-          <!-- Search Read from database -->
+          <!-- Search/Read from database -->
           <div class="mycarousel" id="Rpanel">
             <div class="container-fluid">
               <form method="POST" id="searchform">
-                <select size="1">
+                <select size="1" name="searchsubject">
                   <option value="All">All</option>
-                  <option value="Additional Math">Additional Math</option>
-                  <option value="Physics">Phyics</option>
+                  <option value="Physics">Physics</option>
                   <option value="Chemistry">Chemistry</option>
                   <option value="Math">Math</option>
                   <option value="Geography">Geography</option>
-                  <option value="Social Studies">Social Studies</option>
-                  <option value="Literature">Literature</option>
                 </select>
                 <input type="text" name="search">
-                <input type="submit" value="Search" id="searchbtn">
+                <input type="submit" value="Search" id="searchbtn" form="searchform">
               </form>
             </div>
             <div class="row mt-5 justify-content-around">
@@ -178,19 +175,22 @@
           </div>
           <!-- Create a note and save it into the database -->
           <div class="mycarousel" id="Cpanel">
-            <form method="POST">
-              <label>Select a Subject: </label>
-              <select size="1" name="postedsubject">
-                <option value="Additional Math">Additional Math</option>
-                <option value="Physics">Phyics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Math">Math</option>
-                <option value="Geography">Geography</option>
-                <option value="Social Studies">Social Studies</option>
-                <option value="Literature">Literature</option>
-              </select>
+            <form method="POST" id="createnoteform">
+              <div>
+                <label><b>Select a Subject: </b></label>
+                <select size=1 name="postedsubject" id="selectsubj" onchange="onSubjChange()">
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Math">Math</option>
+                  <option value="Geography">Geography</option>
+                </select>
+                <label><b>Select a Topic: </b></label>
+                <select name="subjecttopics" size=1 id="selecttopics">
+
+                </select>
+              </div>
               <textarea id="summernote" name="editordata"></textarea>
-              <input type="submit" value="Create Note" id="submitnotebtn">
+              <input type="submit" value="Create Note" id="submitnotebtn" form="createnoteform">
             </form>
           </div>
 
