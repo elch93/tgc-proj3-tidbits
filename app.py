@@ -72,7 +72,9 @@ def process_input():
                 "displayname": create_dname,
                 "email": create_email,
                 "password": password_encryptor(create_pw),
-                'notes': []
+                'notes': [],
+                'following': [],
+                'liked': []
             })
 
             # then allow the user to login
@@ -113,6 +115,10 @@ def process_input():
     if request.form.get('editordata'):
         created_note = request.form.get('editordata')
         print(created_note, flask_login.current_user.get_id())
+        user_data = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        })
+        
         client[dbname]['registered_users'].update_one({
             'email': flask_login.current_user.get_id()
         }, {
@@ -122,15 +128,7 @@ def process_input():
                 'date': datetime.now()
             }}
         })
-
-        # client[dbname]['registered_users'].update({ $push: {"notes": {
-        #     'note_id': ObjectId(),
-        #     'content': created_note,
-        #     'date': datetime.now()
-        # }
-        # }
-        # })
-        return render_template('index.template.html')
+        return render_template('index.template.html',username=user_data['displayname'])
 
 # @app.route('/create')
 # @flask_login.login_required
