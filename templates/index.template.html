@@ -151,14 +151,14 @@
             <div class="container-fluid">
               <form method="POST" id="searchform">
                 <select size="1">
-                  <option>All</option>
-                  <option>Additional Math</option>
-                  <option>Phyics</option>
-                  <option>Chemistry</option>
-                  <option>Math</option>
-                  <option>Geography</option>
-                  <option>Social Studies</option>
-                  <option>Literature</option>
+                  <option value="All">All</option>
+                  <option value="Additional Math">Additional Math</option>
+                  <option value="Physics">Phyics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Math">Math</option>
+                  <option value="Geography">Geography</option>
+                  <option value="Social Studies">Social Studies</option>
+                  <option value="Literature">Literature</option>
                 </select>
                 <input type="text" name="search">
                 <input type="submit" value="Search" id="searchbtn">
@@ -179,6 +179,16 @@
           <!-- Create a note and save it into the database -->
           <div class="mycarousel" id="Cpanel">
             <form method="POST">
+              <label>Select a Subject: </label>
+              <select size="1" name="postedsubject">
+                <option value="Additional Math">Additional Math</option>
+                <option value="Physics">Phyics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Math">Math</option>
+                <option value="Geography">Geography</option>
+                <option value="Social Studies">Social Studies</option>
+                <option value="Literature">Literature</option>
+              </select>
               <textarea id="summernote" name="editordata"></textarea>
               <input type="submit" value="Create Note" id="submitnotebtn">
             </form>
@@ -186,7 +196,7 @@
 
 
 
-          
+
           <div class="mycarousel" id="UDpanel">
             My Notes
           </div>

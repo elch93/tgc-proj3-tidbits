@@ -113,8 +113,8 @@ def process_input():
 
     # create note
     if request.form.get('editordata'):
+        created_subject = request.form.get('postedsubject')
         created_note = request.form.get('editordata')
-        print(created_note, flask_login.current_user.get_id())
         user_data = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
         })
@@ -124,6 +124,7 @@ def process_input():
         }, {
             '$push': {'notes': {
                 'note_id': ObjectId(),
+                'subject': created_subject,
                 'content': created_note,
                 'date': datetime.now()
             }}
