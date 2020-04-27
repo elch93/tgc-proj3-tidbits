@@ -2,6 +2,8 @@ import os
 from flask import Flask, redirect, render_template, url_for, request
 from dotenv import load_dotenv
 import pymongo
+from bson.objectid import ObjectId
+from datetime import datetime
 import flask_login  # for handling logins/logouts
 from passlib.hash import pbkdf2_sha256  # for encrypting password
 
@@ -21,9 +23,10 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
+
+
 class User(flask_login.UserMixin):
     pass
-
 
 
 @login_manager.user_loader
@@ -37,11 +40,9 @@ def user_loader(email):
     return logged_in_user
 
 
-
 # encrypt user's password
 def password_encryptor(user_password):
     return pbkdf2_sha256.hash(user_password)
-
 
 
 # verify user's password
@@ -49,12 +50,10 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 
-
 # home page
 @app.route('/', methods=["GET"])
 def index():
     return render_template('index.template.html')
-
 
 
 # signup & login
@@ -72,7 +71,8 @@ def process_input():
             client[dbname]['registered_users'].insert_one({
                 "displayname": create_dname,
                 "email": create_email,
-                "password": password_encryptor(create_pw)
+                "password": password_encryptor(create_pw),
+                'notes': []
             })
 
             # then allow the user to login
@@ -83,12 +83,12 @@ def process_input():
 
             logged_in_user.id = user_data['email']
             flask_login.login_user(logged_in_user)
-            return render_template('index.template.html', username = user_data['displayname'])
+            return render_template('index.template.html', username=user_data['displayname'])
 
         else:
             # if found, prevent creation
             myalert = create_email + ' is already in use. Please try again.'
-            return render_template('index.template.html',myalert=myalert)
+            return render_template('index.template.html', myalert=myalert)
 
     # user is trying to login
     if request.form.get('loginemail') and request.form.get('loginpw'):
@@ -102,7 +102,8 @@ def process_input():
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
                 flask_login.login_user(logged_in_user)
-                return render_template('index.template.html', username = user_data['displayname'])
+                print(logged_in_user.get_id())
+                return render_template('index.template.html', username=user_data['displayname'])
             else:
                 return "USER FOUND BUT WRONG PASSWORD"
         else:
@@ -111,9 +112,40 @@ def process_input():
     # create note
     if request.form.get('editordata'):
         created_note = request.form.get('editordata')
-        print(created_note)
-        return "Work in progress"
+        print(created_note, flask_login.current_user.get_id())
+        client[dbname]['registered_users'].update_one({
+            'email': flask_login.current_user.get_id()
+        }, {
+            '$push': {'notes': {
+                'note_id': ObjectId(),
+                'content': created_note,
+                'date': datetime.now()
+            }}
+        })
 
+        # client[dbname]['registered_users'].update({ $push: {"notes": {
+        #     'note_id': ObjectId(),
+        #     'content': created_note,
+        #     'date': datetime.now()
+        # }
+        # }
+        # })
+        return render_template('index.template.html')
+
+# @app.route('/create')
+# @flask_login.login_required
+# def create():
+#     created_note = request.form.get('editordata')
+#     user_data = client[dbname]['registered_users'].find_one(
+#         {"email": current_user.get_id}
+#     )
+#     user_data['notes'].insert_one({
+#         'note_id': ObjectId(),
+#         'content': created_note,
+#         'date': datetime.datetime.now()
+#     })
+
+#     return render_template('index.template.html', username=user_data['displayname'])
 
 
 # logout
@@ -121,7 +153,6 @@ def process_input():
 def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
-
 
 
 # test route
@@ -132,11 +163,9 @@ def test():
     return render_template('test.template.html', results=results)
 
 
-
 if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP'),
         port=os.environ.get('PORT'),
         debug=True
     )
-
