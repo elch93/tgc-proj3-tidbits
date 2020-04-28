@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from datetime import datetime
 import flask_login  # for handling logins/logouts
 from passlib.hash import pbkdf2_sha256  # for encrypting password
+from pprint import pprint
 
 # load env file
 load_dotenv()
@@ -50,37 +51,7 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 # find notes content in db
-def search_by_topic(topic):
-    search_result = client[dbname]['registered_users'].find({
-        'notes': { '$elemMatch': {'topic': topic } }
-    }, {
-        'notes': { '$elemMatch': {'topic': topic } }
-    }).sort('notes.date', pymongo.ASCENDING)
 
-    user_data = client[dbname]['registered_users'].find_one({
-            'email': flask_login.current_user.get_id()
-        })
-
-    results = []
-
-    if search_result:
-        for i in search_result:
-            for j in i['notes']:
-                results.append( {'content' : Markup(j['content']), 'date': j['date'] , 'likes': j['likes'], 'user':user_data['displayname']}  )
-    
-    return results
-
-
-# read all notes in db
-# def readdb():
-#     results = client[dbname]['registered_users'].find(
-#         {}, {'notes': 1}).limit(5)
-#     for i in results:
-#         if i['notes'] != []:
-#             print("TEST", i['notes'][0]['content'])
-
-
-# readdb()
 
 # home page
 @app.route('/', methods=["GET"])
@@ -110,7 +81,6 @@ def process_input():
                 "displayname": create_dname,
                 "email": create_email,
                 "password": password_encryptor(create_pw),
-                'notes': [],
                 'following': [],
                 'liked': []
             })
@@ -159,31 +129,29 @@ def process_input():
             'email': flask_login.current_user.get_id()
         })
 
-        client[dbname]['registered_users'].update_one({
-            'email': flask_login.current_user.get_id()
-        }, {
-            '$push': {'notes': {
-                'note_id': ObjectId(),
-                'subject': created_subject,
-                'topic': created_topic,
-                'content': created_note,
-                'date': datetime.now().strftime('%y-%m-%d %a %H:%M:%S'),
-                'likes': 0
-            }}
+        client[dbname]['notes'].insert_one({
+            'owner': user_data['email'],
+            'displayname': user_data['displayname'],
+            'subject': created_subject,
+            'topic': created_topic,
+            'content': created_note,
+            'date': datetime.now(),
+            'likes': 0
         })
+            
         return render_template('index.template.html', username=user_data['displayname'])
 
     # search note
-    if request.form.get('searchsubject'):
-        # subject_query = request.form.get('searchsubject')
-        topic_query = request.form.get('searchtopic')
-        user_data = client[dbname]['registered_users'].find_one({
-            'email': flask_login.current_user.get_id()
-        })
+    # if request.form.get('searchsubject'):
+    #     # subject_query = request.form.get('searchsubject')
+    #     topic_query = request.form.get('searchtopic')
+    #     user_data = client[dbname]['registered_users'].find_one({
+    #         'email': flask_login.current_user.get_id()
+    #     })
 
-        results = search_by_topic(topic_query)
+    #     results = search_by_topic(topic_query)
 
-        return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
+    #     return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
         # query = request.form.get('search')
 
         # search_result = client[dbname]['registered_users'].find({
