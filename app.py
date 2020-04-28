@@ -51,7 +51,19 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 # find notes content in db
+def search_by_topic(topic):
+    results = client[dbname]['notes'].find({
+        'topic': topic
+    })
 
+    results_array = []
+
+    for i in results:
+        results_array.append(i)
+
+    for i in results_array:
+        i['content'] = Markup(i['content'])
+    return results_array
 
 # home page
 @app.route('/', methods=["GET"])
@@ -135,41 +147,23 @@ def process_input():
             'subject': created_subject,
             'topic': created_topic,
             'content': created_note,
-            'date': datetime.now(),
+            'date': datetime.now().strftime('%y-%m-%d %a %H:%M:%S'),
             'likes': 0
         })
             
         return render_template('index.template.html', username=user_data['displayname'])
 
-    # search note
-    # if request.form.get('searchsubject'):
-    #     # subject_query = request.form.get('searchsubject')
-    #     topic_query = request.form.get('searchtopic')
-    #     user_data = client[dbname]['registered_users'].find_one({
-    #         'email': flask_login.current_user.get_id()
-    #     })
+    # search for notes by topics
+    if request.form.get('searchsubject'):
+        # subject_query = request.form.get('searchsubject')
+        topic_query = request.form.get('searchtopic')
+        user_data = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        })
 
-    #     results = search_by_topic(topic_query)
+        results = search_by_topic(topic_query)
 
-    #     return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
-        # query = request.form.get('search')
-
-        # search_result = client[dbname]['registered_users'].find({
-        #     'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
-        # },{
-        #     'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
-        # })
-
-        # print(query)
-
-        # if search_result.count() == 0:
-        #     return "No results"
-        # else:
-        #     for i in search_result:
-        #         print(i)
-        #     return "Testing Page: Yes, results are found"
-
-        #  db['registered_users'].find({ notes: { $elemMatch: { content:  {$regex:'pow' }   }}}, {notes:{$elemMatch:{content: {$regex:'pow'  }  }   } }      ).pretty()
+        return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
 
 
 
