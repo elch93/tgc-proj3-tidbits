@@ -178,7 +178,7 @@ def process_input():
 
         results = search_by_topic(topic_query)
 
-        return render_template('index.template.html', username=user_data['displayname'], searchresults = results)
+        return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
         # query = request.form.get('search')
 
         # search_result = client[dbname]['registered_users'].find({

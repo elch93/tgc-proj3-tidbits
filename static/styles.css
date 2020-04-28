@@ -7,7 +7,6 @@ body {
 
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
 }
 
 .gbor {
@@ -22,7 +21,7 @@ a {
 
 /* welcomme page */
 #defaultindex .col-6 {
-    min-height: 600px;
+    height: 600px;
     overflow: hidden;
 }
 
@@ -123,7 +122,7 @@ a {
 /* CRUD page */
 #leftpanel,
 #rightpanel {
-    height: 800px;
+    height: 600px;
 }
 
 
@@ -160,7 +159,7 @@ a {
 }
 
 .resultcard {
-    max-width: 350px;
+    max-width: 700px;
     border: 1px #212121 solid;
     border-radius: 10px;
     padding: 10px;
@@ -168,9 +167,10 @@ a {
 }
 
 #resulttable {
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
 }
+
 
 /* create note */
 #Cpanel form {

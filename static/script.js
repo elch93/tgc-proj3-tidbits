@@ -28,6 +28,7 @@ function showPanel(panelname) {
     $('#' + panelname).fadeToggle();
 }
 
+
 // alter topic list 
 function onSubjChange(a) {
     let chosenSubj = $('#selectsubj' + a.toString()).val()
