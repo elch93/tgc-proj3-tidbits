@@ -29,8 +29,8 @@ function showPanel(panelname) {
 }
 
 // alter topic list 
-function onSubjChange() {
-    let chosenSubj = $('#selectsubj').val()
+function onSubjChange(a) {
+    let chosenSubj = $('#selectsubj' + a.toString()).val()
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
     let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
     let geogtopics = ['Our Dynamic Planet', 'Our Changing World', 'Geographical Skills & Investigations']
@@ -38,13 +38,13 @@ function onSubjChange() {
 
     function appendTopics(subj){
         for (topic of subj) {
-            $('#selecttopics').append(`
+            $('#selecttopics' + a.toString()).append(`
             <option value="${topic}">${topic}</option>
         `)
         }
     }
 
-    $('#selecttopics').empty()
+    $('#selecttopics' + a.toString()).empty()
     if (chosenSubj == 'Physics') {
         appendTopics(physicstopics)
     }
@@ -60,6 +60,8 @@ function onSubjChange() {
 
     
 }
+
+
 
 
 
@@ -98,7 +100,10 @@ $(function () {
     // create topic list
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
     for (i of physicstopics) {
-        $('#selecttopics').append(`
+        $('#selecttopics1').append(`
+            <option value="${i}">${i}</option>
+        `)
+        $('#selecttopics2').append(`
             <option value="${i}">${i}</option>
         `)
     }

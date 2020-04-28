@@ -7,6 +7,7 @@ body {
 
 body {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .gbor {
@@ -122,8 +123,9 @@ a {
 /* CRUD page */
 #leftpanel,
 #rightpanel {
-    min-height: 800px;
+    height: 800px;
 }
+
 
 #leftpanel a:hover {
     border-bottom: gold 2px solid;
@@ -157,6 +159,19 @@ a {
     text-align: center;
 }
 
+.resultcard {
+    max-width: 350px;
+    border: 1px #212121 solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 0px 0px #212121;
+}
+
+#resulttable {
+    height: 300px;
+    overflow-y: scroll;
+}
+
 /* create note */
 #Cpanel form {
     margin: 10px auto;
@@ -174,7 +189,7 @@ a {
 }
 
 #submitnotebtn, #leftpanel button,
-#searchbtn  {
+#searchbtn, #searchsubjbtn  {
     margin: 10px auto;
     border: none;
     background-color:  gold;
@@ -189,7 +204,7 @@ a {
     display: block;
 }
 
-#searchbtn:hover, #leftpanel button:hover, #submitnotebtn:hover {
+#searchbtn:hover, #leftpanel button:hover, #submitnotebtn:hover,#searchsubjbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
 } 

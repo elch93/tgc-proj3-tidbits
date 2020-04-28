@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, Markup
 from dotenv import load_dotenv
 import pymongo
 from bson.objectid import ObjectId
@@ -49,14 +49,33 @@ def password_encryptor(user_password):
 def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
-#read all notes in db
-def readdb():
-    results = client[dbname]['registered_users'].find({},{'notes':1}).limit(5)
-    for i in results:
-        if i['notes'] != []:
-            print("TEST",i['notes'][0]['content'])
+# find notes content in db
+def search_by_topic(topic):
+    search_result = client[dbname]['registered_users'].find({
+        'notes': { '$elemMatch': {'topic': topic } }
+    }, {
+        'notes': { '$elemMatch': {'topic': topic } }
+    })
 
-readdb()
+    results = []
+
+    if search_result:
+        for i in search_result:
+            for j in i['notes']:
+                results.append(Markup(j['content']))
+    return results
+
+
+# read all notes in db
+# def readdb():
+#     results = client[dbname]['registered_users'].find(
+#         {}, {'notes': 1}).limit(5)
+#     for i in results:
+#         if i['notes'] != []:
+#             print("TEST", i['notes'][0]['content'])
+
+
+# readdb()
 
 # home page
 @app.route('/', methods=["GET"])
@@ -65,7 +84,7 @@ def index():
         user_data = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
         })
-        return render_template('index.template.html',username=user_data['displayname'])
+        return render_template('index.template.html', username=user_data['displayname'])
     else:
         return render_template('index.template.html')
 
@@ -120,9 +139,11 @@ def process_input():
                 flask_login.login_user(logged_in_user)
                 return render_template('index.template.html', username=user_data['displayname'])
             else:
-                return "USER FOUND BUT WRONG PASSWORD"
+                myalert = 'Password is wrong. Please try again.'
+                return render_template('index.template.html', myalert=myalert)
         else:
-            return "USER NOT FOUND"
+            myalert = 'Email is wrong. Please try again.'
+            return render_template('index.template.html', myalert=myalert)
 
     # create note
     if request.form.get('editordata'):
@@ -141,47 +162,42 @@ def process_input():
                 'subject': created_subject,
                 'topic': created_topic,
                 'content': created_note,
-                'date': datetime.now().strftime('%y-%m-%d %a %H:%M:%S')
+                'date': datetime.now().strftime('%y-%m-%d %a %H:%M:%S'),
+                'likes': 0
             }}
         })
         return render_template('index.template.html', username=user_data['displayname'])
 
     # search note
-    # if request.form.get('search'):
-    #     query = request.form.get('search')
-        
-    #     search_result = client[dbname]['registered_users'].find({
-    #         'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
-    #     },{
-    #         'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
-    #     })
+    if request.form.get('searchsubject'):
+        # subject_query = request.form.get('searchsubject')
+        topic_query = request.form.get('searchtopic')
+        user_data = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        })
 
+        results = search_by_topic(topic_query)
 
-    #     print(query)
+        return render_template('index.template.html', username=user_data['displayname'], searchresults = results)
+        # query = request.form.get('search')
 
-    #     if search_result.count() == 0:
-    #         return "No results"
-    #     else:
-    #         for i in search_result:
-    #             print(i)
-    #         return "Testing Page: Yes, results are found"
+        # search_result = client[dbname]['registered_users'].find({
+        #     'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
+        # },{
+        #     'notes': {'$elemMatch': { 'content':{ '$regex': query } }}
+        # })
+
+        # print(query)
+
+        # if search_result.count() == 0:
+        #     return "No results"
+        # else:
+        #     for i in search_result:
+        #         print(i)
+        #     return "Testing Page: Yes, results are found"
 
         #  db['registered_users'].find({ notes: { $elemMatch: { content:  {$regex:'pow' }   }}}, {notes:{$elemMatch:{content: {$regex:'pow'  }  }   } }      ).pretty()
 
-# @app.route('/create')
-# @flask_login.login_required
-# def create():
-#     created_note = request.form.get('editordata')
-#     user_data = client[dbname]['registered_users'].find_one(
-#         {"email": current_user.get_id}
-#     )
-#     user_data['notes'].insert_one({
-#         'note_id': ObjectId(),
-#         'content': created_note,
-#         'date': datetime.datetime.now()
-#     })
-
-#     return render_template('index.template.html', username=user_data['displayname'])
 
 
 # logout
