@@ -168,12 +168,11 @@
               {% if searchresults %}
               {% for result in searchresults %}
               <div class="resultcard mb-5"
-                >{{result}}
-                <div class="row">
-                  <div class="col-6"></div>
-                  <div class="col-2">Date: </div>
-                  <div class="col-2">By: </div>
-                  <div class="col-2">Likes: </div>
+                >{{result['content']}}
+                <div class="mt-5 row justify-content-between">
+                  <div class="col-6">Date: {{result['date']}}</div>
+                  <div class="col-2">Posted By: {{result['user']}}</div>
+                  <div class="col-2"><a><i class="fas fa-heart"></i></a> {{result['likes']}}</div>
                 </div>
               </div>
               

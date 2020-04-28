@@ -55,14 +55,19 @@ def search_by_topic(topic):
         'notes': { '$elemMatch': {'topic': topic } }
     }, {
         'notes': { '$elemMatch': {'topic': topic } }
-    })
+    }).sort('notes.date', pymongo.ASCENDING)
+
+    user_data = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        })
 
     results = []
 
     if search_result:
         for i in search_result:
             for j in i['notes']:
-                results.append(Markup(j['content']))
+                results.append( {'content' : Markup(j['content']), 'date': j['date'] , 'likes': j['likes'], 'user':user_data['displayname']}  )
+    
     return results
 
 
