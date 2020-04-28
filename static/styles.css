@@ -164,6 +164,7 @@ a {
     border-radius: 10px;
     padding: 10px;
     box-shadow: 5px 5px 0px 0px #212121;
+    margin: 0 auto 30px auto;
 }
 
 #resulttable {
@@ -182,17 +183,20 @@ a {
     border-radius: 10px !important;
     margin: 20px auto;
 }
+
 .note-toolbar {
     border-bottom: #212121 5px solid !important;
     border-radius: 10px 10px 0 0;
     /* background-color: #212121 !important; */
 }
 
-#submitnotebtn, #leftpanel button,
-#searchbtn, #searchsubjbtn  {
+#submitnotebtn,
+#leftpanel button,
+#searchbtn,
+#searchsubjbtn {
     margin: 10px auto;
     border: none;
-    background-color:  gold;
+    background-color: gold;
     padding: 5px 10px;
     font-weight: bold;
     border-radius: 10px;
@@ -204,7 +208,16 @@ a {
     display: block;
 }
 
-#searchbtn:hover, #leftpanel button:hover, #submitnotebtn:hover,#searchsubjbtn:hover {
+#searchbtn:hover,
+#leftpanel button:hover,
+#submitnotebtn:hover,
+#searchsubjbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
-} 
+}
+
+/* my notes */
+#mynotespanel {
+    height: 400px;
+    overflow-y: scroll;
+}

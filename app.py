@@ -61,9 +61,28 @@ def search_by_topic(topic):
     for i in results:
         results_array.append(i)
 
+    #return markup of summernote code
     for i in results_array:
         i['content'] = Markup(i['content'])
     return results_array
+
+# load user's notes
+def load_user_notes(user):
+    user_notes = client[dbname]['notes'].find({
+        'owner': user
+    })
+
+    
+    results_array = []
+
+    for i in user_notes:
+        results_array.append(i)
+
+    #return markup of summernote code
+    for i in results_array:
+        i['content'] = Markup(i['content'])
+    return results_array
+
 
 # home page
 @app.route('/', methods=["GET"])
@@ -72,7 +91,8 @@ def index():
         user_data = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
         })
-        return render_template('index.template.html', username=user_data['displayname'])
+        user_notes = load_user_notes(flask_login.current_user.get_id())
+        return render_template('index.template.html', username=user_data['displayname'], user_notes = user_notes)
     else:
         return render_template('index.template.html')
 
@@ -124,7 +144,8 @@ def process_input():
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
                 flask_login.login_user(logged_in_user)
-                return render_template('index.template.html', username=user_data['displayname'])
+                user_notes = load_user_notes(flask_login.current_user.get_id())
+                return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
             else:
                 myalert = 'Password is wrong. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
@@ -147,11 +168,12 @@ def process_input():
             'subject': created_subject,
             'topic': created_topic,
             'content': created_note,
-            'date': datetime.now().strftime('%y-%m-%d %a %H:%M:%S'),
+            'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
             'likes': 0
         })
             
-        return render_template('index.template.html', username=user_data['displayname'])
+        user_notes = load_user_notes(flask_login.current_user.get_id())
+        return render_template('index.template.html', username=user_data['displayname'], user_notes = user_notes)
 
     # search for notes by topics
     if request.form.get('searchsubject'):
@@ -162,8 +184,8 @@ def process_input():
         })
 
         results = search_by_topic(topic_query)
-
-        return render_template('index.template.html',username=user_data['displayname'], searchresults = results)
+        user_notes = load_user_notes(flask_login.current_user.get_id())
+        return render_template('index.template.html',username=user_data['displayname'], searchresults = results, user_notes = user_notes)
 
 
 

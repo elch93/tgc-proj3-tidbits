@@ -136,7 +136,7 @@
             <br>
             <a onclick="showPanel('UDpanel')"><i class="fas fa-sticky-note"></i> My Notes</a>
             <br>
-            <a onclick="showPanel('RFpanel')"><i class="fas fa-user-plus"></i> Following</a>
+            <a onclick="showPanel('RFpanel')"><i class="fas fa-user-plus"></i>Following</a>
             <br>
             <a onclick="showPanel('RSpanel')"><i class="fas fa-heart"></i> Saved Notes</a>
             <br>
@@ -161,21 +161,20 @@
                 <select name="searchtopic" size=1 id="selecttopics2">
 
                 </select>
-                <input type="submit" value="Search" form="searchbysubj" id="searchsubjbtn">
+                <input type="submit" value="Search!" form="searchbysubj" id="searchsubjbtn">
               </form>
             </div>
             <div class="mt-5 container-fluid" id="resulttable">
               {% if searchresults %}
               {% for result in searchresults %}
-              <div class="resultcard mb-5"
-                >{{result['content']}}
+              <div class="resultcard">{{result['content']}}
                 <div class="mt-5 row justify-content-between">
                   <div class="col-4">Date: {{result['date']}}</div>
                   <div class="col-4">Posted By: {{result['displayname']}}</div>
                   <div class="col-2"><a><i class="fas fa-heart"></i></a> {{result['likes']}}</div>
                 </div>
               </div>
-              
+
               {% endfor %}
               {% endif %}
             </div>
@@ -197,7 +196,7 @@
                 </select>
               </div>
               <textarea id="summernote" name="editordata"></textarea>
-              <input type="submit" value="Create Note" id="submitnotebtn" form="createnoteform">
+              <input type="submit" value="Create Note!" id="submitnotebtn" form="createnoteform">
             </form>
           </div>
 
@@ -205,7 +204,13 @@
 
 
           <div class="mycarousel" id="UDpanel">
-            My Notes
+            <div id="mynotespanel">
+              {% if user_notes %}
+              {% for notes in user_notes %}
+              <div class="resultcard"> {{notes['content']}}</div>
+              {%endfor%}
+              {% endif %}
+            </div>
           </div>
           <div class="mycarousel" id="RFpanel">
             Following
