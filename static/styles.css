@@ -15,6 +15,7 @@ body {
 
 a {
     cursor: pointer;
+    text-decoration: none;
 }
 
 
@@ -125,9 +126,14 @@ a {
     height: 568px;
 }
 
+#leftpanel a {
+    color: white;
+}
+
 
 #leftpanel a:hover {
     border-bottom: gold 2px solid;
+    text-decoration: none;
 }
 
 /* profile picture */

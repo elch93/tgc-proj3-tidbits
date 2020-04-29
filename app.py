@@ -203,6 +203,11 @@ def searchnotes():
         results = search_by_topic(topic_query)
         return render_template('search.template.html', username= flask_login.current_user.displayname, searchresults=results)
 
+@app.route('/mynotes', methods=['GET'])
+@flask_login.login_required
+def mynotes():
+    user_notes = load_user_notes(flask_login.current_user.get_id())
+    return render_template('mynotes.template.html', user_notes = user_notes, username = flask_login.current_user.displayname)
 
 
 # @app.route('/mynotes', methods=['POST'])
