@@ -4,38 +4,47 @@
 <div class="mycarousel" id="UDpanel">
     <h1>My Notes</h1>
     <form method="POST" id="searchmynotes">
-      <label><b>Select a Subject: </b></label>
-      <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
-        <option value="Physics">Physics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Math">Math</option>
-        <option value="Geography">Geography</option>
-      </select>
-      <label><b>Select a Topic: </b></label>
-      <select name="searchmytopic" size=1 id="selecttopicsu">
+        <label><b>Select a Subject: </b></label>
+        <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Math">Math</option>
+            <option value="Geography">Geography</option>
+        </select>
+        <label><b>Select a Topic: </b></label>
+        <select name="searchmytopic" size=1 id="selecttopicsu">
 
-      </select>
-      <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
+        </select>
+        <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
     </form>
     <div id="mynotespanel" class="mt-5">
-      {% if user_notes %}
-      {% for notes in user_notes %}
-      <div class="resultcard">
-        <div class="row">
-          <div class="col-8"></div>
-          <div class="col-2">
-            <button>Update</button>
-          </div>
-          <div class="col-2">
-            {{loop.index}}
-          </div>
+        {% if user_notes %}
+        {% for notes in user_notes %}
+        <div class="resultcard">
+            <div class="row justify-content-between">
+                <div class="col-1">
+                    {{loop.index}}
+                </div>
+                <div class="col-3">
+                    {{notes['date']}}
+                </div>
+                <div class="col-2">
+                    {{notes['subject']}}
+                </div>
+                <div class="col-4">
+                    {{notes['topic']}}
+                </div>
+                <div class="col-1">
+                    <button>Update</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div>
+                {{notes['content']}}
+            </div>
         </div>
-        <div>
-          {{notes['content']}}
-        </div>
-      </div>
-      {%endfor%}
-      {% endif %}
+        {%endfor%}
+        {% endif %}
     </div>
-  </div>
+</div>
 {% endblock %}

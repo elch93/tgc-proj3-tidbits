@@ -24,8 +24,6 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
-
-
 class User(flask_login.UserMixin):
     pass
 
@@ -52,8 +50,6 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 # find notes content in db
-
-
 def search_by_topic(topic):
     results = client[dbname]['notes'].find({
         'topic': topic
@@ -70,8 +66,6 @@ def search_by_topic(topic):
     return results_array
 
 # load user's notes
-
-
 def load_user_notes(user):
     user_notes = client[dbname]['notes'].find({
         'owner': user
@@ -113,7 +107,7 @@ def process_input():
             "email": create_email
         }):
 
-        # check if displayname is taken
+            # check if displayname is taken
             if not client[dbname]['registered_users'].find_one({
                 'displayname': create_dname
             }):
@@ -135,15 +129,16 @@ def process_input():
                 logged_in_user.id = user_data['email']
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
-                
+
                 return redirect(url_for('search'))
             else:
-                myalert = create_dname + ' is already in use. Please try again.'
+                myalert = 'The display name ' + create_dname + \
+                    ' is already in use. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
 
         else:
             # if found, prevent creation
-            myalert = create_email + ' is already in use. Please try again.'
+            myalert = 'The email ' + create_email + ' is already in use. Please try again.'
             return render_template('index.template.html', myalert=myalert)
 
     # user is trying to login
@@ -159,7 +154,7 @@ def process_input():
                 logged_in_user.id = user_data['email']
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
-                
+
                 return redirect(url_for('search'))
             else:
                 myalert = 'Password is wrong. Please try again.'
@@ -168,27 +163,36 @@ def process_input():
             myalert = 'Email is wrong. Please try again.'
             return render_template('index.template.html', myalert=myalert)
 
-# @app.route('/create', methods=['POST'])
-# @flask_login.login_required
-# def create():
-# # create note
-#     if request.form.get('editordata'):
-#         created_subject = request.form.get('postedsubject')
-#         created_note = request.form.get('editordata')
-#         created_topic = request.form.get('subjecttopics')
+# create note page
+@app.route('/create', methods=['GET'])
+@flask_login.login_required
+def create():
+    # display summernote api
+    return render_template('create.template.html', username=flask_login.current_user.displayname)
 
-#         client[dbname]['notes'].insert_one({
-#             'owner': user_data['email'],
-#             'displayname': user_data['displayname'],
-#             'subject': created_subject,
-#             'topic': created_topic,
-#             'content': created_note,
-#             'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
-#             'likes': 0
-#         })
 
-#         return redirect(url_for('mynotes'))
+@app.route('/create', methods=['POST'])
+@flask_login.login_required
+def createnote():
+    # create note
+    if request.form.get('editordata'):
+        created_subject = request.form.get('postedsubject')
+        created_note = request.form.get('editordata')
+        created_topic = request.form.get('subjecttopics')
 
+        client[dbname]['notes'].insert_one({
+            'owner': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname,
+            'subject': created_subject,
+            'topic': created_topic,
+            'content': created_note,
+            'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
+            'likes': 0
+        })
+
+        return redirect(url_for('mynotes'))
+
+# search page
 @app.route('/search', methods=['GET'])
 @flask_login.login_required
 def search():
@@ -198,24 +202,25 @@ def search():
     for i in default_result:
         i['content'] = Markup(i['content'])
         results.append(i)
-    return render_template('search.template.html', username = flask_login.current_user.displayname, searchresults=results)
+    return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
 
 
 @app.route('/search', methods=['POST'])
 @flask_login.login_required
 def searchnotes():
-# search for notes by topics
+    # search for notes by topics
     if request.form.get('searchsubject'):
         topic_query = request.form.get('searchtopic')
 
         results = search_by_topic(topic_query)
-        return render_template('search.template.html', username= flask_login.current_user.displayname, searchresults=results)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
 
+# mynotes page
 @app.route('/mynotes', methods=['GET'])
 @flask_login.login_required
 def mynotes():
     user_notes = load_user_notes(flask_login.current_user.get_id())
-    return render_template('mynotes.template.html', user_notes = user_notes, username = flask_login.current_user.displayname)
+    return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname)
 
 
 # @app.route('/mynotes', methods=['POST'])
@@ -244,7 +249,6 @@ def mynotes():
 #         for i in results_array:
 #             i['content'] = Markup(i['content'])
 #         return render_template('mynotes.template.html', username=user_data['displayname'], user_notes=results_array)
-
 
 
 # logout

@@ -130,7 +130,7 @@
           <h4>{{username}}</h4>
           <!-- user controls -->
           <div class="mt-3">
-            <a href="{{url_for('search')}}"><i class="fas fa-plus-circle"></i> Create Note</a>
+            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> Create Note</a>
             <br>
             <a href="{{url_for('search')}}"><i class="fas fa-search"></i> Search</a>
             <br>
@@ -144,9 +144,8 @@
             <a href="{{url_for('logout')}}"><button>Logout</button></a>
           </div>
         </div>
-        <!-- carousel -->
+
         <div class="col-9" id="rightpanel">
-          <!-- Search/Read from database -->
           {% block content %}
           {% endblock %}
           
