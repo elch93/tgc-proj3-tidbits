@@ -122,7 +122,7 @@ a {
 /* CRUD page */
 #leftpanel,
 #rightpanel {
-    height: 600px;
+    height: 568px;
 }
 
 
@@ -154,10 +154,6 @@ a {
 }
 
 /* search */
-#Rpanel .container-fluid {
-    text-align: center;
-}
-
 .resultcard {
     max-width: 700px;
     border: 1px #212121 solid;
@@ -193,7 +189,8 @@ a {
 #submitnotebtn,
 #leftpanel button,
 #searchbtn,
-#searchsubjbtn {
+#searchsubjbtn,
+#searchmynotesbtn {
     margin: 10px auto;
     border: none;
     background-color: gold;
@@ -211,7 +208,8 @@ a {
 #searchbtn:hover,
 #leftpanel button:hover,
 #submitnotebtn:hover,
-#searchsubjbtn:hover {
+#searchsubjbtn:hover,
+#searchmynotesbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
 }

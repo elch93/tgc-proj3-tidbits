@@ -151,14 +151,14 @@
             <div class="container-fluid">
               <form method="POST" id="searchbysubj">
                 <label><b>Select a Subject: </b></label>
-                <select size=1 name="searchsubject" id="selectsubj2" onchange="onSubjChange(2)">
+                <select size=1 name="searchsubject" id="selectsubjr" onchange="onSubjChange('r')">
                   <option value="Physics">Physics</option>
                   <option value="Chemistry">Chemistry</option>
                   <option value="Math">Math</option>
                   <option value="Geography">Geography</option>
                 </select>
                 <label><b>Select a Topic: </b></label>
-                <select name="searchtopic" size=1 id="selecttopics2">
+                <select name="searchtopic" size=1 id="selecttopicsr">
 
                 </select>
                 <input type="submit" value="Search!" form="searchbysubj" id="searchsubjbtn">
@@ -184,14 +184,14 @@
             <form method="POST" id="createnoteform">
               <div>
                 <label><b>Select a Subject: </b></label>
-                <select size=1 name="postedsubject" id="selectsubj1" onchange="onSubjChange(1)">
+                <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange('c')">
                   <option value="Physics">Physics</option>
                   <option value="Chemistry">Chemistry</option>
                   <option value="Math">Math</option>
                   <option value="Geography">Geography</option>
                 </select>
                 <label><b>Select a Topic: </b></label>
-                <select name="subjecttopics" size=1 id="selecttopics1">
+                <select name="subjecttopics" size=1 id="selecttopicsc">
 
                 </select>
               </div>
@@ -204,10 +204,37 @@
 
 
           <div class="mycarousel" id="UDpanel">
-            <div id="mynotespanel">
+            <form method="POST" id="searchmynotes">
+              <label><b>Select a Subject: </b></label>
+              <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Math">Math</option>
+                <option value="Geography">Geography</option>
+              </select>
+              <label><b>Select a Topic: </b></label>
+              <select name="searchmytopic" size=1 id="selecttopicsu">
+
+              </select>
+              <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
+            </form>
+            <div id="mynotespanel" class="mt-5">
               {% if user_notes %}
               {% for notes in user_notes %}
-              <div class="resultcard"> {{notes['content']}}</div>
+              <div class="resultcard">
+                <div class="row">
+                  <div class="col-8"></div>
+                  <div class="col-2">
+                    <button href="{{url_for('test')}}">Update</button>
+                  </div>
+                  <div class="col-2">
+                    {{loop.index}}
+                  </div>
+                </div>
+                <div>
+                  {{notes['content']}}
+                </div>
+              </div>
               {%endfor%}
               {% endif %}
             </div>

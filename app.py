@@ -199,7 +199,6 @@ def logout():
 # test route
 @app.route('/test')
 def test():
-    results = client.sample_proj3.studynotes.find()
     print(results)
     return render_template('test.template.html', results=results)
 
