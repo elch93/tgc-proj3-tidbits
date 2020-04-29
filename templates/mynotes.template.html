@@ -35,7 +35,7 @@
                     {{notes['topic']}}
                 </div>
                 <div class="col-1">
-                    <a href="{{url_for( 'update', index = loop.index )}}"><button>Update</button></a>
+                    <a href="{{url_for( 'update', index = notes['_id'] )}}"><button>Update</button></a>
                     <button>Delete</button>
                 </div>
             </div>

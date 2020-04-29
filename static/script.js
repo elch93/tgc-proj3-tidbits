@@ -21,14 +21,6 @@ function hideforms() {
     }, 800)
 }
 
-// function showPanel(panelname) {
-//     for (let i = 0; i < $('.mycarousel').length; i++) {
-//         $('.mycarousel').eq(i).hide();
-//     }
-//     $('#' + panelname).fadeToggle();
-// }
-
-
 // alter topic list 
 function onSubjChange(a) {
     let chosenSubj = $('#selectsubj' + a).val()
@@ -103,6 +95,9 @@ $(function () {
             <option value="${i}">${i}</option>
         `)
         $('#selecttopicsu').append(`
+            <option value="${i}">${i}</option>
+        `)
+        $('#selecttopicsu2').append(`
             <option value="${i}">${i}</option>
         `)
     }

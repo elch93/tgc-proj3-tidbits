@@ -3,6 +3,7 @@ from flask import Flask, redirect, render_template, url_for, request, Markup
 from dotenv import load_dotenv
 import pymongo
 from datetime import datetime
+from bson.objectid import ObjectId
 import flask_login  # for handling logins/logouts
 from passlib.hash import pbkdf2_sha256  # for encrypting password
 from pprint import pprint
@@ -242,13 +243,34 @@ def mynotes():
 @flask_login.login_required
 def update(index):
     if request.method == 'GET':
-        user_notes = load_user_notes(flask_login.current_user.get_id())
-        print(user_notes[int(index)-1]['content'])
+        selected_note = client[dbname]['notes'].find_one({
+            '_id' : ObjectId(index)
+        })
+        
 
+        return render_template('update.template.html', username=flask_login.current_user.displayname, content=Markup(selected_note['content']) )
 
-        return render_template('update.template.html', username=flask_login.current_user.displayname, content = user_notes[int(index)-1]['content'] )
+    if request.method == 'POST':
+        print(index)
 
+        return "TESTING"
+    #     updated_note = request.form.get('updatedata'),
+    #     updated_date = datetime.now().strftime('%y-%m-%d %a %H:%M'),
+    #     updated_subj = request.form.get('updatesubject'),
+    #     updated_topic = request.form.get('updatetopic')
 
+    #     client[dbname]['notes'].update_one(
+    #         {'owner': flask_login.current_user.get_id(),
+    #         'displayname': flask_login.current_user.displayname,},
+    #         {
+            
+            
+    #         'subject': created_subject,
+    #         'topic': created_topic,
+    #         'content': created_note,
+    #         'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
+    #         'likes': 0
+    #     })
 
 
 # logout
@@ -257,17 +279,6 @@ def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
 
-
-
-
-
-
-
-# test route
-# @app.route('/test')
-# def test():
-#     print(results)
-#     return render_template('test.template.html', results=results)
 
 
 if __name__ == '__main__':
