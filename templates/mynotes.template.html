@@ -1,7 +1,7 @@
 {% extends 'index.template.html' %}
 
 {% block content %}
-<div class="mycarousel" id="UDpanel">
+<div id="UDpanel">
     <h1>My Notes</h1>
     <form method="POST" id="searchmynotes">
         <label><b>Select a Subject: </b></label>
@@ -35,7 +35,7 @@
                     {{notes['topic']}}
                 </div>
                 <div class="col-1">
-                    <a href="{{url_for('create')}}"><button>Update</button></a>
+                    <a href="{{url_for('update')}}"><button>Update</button></a>
                     <button>Delete</button>
                 </div>
             </div>

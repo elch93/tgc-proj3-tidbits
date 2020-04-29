@@ -1,0 +1,31 @@
+{% extends 'index.template.html' %}
+
+{% block content %}
+<script>
+    $(function(){
+        alert('i m running')
+    // summernote
+    $('#summernoteu').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 300,
+        width: 700
+    });
+
+    })
+    
+</script>
+
+
+<div class="mycarousel" id="Upanel">
+    <h1>Update</h1>
+    <form method="POST" id="updateform">
+      <textarea id="summernoteu" name="updatedata"></textarea>
+      <input type="submit" value="Update Note!" id="submitnotebtn" form="updateform">
+    </form>
+  </div>
+
+
+
+
+{% endblock %}

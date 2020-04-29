@@ -2,7 +2,6 @@ import os
 from flask import Flask, redirect, render_template, url_for, request, Markup
 from dotenv import load_dotenv
 import pymongo
-from bson.objectid import ObjectId
 from datetime import datetime
 import flask_login  # for handling logins/logouts
 from passlib.hash import pbkdf2_sha256  # for encrypting password
@@ -239,7 +238,11 @@ def mynotes():
 
 
 # update page
-# @app.route('/update', method='GET')
+@app.route('/update', methods=['GET','POST'])
+@flask_login.login_required
+def update():
+    if request.method == 'GET':
+        return render_template('update.template.html', username=flask_login.current_user.displayname)
 
 
 

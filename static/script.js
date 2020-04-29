@@ -93,11 +93,6 @@ $(function () {
 
 
 
-    // // create a carousel in CRUD panel
-    // for (let i = 1; i < $('.mycarousel').length; i++) {
-    //     $('.mycarousel').eq(i).hide();
-    // }
-
     // initialise topic list
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
     for (i of physicstopics) {
