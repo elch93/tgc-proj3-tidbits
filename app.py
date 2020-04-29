@@ -251,26 +251,30 @@ def update(index):
         return render_template('update.template.html', username=flask_login.current_user.displayname, content=Markup(selected_note['content']) )
 
     if request.method == 'POST':
-        print(index)
+        # retrieve updated items
+        updated_note = request.form.get('updatedata')
+        updated_date = datetime.now().strftime('%y-%m-%d %a %H:%M')
+        updated_subj = request.form.get('updatesubject')
+        updated_topic = request.form.get('updatetopic')
+        # update with pymongo
+        client[dbname]['notes'].update_one(
+            {'owner': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname,
+            '_id': ObjectId(index)
+            },
+            {'$set':{
+            'subject': updated_subj,
+            'topic': updated_topic,
+            'content': updated_note,
+            'date': updated_date,
+            'likes': 0
+        }})
+        return redirect(url_for('mynotes'))
 
-        return "TESTING"
-    #     updated_note = request.form.get('updatedata'),
-    #     updated_date = datetime.now().strftime('%y-%m-%d %a %H:%M'),
-    #     updated_subj = request.form.get('updatesubject'),
-    #     updated_topic = request.form.get('updatetopic')
-
-    #     client[dbname]['notes'].update_one(
-    #         {'owner': flask_login.current_user.get_id(),
-    #         'displayname': flask_login.current_user.displayname,},
-    #         {
-            
-            
-    #         'subject': created_subject,
-    #         'topic': created_topic,
-    #         'content': created_note,
-    #         'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
-    #         'likes': 0
-    #     })
+@app.route('/delete/<index>' methods=["GET","POST"])
+@flask_login.login_required
+def delete(index):
+    
 
 
 # logout
