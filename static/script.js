@@ -98,7 +98,7 @@ $(function () {
         $('.mycarousel').eq(i).hide();
     }
 
-    // create topic list
+    // initialise topic list
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
     for (i of physicstopics) {
         $('#selecttopicsc').append(`

@@ -51,6 +51,8 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 # find notes content in db
+
+
 def search_by_topic(topic):
     results = client[dbname]['notes'].find({
         'topic': topic
@@ -61,24 +63,25 @@ def search_by_topic(topic):
     for i in results:
         results_array.append(i)
 
-    #return markup of summernote code
+    # return markup of summernote code
     for i in results_array:
         i['content'] = Markup(i['content'])
     return results_array
 
 # load user's notes
+
+
 def load_user_notes(user):
     user_notes = client[dbname]['notes'].find({
         'owner': user
     })
 
-    
     results_array = []
 
     for i in user_notes:
         results_array.append(i)
 
-    #return markup of summernote code
+    # return markup of summernote code
     for i in results_array:
         i['content'] = Markup(i['content'])
     return results_array
@@ -92,7 +95,7 @@ def index():
             'email': flask_login.current_user.get_id()
         })
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('index.template.html', username=user_data['displayname'], user_notes = user_notes)
+        return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
     else:
         return render_template('index.template.html')
 
@@ -171,13 +174,12 @@ def process_input():
             'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
             'likes': 0
         })
-            
+
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('index.template.html', username=user_data['displayname'], user_notes = user_notes)
+        return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
 
     # search for notes by topics
     if request.form.get('searchsubject'):
-        # subject_query = request.form.get('searchsubject')
         topic_query = request.form.get('searchtopic')
         user_data = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
@@ -185,7 +187,31 @@ def process_input():
 
         results = search_by_topic(topic_query)
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('index.template.html',username=user_data['displayname'], searchresults = results, user_notes = user_notes)
+        return render_template('index.template.html', username=user_data['displayname'], searchresults=results, user_notes=user_notes)
+
+    # search for user's notes
+    if request.form.get('searchmysubject'):
+        user_data = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        })
+
+        topic_query = request.form.get('searchmytopic')
+        subj_query = request.form.get('searchmysubject')
+        my_notes_query = client[dbname]['notes'].find({
+            'owner': flask_login.current_user.get_id(),
+            'topic': topic_query,
+            'subject': subj_query
+        })
+
+        results_array = []
+
+        for i in my_notes_query:
+            results_array.append(i)
+
+        # return markup of summernote code
+        for i in results_array:
+            i['content'] = Markup(i['content'])
+        return render_template('index.template.html', username=user_data['displayname'], user_notes=results_array)
 
 
 
