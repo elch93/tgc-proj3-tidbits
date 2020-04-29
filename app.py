@@ -164,18 +164,14 @@ def process_input():
             return render_template('index.template.html', myalert=myalert)
 
 # create note page
-@app.route('/create', methods=['GET'])
+@app.route('/create', methods=['GET','POST'])
 @flask_login.login_required
 def create():
-    # display summernote api
-    return render_template('create.template.html', username=flask_login.current_user.displayname)
-
-
-@app.route('/create', methods=['POST'])
-@flask_login.login_required
-def createnote():
-    # create note
-    if request.form.get('editordata'):
+    if request.method == 'GET':
+        # display summernote api
+        return render_template('create.template.html', username=flask_login.current_user.displayname)
+    if request.method == 'POST':
+        # create note
         created_subject = request.form.get('postedsubject')
         created_note = request.form.get('editordata')
         created_topic = request.form.get('subjecttopics')
@@ -192,63 +188,60 @@ def createnote():
 
         return redirect(url_for('mynotes'))
 
+
 # search page
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['GET','POST'])
 @flask_login.login_required
 def search():
-    # default load
-    results = []
-    default_result = client[dbname]['notes'].find().limit(5)
-    for i in default_result:
-        i['content'] = Markup(i['content'])
-        results.append(i)
-    return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
-
-
-@app.route('/search', methods=['POST'])
-@flask_login.login_required
-def searchnotes():
-    # search for notes by topics
-    if request.form.get('searchsubject'):
+    if request.method == 'GET':
+        # default load
+        results = []
+        default_result = client[dbname]['notes'].find().limit(5)
+        for i in default_result:
+            i['content'] = Markup(i['content'])
+            results.append(i)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
+    if request.method == 'POST':
+         # search for notes by topics
         topic_query = request.form.get('searchtopic')
 
         results = search_by_topic(topic_query)
         return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
 
+
 # mynotes page
-@app.route('/mynotes', methods=['GET'])
+@app.route('/mynotes', methods=['GET','POST'])
 @flask_login.login_required
 def mynotes():
-    user_notes = load_user_notes(flask_login.current_user.get_id())
-    return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname)
+    if request.method == 'GET':
+        user_notes = load_user_notes(flask_login.current_user.get_id())
+        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname)
+
+    if request.method == 'POST':
+        # search for user's notes
+        topic_query = request.form.get('searchmytopic')
+        subj_query = request.form.get('searchmysubject')
+        my_notes_query = client[dbname]['notes'].find({
+            'owner': flask_login.current_user.get_id(),
+            'topic': topic_query,
+            'subject': subj_query
+        })
+
+        results_array = []
+
+        for i in my_notes_query:
+            results_array.append(i)
+
+        # return markup of summernote code
+        for i in results_array:
+            i['content'] = Markup(i['content'])
+        return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array)
 
 
-# @app.route('/mynotes', methods=['POST'])
-# @flask_login.login_required
-# def mynotessearch():
-# # search for user's notes
-#     if request.form.get('searchmysubject'):
-#         user_data = client[dbname]['registered_users'].find_one({
-#             'email': flask_login.current_user.get_id()
-#         })
+# update page
+# @app.route('/update', method='GET')
 
-#         topic_query = request.form.get('searchmytopic')
-#         subj_query = request.form.get('searchmysubject')
-#         my_notes_query = client[dbname]['notes'].find({
-#             'owner': flask_login.current_user.get_id(),
-#             'topic': topic_query,
-#             'subject': subj_query
-#         })
 
-#         results_array = []
-
-#         for i in my_notes_query:
-#             results_array.append(i)
-
-#         # return markup of summernote code
-#         for i in results_array:
-#             i['content'] = Markup(i['content'])
-#         return render_template('mynotes.template.html', username=user_data['displayname'], user_notes=results_array)
 
 
 # logout
@@ -256,6 +249,11 @@ def mynotes():
 def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
+
+
+
+
+
 
 
 # test route
