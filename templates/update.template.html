@@ -3,7 +3,6 @@
 {% block content %}
 <script>
     $(function(){
-        alert('i m running')
     // summernote
     $('#summernoteu').summernote({
         placeholder: 'Hello Bootstrap 4',
@@ -11,6 +10,8 @@
         height: 300,
         width: 700
     });
+
+    $('#summernoteu').summernote('code', '{{content}}');
 
     })
     

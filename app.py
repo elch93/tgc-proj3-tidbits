@@ -238,11 +238,15 @@ def mynotes():
 
 
 # update page
-@app.route('/update', methods=['GET','POST'])
+@app.route('/update/<index>', methods=['GET','POST'])
 @flask_login.login_required
-def update():
+def update(index):
     if request.method == 'GET':
-        return render_template('update.template.html', username=flask_login.current_user.displayname)
+        user_notes = load_user_notes(flask_login.current_user.get_id())
+        print(user_notes[int(index)-1]['content'])
+
+
+        return render_template('update.template.html', username=flask_login.current_user.displayname, content = user_notes[int(index)-1]['content'] )
 
 
 
