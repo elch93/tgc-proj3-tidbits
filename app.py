@@ -271,10 +271,16 @@ def update(index):
         }})
         return redirect(url_for('mynotes'))
 
-@app.route('/delete/<index>' methods=["GET","POST"])
+@app.route('/delete/<index>', methods=["GET"])
 @flask_login.login_required
 def delete(index):
-    
+    if request.method == "GET":
+        client[dbname]['notes'].delete_one(
+            {'owner': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname,
+            '_id': ObjectId(index)
+            })
+        return redirect(url_for('mynotes'))
 
 
 # logout

@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-1">
                     <a href="{{url_for( 'update', index = notes['_id'] )}}"><button>Update</button></a>
-                    <button>Delete</button>
+                    <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button>Delete</button></a>
                 </div>
             </div>
             <div>
@@ -47,4 +47,6 @@
         {% endif %}
     </div>
 </div>
+
+
 {% endblock %}
