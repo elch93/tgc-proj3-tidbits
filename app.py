@@ -112,26 +112,34 @@ def process_input():
         if not client[dbname]['registered_users'].find_one({
             "email": create_email
         }):
-            # if not found, create an account
-            client[dbname]['registered_users'].insert_one({
-                "displayname": create_dname,
-                "email": create_email,
-                "password": password_encryptor(create_pw),
-                'following': [],
-                'liked': []
-            })
 
-            # then allow the user to login
-            logged_in_user = User()
-            user_data = client[dbname]['registered_users'].find_one({
-                "email": create_email
-            })
+        # check if displayname is taken
+            if not client[dbname]['registered_users'].find_one({
+                'displayname': create_dname
+            }):
+                # if not found, create an account
+                client[dbname]['registered_users'].insert_one({
+                    "displayname": create_dname,
+                    "email": create_email,
+                    "password": password_encryptor(create_pw),
+                    'following': [],
+                    'liked': []
+                })
 
-            logged_in_user.id = user_data['email']
-            logged_in_user.displayname = user_data['displayname']
-            flask_login.login_user(logged_in_user)
-            
-            return redirect(url_for('search'))
+                # then allow the user to login
+                logged_in_user = User()
+                user_data = client[dbname]['registered_users'].find_one({
+                    "email": create_email
+                })
+
+                logged_in_user.id = user_data['email']
+                logged_in_user.displayname = user_data['displayname']
+                flask_login.login_user(logged_in_user)
+                
+                return redirect(url_for('search'))
+            else:
+                myalert = create_dname + ' is already in use. Please try again.'
+                return render_template('index.template.html', myalert=myalert)
 
         else:
             # if found, prevent creation
