@@ -130,15 +130,15 @@
           <h4>{{username}}</h4>
           <!-- user controls -->
           <div class="mt-3">
-            <a onclick="showPanel('Cpanel')"><i class="fas fa-plus-circle"></i> Create Note</a>
+            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> Create Note</a>
             <br>
-            <a onclick="showPanel('Rpanel')"><i class="fas fa-search"></i> Search</a>
+            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> Search</a>
             <br>
-            <a onclick="showPanel('UDpanel')"><i class="fas fa-sticky-note"></i> My Notes</a>
+            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> My Notes</a>
             <br>
-            <a onclick="showPanel('RFpanel')"><i class="fas fa-user-plus"></i>Following</a>
+            <a href="{{url_for('following')}}"><i class="fas fa-user-plus"></i>Following</a>
             <br>
-            <a onclick="showPanel('RSpanel')"><i class="fas fa-heart"></i> Saved Notes</a>
+            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> Saved Notes</a>
             <br>
             <br>
             <a href="{{url_for('logout')}}"><button>Logout</button></a>
@@ -147,107 +147,17 @@
         <!-- carousel -->
         <div class="col-9" id="rightpanel">
           <!-- Search/Read from database -->
-          <div class="mycarousel" id="Rpanel">
-            <h1>Search</h1>
-            <div class="container-fluid">
-              <form method="POST" id="searchbysubj">
-                <label><b>Select a Subject: </b></label>
-                <select size=1 name="searchsubject" id="selectsubjr" onchange="onSubjChange('r')">
-                  <option value="Physics">Physics</option>
-                  <option value="Chemistry">Chemistry</option>
-                  <option value="Math">Math</option>
-                  <option value="Geography">Geography</option>
-                </select>
-                <label><b>Select a Topic: </b></label>
-                <select name="searchtopic" size=1 id="selecttopicsr">
+          {% block content %}
+          {% endblock %}
+          
 
-                </select>
-                <input type="submit" value="Search!" form="searchbysubj" id="searchsubjbtn">
-              </form>
-            </div>
-            <div class="mt-5 container-fluid" id="resulttable">
-              {% if searchresults %}
-              {% for result in searchresults %}
-              <div class="resultcard">{{result['content']}}
-                <div class="mt-5 row justify-content-between">
-                  <div class="col-4">Date: {{result['date']}}</div>
-                  <div class="col-4">Posted By: {{result['displayname']}}</div>
-                  <div class="col-2"><a><i class="fas fa-heart"></i></a> {{result['likes']}}</div>
-                </div>
-              </div>
-
-              {% endfor %}
-              {% endif %}
-            </div>
-          </div>
-          <!-- Create a note and save it into the database -->
-          <div class="mycarousel" id="Cpanel">
-            <h1>Create</h1>
-            <form method="POST" id="createnoteform">
-              <div>
-                <label><b>Select a Subject: </b></label>
-                <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange('c')">
-                  <option value="Physics">Physics</option>
-                  <option value="Chemistry">Chemistry</option>
-                  <option value="Math">Math</option>
-                  <option value="Geography">Geography</option>
-                </select>
-                <label><b>Select a Topic: </b></label>
-                <select name="subjecttopics" size=1 id="selecttopicsc">
-
-                </select>
-              </div>
-              <textarea id="summernote" name="editordata"></textarea>
-              <input type="submit" value="Create Note!" id="submitnotebtn" form="createnoteform">
-            </form>
-          </div>
-
-
-
-
-          <div class="mycarousel" id="UDpanel">
-            <h1>My Notes</h1>
-            <form method="POST" id="searchmynotes">
-              <label><b>Select a Subject: </b></label>
-              <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Math">Math</option>
-                <option value="Geography">Geography</option>
-              </select>
-              <label><b>Select a Topic: </b></label>
-              <select name="searchmytopic" size=1 id="selecttopicsu">
-
-              </select>
-              <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
-            </form>
-            <div id="mynotespanel" class="mt-5">
-              {% if user_notes %}
-              {% for notes in user_notes %}
-              <div class="resultcard">
-                <div class="row">
-                  <div class="col-8"></div>
-                  <div class="col-2">
-                    <button href="{{url_for('test')}}">Update</button>
-                  </div>
-                  <div class="col-2">
-                    {{loop.index}}
-                  </div>
-                </div>
-                <div>
-                  {{notes['content']}}
-                </div>
-              </div>
-              {%endfor%}
-              {% endif %}
-            </div>
-          </div>
-          <div class="mycarousel" id="RFpanel">
+          
+          <!-- <div class="mycarousel" id="RFpanel">
             Following
           </div>
           <div class="mycarousel" id="RSpanel">
             Saved Notes
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

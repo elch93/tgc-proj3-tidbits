@@ -21,12 +21,12 @@ function hideforms() {
     }, 800)
 }
 
-function showPanel(panelname) {
-    for (let i = 0; i < $('.mycarousel').length; i++) {
-        $('.mycarousel').eq(i).hide();
-    }
-    $('#' + panelname).fadeToggle();
-}
+// function showPanel(panelname) {
+//     for (let i = 0; i < $('.mycarousel').length; i++) {
+//         $('.mycarousel').eq(i).hide();
+//     }
+//     $('#' + panelname).fadeToggle();
+// }
 
 
 // alter topic list 
@@ -93,10 +93,10 @@ $(function () {
 
 
 
-    // create a carousel in CRUD panel
-    for (let i = 1; i < $('.mycarousel').length; i++) {
-        $('.mycarousel').eq(i).hide();
-    }
+    // // create a carousel in CRUD panel
+    // for (let i = 1; i < $('.mycarousel').length; i++) {
+    //     $('.mycarousel').eq(i).hide();
+    // }
 
     // initialise topic list
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]

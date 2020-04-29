@@ -1,0 +1,41 @@
+{% extends 'index.template.html' %}
+
+{% block content %}
+<div class="mycarousel" id="UDpanel">
+    <h1>My Notes</h1>
+    <form method="POST" id="searchmynotes">
+      <label><b>Select a Subject: </b></label>
+      <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
+        <option value="Physics">Physics</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Math">Math</option>
+        <option value="Geography">Geography</option>
+      </select>
+      <label><b>Select a Topic: </b></label>
+      <select name="searchmytopic" size=1 id="selecttopicsu">
+
+      </select>
+      <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
+    </form>
+    <div id="mynotespanel" class="mt-5">
+      {% if user_notes %}
+      {% for notes in user_notes %}
+      <div class="resultcard">
+        <div class="row">
+          <div class="col-8"></div>
+          <div class="col-2">
+            <button href="{{url_for('test')}}">Update</button>
+          </div>
+          <div class="col-2">
+            {{loop.index}}
+          </div>
+        </div>
+        <div>
+          {{notes['content']}}
+        </div>
+      </div>
+      {%endfor%}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

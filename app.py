@@ -38,6 +38,7 @@ def user_loader(email):
 
     logged_in_user = User()
     logged_in_user.id = user_data['email']
+    logged_in_user.displayname = user_data['displayname']
     return logged_in_user
 
 
@@ -127,8 +128,10 @@ def process_input():
             })
 
             logged_in_user.id = user_data['email']
+            logged_in_user.displayname = user_data['displayname']
             flask_login.login_user(logged_in_user)
-            return render_template('index.template.html', username=user_data['displayname'])
+            
+            return redirect(url_for('search'))
 
         else:
             # if found, prevent creation
@@ -146,9 +149,10 @@ def process_input():
             if verify_password(login_pw, user_data['password']):
                 logged_in_user = User()
                 logged_in_user.id = user_data['email']
+                logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
-                user_notes = load_user_notes(flask_login.current_user.get_id())
-                return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
+                
+                return redirect(url_for('search'))
             else:
                 myalert = 'Password is wrong. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
@@ -156,62 +160,77 @@ def process_input():
             myalert = 'Email is wrong. Please try again.'
             return render_template('index.template.html', myalert=myalert)
 
-    # create note
-    if request.form.get('editordata'):
-        created_subject = request.form.get('postedsubject')
-        created_note = request.form.get('editordata')
-        created_topic = request.form.get('subjecttopics')
-        user_data = client[dbname]['registered_users'].find_one({
-            'email': flask_login.current_user.get_id()
-        })
+# @app.route('/create', methods=['POST'])
+# @flask_login.login_required
+# def create():
+# # create note
+#     if request.form.get('editordata'):
+#         created_subject = request.form.get('postedsubject')
+#         created_note = request.form.get('editordata')
+#         created_topic = request.form.get('subjecttopics')
 
-        client[dbname]['notes'].insert_one({
-            'owner': user_data['email'],
-            'displayname': user_data['displayname'],
-            'subject': created_subject,
-            'topic': created_topic,
-            'content': created_note,
-            'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
-            'likes': 0
-        })
+#         client[dbname]['notes'].insert_one({
+#             'owner': user_data['email'],
+#             'displayname': user_data['displayname'],
+#             'subject': created_subject,
+#             'topic': created_topic,
+#             'content': created_note,
+#             'date': datetime.now().strftime('%y-%m-%d %a %H:%M'),
+#             'likes': 0
+#         })
 
-        user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
+#         return redirect(url_for('mynotes'))
 
-    # search for notes by topics
+@app.route('/search', methods=['GET'])
+@flask_login.login_required
+def search():
+    # default load
+    results = []
+    default_result = client[dbname]['notes'].find().limit(5)
+    for i in default_result:
+        i['content'] = Markup(i['content'])
+        results.append(i)
+    return render_template('search.template.html', username = flask_login.current_user.displayname, searchresults=results)
+
+
+@app.route('/search', methods=['POST'])
+@flask_login.login_required
+def searchnotes():
+# search for notes by topics
     if request.form.get('searchsubject'):
         topic_query = request.form.get('searchtopic')
-        user_data = client[dbname]['registered_users'].find_one({
-            'email': flask_login.current_user.get_id()
-        })
 
         results = search_by_topic(topic_query)
-        user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('index.template.html', username=user_data['displayname'], searchresults=results, user_notes=user_notes)
+        return render_template('search.template.html', username= flask_login.current_user.displayname, searchresults=results)
 
-    # search for user's notes
-    if request.form.get('searchmysubject'):
-        user_data = client[dbname]['registered_users'].find_one({
-            'email': flask_login.current_user.get_id()
-        })
 
-        topic_query = request.form.get('searchmytopic')
-        subj_query = request.form.get('searchmysubject')
-        my_notes_query = client[dbname]['notes'].find({
-            'owner': flask_login.current_user.get_id(),
-            'topic': topic_query,
-            'subject': subj_query
-        })
 
-        results_array = []
+# @app.route('/mynotes', methods=['POST'])
+# @flask_login.login_required
+# def mynotessearch():
+# # search for user's notes
+#     if request.form.get('searchmysubject'):
+#         user_data = client[dbname]['registered_users'].find_one({
+#             'email': flask_login.current_user.get_id()
+#         })
 
-        for i in my_notes_query:
-            results_array.append(i)
+#         topic_query = request.form.get('searchmytopic')
+#         subj_query = request.form.get('searchmysubject')
+#         my_notes_query = client[dbname]['notes'].find({
+#             'owner': flask_login.current_user.get_id(),
+#             'topic': topic_query,
+#             'subject': subj_query
+#         })
 
-        # return markup of summernote code
-        for i in results_array:
-            i['content'] = Markup(i['content'])
-        return render_template('index.template.html', username=user_data['displayname'], user_notes=results_array)
+#         results_array = []
+
+#         for i in my_notes_query:
+#             results_array.append(i)
+
+#         # return markup of summernote code
+#         for i in results_array:
+#             i['content'] = Markup(i['content'])
+#         return render_template('mynotes.template.html', username=user_data['displayname'], user_notes=results_array)
 
 
 
@@ -223,10 +242,10 @@ def logout():
 
 
 # test route
-@app.route('/test')
-def test():
-    print(results)
-    return render_template('test.template.html', results=results)
+# @app.route('/test')
+# def test():
+#     print(results)
+#     return render_template('test.template.html', results=results)
 
 
 if __name__ == '__main__':
