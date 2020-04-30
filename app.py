@@ -298,25 +298,71 @@ def delete(index):
 @app.route('/like/<index>', methods=["GET"])
 @flask_login.login_required
 def savenote(index):
-    #update likes
-    selected_note = client[dbname]['notes'].find_one({
-        '_id': ObjectId(index)
-    }, {
-        'likes':1,'_id':0
-    })
-    print(selected_note['likes'])
-    updated_likes = selected_note['likes'] + 1
-    selected_note = client[dbname]['notes'].update_one({
-        '_id': ObjectId(index)
-    },{
-        '$set':{
-            'likes':updated_likes
-        }
-    } 
-    
-    )
-    #return nothing but runs the function 
-    return ('', 204)
+    # check if note was saved before, if not, grant a like and save
+    # else unsaved and minus one like
+    # update likes
+    if not client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id(),
+        'displayname': flask_login.current_user.displayname,
+        'liked': ObjectId(index)
+    }):
+        selected_note = client[dbname]['notes'].find_one({
+            '_id': ObjectId(index)
+        }, {
+            'likes':1,'_id':0
+        })
+        print(selected_note['likes'])
+        updated_likes = selected_note['likes'] + 1
+        client[dbname]['notes'].update_one({
+            '_id': ObjectId(index)
+        },{
+            '$set':{
+                'likes':updated_likes
+            }
+        } 
+        
+        )
+        # save note to user's db
+        client[dbname]['registered_users'].update_one({
+            'email': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname
+        }, {
+            '$push': {
+                'liked': ObjectId(index)
+            }
+        })
+
+        #return nothing but runs the function 
+        return ('', 204)
+    #unlike 
+    else:
+        # minus one like 
+        selected_note = client[dbname]['notes'].find_one({
+            '_id': ObjectId(index)
+        }, {
+            'likes':1,'_id':0
+        })
+        updated_likes = selected_note['likes'] - 1
+        client[dbname]['notes'].update_one({
+            '_id': ObjectId(index)
+        },{
+            '$set':{
+                'likes':updated_likes
+            }
+        } 
+        
+        )
+        # remove note
+        client[dbname]['registered_users'].update_one({
+            'email': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname
+        }, {
+            '$pull': {
+                'liked': ObjectId(index)
+            }
+        })
+        
+        return ('', 204)
 
 
 # logout
