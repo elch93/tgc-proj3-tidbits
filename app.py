@@ -230,7 +230,6 @@ def mynotes():
     if request.method == 'POST':
         # search for user's notes
         topic_query = request.form.get('searchmytopic')
-        print(topic_query)
         subj_query = request.form.get('searchmysubject')
         my_notes_query = client[dbname]['notes'].find({
             'owner': flask_login.current_user.get_id(),
@@ -385,15 +384,38 @@ def savednotes():
 
             saved_notes.append(note)
         
-        print(saved_notes)
 
         for i in saved_notes:
             i['content'] = Markup(i['content'])
 
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens = "Physics", user_notes = saved_notes)
+    if request.method=="POST":
+        topic_query = request.form.get('savedtopic')
+        subj_query = request.form.get('savedsubject')
+        # get array of objectids that user liked
+        saved_notes_query = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        }, {
+            'liked':1,
+            '_id': 0
+        })
         
+        # filter out topics we don't need
+        saved_notes = []
         
 
-    return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens = "Physics", user_notes = saved_notes)
+        for i in saved_notes_query['liked']:
+            note = client[dbname]['notes'].find_one({
+                '_id': i
+            })
+            if note['topic'] == topic_query: 
+                saved_notes.append(note)
+
+        if saved_notes:
+            for i in saved_notes:
+                i['content'] = Markup(i['content'])
+
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes,chosens=subj_query, chosent=topic_query)
 
 
 
