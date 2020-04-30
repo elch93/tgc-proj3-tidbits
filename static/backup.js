@@ -28,11 +28,11 @@ function onSubjChange(a) {
     let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
     let geogtopics = ['Our Dynamic Planet', 'Our Changing World', 'Geographical Skills & Investigations']
     let mathtopics = ['Number & Algebra','Geometry & Measurement','Statistics & Probablity']
-    
+
     function appendTopics(subj){
         for (topic of subj) {
             $('#selecttopics' + a).append(`
-            <option value="${topic}">${topic}</option>
+            <option value="${topic}" {% if chosent==${topic} %} selected {% endif %}>${topic}</option>
         `)
         }
     }
@@ -53,6 +53,11 @@ function onSubjChange(a) {
 
     
 }
+
+
+
+
+
 
 $(function () {
     // get started button displayes an overlay
@@ -77,6 +82,35 @@ $(function () {
         height: 300,
         width: 700
     });
+
+
+
+    // initialise topic list
+    function initialiseTopics(){
+        let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
+        let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
+        let geogtopics = ['Our Dynamic Planet', 'Our Changing World', 'Geographical Skills & Investigations']
+        let mathtopics = ['Number & Algebra','Geometry & Measurement','Statistics & Probablity']
+    
+        function appendTopics(subjname, subjArray, id){
+            for (topic of subjArray) {
+                $('#'+ id).append(`
+                    <option value="${topic}" class="${subjname} {% if chosens == "${subjname}" %}d-block {% else %} d-none {% endif %}">${topic}</option>
+                `)
+            }
+        }
+
+        appendTopics('Physics', physicstopics, 'selecttopicsr')
+        appendTopics('Chemistry', chemtopics, 'selecttopicsr')
+        appendTopics('Geography', geogtopics, 'selecttopicsr')
+        appendTopics('Math', mathtopics, 'selecttopicsr')
+    
+        
+    }
+
+    initialiseTopics()
+
+
 
 
 

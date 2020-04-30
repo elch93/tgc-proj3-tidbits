@@ -24,6 +24,8 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
+
+
 class User(flask_login.UserMixin):
     pass
 
@@ -50,6 +52,8 @@ def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
 # find notes content in db
+
+
 def search_by_topic(topic):
     results = client[dbname]['notes'].find({
         'topic': topic
@@ -66,6 +70,8 @@ def search_by_topic(topic):
     return results_array
 
 # load user's notes
+
+
 def load_user_notes(user):
     user_notes = client[dbname]['notes'].find({
         'owner': user
@@ -164,7 +170,7 @@ def process_input():
             return render_template('index.template.html', myalert=myalert)
 
 # create note page
-@app.route('/create', methods=['GET','POST'])
+@app.route('/create', methods=['GET', 'POST'])
 @flask_login.login_required
 def create():
     if request.method == 'GET':
@@ -190,7 +196,7 @@ def create():
 
 
 # search page
-@app.route('/search', methods=['GET','POST'])
+@app.route('/search', methods=['GET', 'POST'])
 @flask_login.login_required
 def search():
     if request.method == 'GET':
@@ -200,13 +206,17 @@ def search():
         for i in default_result:
             i['content'] = Markup(i['content'])
             results.append(i)
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="Physics")
     if request.method == 'POST':
          # search for notes by topics
+        subj_query = request.form.get('searchsubject')
         topic_query = request.form.get('searchtopic')
+        
+
+
 
         results = search_by_topic(topic_query)
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query)
 
 
 # mynotes page
@@ -271,6 +281,7 @@ def update(index):
         }})
         return redirect(url_for('mynotes'))
 
+# delete note
 @app.route('/delete/<index>', methods=["GET"])
 @flask_login.login_required
 def delete(index):
