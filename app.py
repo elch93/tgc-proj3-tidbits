@@ -208,11 +208,9 @@ def search():
             results.append(i)
         return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="Physics")
     if request.method == 'POST':
-         # search for notes by topics
+        # search for notes by topics
         subj_query = request.form.get('searchsubject')
         topic_query = request.form.get('searchtopic')
-        
-
 
 
         results = search_by_topic(topic_query)
@@ -220,12 +218,12 @@ def search():
 
 
 # mynotes page
-@app.route('/mynotes', methods=['GET','POST'])
+@app.route('/mynotes', methods=['GET', 'POST'])
 @flask_login.login_required
 def mynotes():
     if request.method == 'GET':
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname,chosens="Physics")
+        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname, chosens="Physics")
 
     if request.method == 'POST':
         # search for user's notes
@@ -245,20 +243,19 @@ def mynotes():
         # return markup of summernote code
         for i in results_array:
             i['content'] = Markup(i['content'])
-        return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array,chosens=subj_query, chosent=topic_query)
+        return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
 
 
 # update page
-@app.route('/update/<index>', methods=['GET','POST'])
+@app.route('/update/<index>', methods=['GET', 'POST'])
 @flask_login.login_required
 def update(index):
     if request.method == 'GET':
         selected_note = client[dbname]['notes'].find_one({
-            '_id' : ObjectId(index)
+            '_id': ObjectId(index)
         })
-        
 
-        return render_template('update.template.html', username=flask_login.current_user.displayname, content=Markup(selected_note['content']) )
+        return render_template('update.template.html', username=flask_login.current_user.displayname, content=Markup(selected_note['content']))
 
     if request.method == 'POST':
         # retrieve updated items
@@ -269,16 +266,16 @@ def update(index):
         # update with pymongo
         client[dbname]['notes'].update_one(
             {'owner': flask_login.current_user.get_id(),
-            'displayname': flask_login.current_user.displayname,
-            '_id': ObjectId(index)
-            },
-            {'$set':{
-            'subject': updated_subj,
-            'topic': updated_topic,
-            'content': updated_note,
-            'date': updated_date,
-            'likes': 0
-        }})
+             'displayname': flask_login.current_user.displayname,
+             '_id': ObjectId(index)
+             },
+            {'$set': {
+                'subject': updated_subj,
+                'topic': updated_topic,
+                'content': updated_note,
+                'date': updated_date,
+                'likes': 0
+            }})
         return redirect(url_for('mynotes'))
 
 # delete note
@@ -288,9 +285,9 @@ def delete(index):
     if request.method == "GET":
         client[dbname]['notes'].delete_one(
             {'owner': flask_login.current_user.get_id(),
-            'displayname': flask_login.current_user.displayname,
-            '_id': ObjectId(index)
-            })
+             'displayname': flask_login.current_user.displayname,
+             '_id': ObjectId(index)
+             })
         return redirect(url_for('mynotes'))
 
 # like/save note
@@ -308,18 +305,18 @@ def savenote(index):
         selected_note = client[dbname]['notes'].find_one({
             '_id': ObjectId(index)
         }, {
-            'likes':1,'_id':0
+            'likes': 1, '_id': 0
         })
         print(selected_note['likes'])
         updated_likes = selected_note['likes'] + 1
         client[dbname]['notes'].update_one({
             '_id': ObjectId(index)
-        },{
-            '$set':{
-                'likes':updated_likes
+        }, {
+            '$set': {
+                'likes': updated_likes
             }
-        } 
-        
+        }
+
         )
         # save note to user's db
         client[dbname]['registered_users'].update_one({
@@ -331,25 +328,25 @@ def savenote(index):
             }
         })
 
-        #return nothing but runs the function 
+        # return nothing but runs the function
         return ('', 204)
-    #unlike 
+    # unlike
     else:
-        # minus one like 
+        # minus one like
         selected_note = client[dbname]['notes'].find_one({
             '_id': ObjectId(index)
         }, {
-            'likes':1,'_id':0
+            'likes': 1, '_id': 0
         })
         updated_likes = selected_note['likes'] - 1
         client[dbname]['notes'].update_one({
             '_id': ObjectId(index)
-        },{
-            '$set':{
-                'likes':updated_likes
+        }, {
+            '$set': {
+                'likes': updated_likes
             }
-        } 
-        
+        }
+
         )
         # remove note
         client[dbname]['registered_users'].update_one({
@@ -364,14 +361,14 @@ def savenote(index):
         return ('', 204)
 
 # view saved notes
-@app.route('/savednotes', methods=["GET","POST"])
+@app.route('/savednotes', methods=["GET", "POST"])
 @flask_login.login_required
 def savednotes():
-    if request.method=="GET":
+    if request.method == "GET":
         results = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
         }, {
-            'liked':1,
+            'liked': 1,
             '_id': 0
         })
 
@@ -383,40 +380,37 @@ def savednotes():
             })
 
             saved_notes.append(note)
-        
 
         for i in saved_notes:
             i['content'] = Markup(i['content'])
 
-        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens = "Physics", user_notes = saved_notes)
-    if request.method=="POST":
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="Physics", user_notes=saved_notes)
+    if request.method == "POST":
         topic_query = request.form.get('savedtopic')
         subj_query = request.form.get('savedsubject')
         # get array of objectids that user liked
         saved_notes_query = client[dbname]['registered_users'].find_one({
             'email': flask_login.current_user.get_id()
         }, {
-            'liked':1,
+            'liked': 1,
             '_id': 0
         })
-        
+
         # filter out topics we don't need
         saved_notes = []
-        
 
         for i in saved_notes_query['liked']:
             note = client[dbname]['notes'].find_one({
                 '_id': i
             })
-            if note['topic'] == topic_query: 
+            if note['topic'] == topic_query:
                 saved_notes.append(note)
 
         if saved_notes:
             for i in saved_notes:
                 i['content'] = Markup(i['content'])
 
-        return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes,chosens=subj_query, chosent=topic_query)
-
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query)
 
 
 
@@ -425,7 +419,6 @@ def savednotes():
 def logout():
     flask_login.logout_user()
     return redirect(url_for('index'))
-
 
 
 if __name__ == '__main__':

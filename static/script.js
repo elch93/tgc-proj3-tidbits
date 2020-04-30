@@ -21,7 +21,16 @@ function hideforms() {
     }, 800)
 }
 
-// alter topic list 
+// toggle heart
+function likePlus(a) {
+    console.log($(a).children('i').css('color'))
+    if ($(a).children('i').css('color') == 'rgb(33, 33, 33)') {
+        $(a).children('i').css('color','rgb(255, 0, 0)')
+    }
+    
+}
+
+// alter topic list in select html
 function onSubjChange(a) {
     let chosenSubj = $('#selectsubj' + a).val()
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
