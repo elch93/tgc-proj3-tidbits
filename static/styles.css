@@ -176,6 +176,7 @@ a {
 
 #resulttable .fa-heart, #savednotes .fa-heart {
     color: #212121;
+    transition: 0.4s ease-in-out;
 }
 
 

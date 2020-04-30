@@ -23,9 +23,17 @@ function hideforms() {
 
 // toggle heart
 function likePlus(a) {
-    console.log($(a).children('i').css('color'))
+    //console.log($(a).parent().text())
     if ($(a).children('i').css('color') == 'rgb(33, 33, 33)') {
         $(a).children('i').css('color','rgb(255, 0, 0)')
+        newLikes = parseInt($(a).parent().text()) + 1
+        $(a).parent().children('span').text(newLikes.toString())
+    }
+
+    else if ($(a).children('i').css('color') == 'rgb(255, 0, 0)') {
+        $(a).children('i').css('color','rgb(33, 33, 33)')
+        newLikes = parseInt($(a).parent().text()) - 1
+        $(a).parent().children('span').text(newLikes.toString())
     }
     
 }
