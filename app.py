@@ -361,8 +361,41 @@ def savenote(index):
                 'liked': ObjectId(index)
             }
         })
-        
+
         return ('', 204)
+
+# view saved notes
+@app.route('/savednotes', methods=["GET","POST"])
+@flask_login.login_required
+def savednotes():
+    if request.method=="GET":
+        results = client[dbname]['registered_users'].find_one({
+            'email': flask_login.current_user.get_id()
+        }, {
+            'liked':1,
+            '_id': 0
+        })
+
+        saved_notes = []
+
+        for i in results['liked']:
+            note = client[dbname]['notes'].find_one({
+                '_id': i
+            })
+
+            saved_notes.append(note)
+        
+        print(saved_notes)
+
+        for i in saved_notes:
+            i['content'] = Markup(i['content'])
+
+        
+        
+
+    return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens = "Physics", user_notes = saved_notes)
+
+
 
 
 # logout

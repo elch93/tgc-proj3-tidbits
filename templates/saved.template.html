@@ -1,0 +1,77 @@
+{% extends 'index.template.html' %}
+
+{% block content %}
+<div id="savednotes">
+    <h1>Saved Notes</h1>
+    <form method="POST" id="searchsavednotes">
+        <label><b>Select a Subject: </b></label>
+        <select size=1 name="savedsubject" id="selectsubjs" onchange="onSubjChange('s')">
+            <option value="Physics" {% if chosens == "Phyiscs" %} selected {% endif %}>Physics</option>
+            <option value="Chemistry" {% if chosens == "Chemistry" %} selected {% endif %}>Chemistry</option>
+            <option value="Math" {% if chosens == "Math" %} selected {% endif %}>Math</option>
+            <option value="Geography" {% if chosens == "Geography" %} selected {% endif %}>Geography</option>
+        </select>
+        <label><b>Select a Topic: </b></label>
+        <select name="savedtopic" size=1 id="selecttopicss">
+            {% if chosens == 'Physics' %}
+            <option value="Measurement" {% if chosent == "Measurement" %}selected{% endif %}>Measurement</option>
+            <option value="Newtonian Mechanics" {% if chosent == "Newtonian Mechanics" %}selected{% endif %}>Newtonian
+                Mechanics</option>
+            <option value="Thermal Physics" {% if chosent == "Thermal Physics" %}selected{% endif %}>Thermal Physics
+            </option>
+            <option value="Waves" {% if chosent == "Waves" %}selected{% endif %}>Waves</option>
+            <option value="Electricity & Magnetism" {% if chosent == "Electricity & Magnetism" %}selected{% endif %}>
+                Electricity & Magnetism</option>
+            {% endif %}
+            {% if chosens == 'Chemistry' %}
+            <option value="Experimental Chemistry" {% if chosent == "Experimental Chemistry" %}selected{% endif %}>
+                Experimental Chemistry</option>
+            <option value="Chemistry of Reactions" {% if chosent == "Chemistry of Reactions" %}selected{% endif %}>
+                Chemistry of Reactions</option>
+            <option value="Periodicity" {% if chosent == "Periodicity" %}selected{% endif %}>Periodicity</option>
+            <option value="Atmosphere" {% if chosent == "Atmosphere" %}selected{% endif %}>Atmosphere</option>
+            <option value="Organic Chemistry" {% if chosent == "Organic Chemistry" %}selected{% endif %}>Organic
+                Chemistry</option>
+            {% endif %}
+            {% if chosens == 'Math' %}
+            <option value="Number & Algebra" {% if chosent == "Number & Algebra" %}selected{% endif %}>Number & Algebra
+            </option>
+            <option value="Geometry & Measurement" {% if chosent == "Geometry & Measurement" %}selected{% endif %}>
+                Geometry & Measurement</option>
+            <option value="Statistics & Probablity" {% if chosent == "Statistics & Probablity" %}selected{% endif %}>
+                Statistics & Probablity</option>
+            {% endif %}
+            {% if chosens == 'Geography' %}
+            <option value="Our Dynamic Planet" {% if chosent == "Our Dynamic Planet" %}selected{% endif %}>Our Dynamic
+                Planet</option>
+            <option value="Our Changing World" {% if chosent == "Our Changing World" %}selected{% endif %}>Our Changing
+                World</option>
+            <option value="Geographical Skills & Investigations"
+                {% if chosent == "Geographical Skills & Investigations" %}selected{% endif %}>Geographical Skills &
+                Investigations</option>
+            {% endif %}
+        </select>
+        <input type="submit" value="Search!" form="searchsavednotes" id="savednotesbtn">
+    </form>
+    <div id="mysavednotes" class="mt-5">
+        {% if user_notes %}
+        {% for notes in user_notes %}
+        <div class="resultcard">{{notes['content']}}
+            <div class="mt-5 row justify-content-between">
+              <div class="col-4">Date: {{notes['date']}}</div>
+              <div class="col-4">Posted By: {{notes['displayname']}}</div>
+              <div class="col-2"><a href="{{url_for( 'savenote', index = notes['_id'] )}}"><i class="fas fa-heart"></i></a> {{notes['likes']}}</div>
+            </div>
+          </div>
+        {%endfor%}
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

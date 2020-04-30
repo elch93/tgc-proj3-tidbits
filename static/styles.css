@@ -174,7 +174,7 @@ a {
     overflow-y: scroll;
 }
 
-#resulttable .fa-heart {
+#resulttable .fa-heart, #savednotes .fa-heart {
     color: red;
 }
 
@@ -200,7 +200,8 @@ a {
 #leftpanel button,
 #searchbtn,
 #searchsubjbtn,
-#searchmynotesbtn {
+#searchmynotesbtn,
+#savednotesbtn {
     margin: 10px auto;
     border: none;
     background-color: gold;
@@ -219,7 +220,8 @@ a {
 #leftpanel button:hover,
 #submitnotebtn:hover,
 #searchsubjbtn:hover,
-#searchmynotesbtn:hover {
+#searchmynotesbtn:hover,
+#savednotesbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
 }
