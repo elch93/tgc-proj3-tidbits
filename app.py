@@ -294,6 +294,30 @@ def delete(index):
             })
         return redirect(url_for('mynotes'))
 
+# like/save note
+@app.route('/like/<index>', methods=["GET"])
+@flask_login.login_required
+def savenote(index):
+    #update likes
+    selected_note = client[dbname]['notes'].find_one({
+        '_id': ObjectId(index)
+    }, {
+        'likes':1,'_id':0
+    })
+    print(selected_note['likes'])
+    updated_likes = selected_note['likes'] + 1
+    selected_note = client[dbname]['notes'].update_one({
+        '_id': ObjectId(index)
+    },{
+        '$set':{
+            'likes':updated_likes
+        }
+    } 
+    
+    )
+    #return nothing but runs the function 
+    return ('', 204)
+
 
 # logout
 @app.route('/logout')
