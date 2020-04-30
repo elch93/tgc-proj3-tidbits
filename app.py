@@ -225,11 +225,12 @@ def search():
 def mynotes():
     if request.method == 'GET':
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname)
+        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname,chosens="Physics")
 
     if request.method == 'POST':
         # search for user's notes
         topic_query = request.form.get('searchmytopic')
+        print(topic_query)
         subj_query = request.form.get('searchmysubject')
         my_notes_query = client[dbname]['notes'].find({
             'owner': flask_login.current_user.get_id(),
@@ -245,7 +246,7 @@ def mynotes():
         # return markup of summernote code
         for i in results_array:
             i['content'] = Markup(i['content'])
-        return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array)
+        return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array,chosens=subj_query, chosent=topic_query)
 
 
 # update page

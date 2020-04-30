@@ -3,23 +3,30 @@
 {% block content %}
 <!-- Create a note and save it into the database -->
 <div id="Cpanel">
-    <h1>Create</h1>
-    <form method="POST" id="createnoteform">
-      <div>
-        <label><b>Select a Subject: </b></label>
-        <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange('c')">
-          <option value="Physics">Physics</option>
-          <option value="Chemistry">Chemistry</option>
-          <option value="Math">Math</option>
-          <option value="Geography">Geography</option>
-        </select>
-        <label><b>Select a Topic: </b></label>
-        <select name="subjecttopics" size=1 id="selecttopicsc">
-
-        </select>
-      </div>
-      <textarea id="summernote" name="editordata"></textarea>
-      <input type="submit" value="Create Note!" id="submitnotebtn" form="createnoteform">
-    </form>
-  </div>
+  <h1>Create</h1>
+  <form method="POST" id="createnoteform">
+    <div>
+      <label><b>Select a Subject: </b></label>
+      <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange('c')">
+        <option value="Physics">Physics</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Math">Math</option>
+        <option value="Geography">Geography</option>
+      </select>
+      <label><b>Select a Topic: </b></label>
+      <select name="subjecttopics" size=1 id="selecttopicsc">
+        <option value="Measurement" {% if chosent == "Measurement" %}selected{% endif %}>Measurement</option>
+        <option value="Newtonian Mechanics" {% if chosent == "Newtonian Mechanics" %}selected{% endif %}>Newtonian
+          Mechanics</option>
+        <option value="Thermal Physics" {% if chosent == "Thermal Physics" %}selected{% endif %}>Thermal Physics
+        </option>
+        <option value="Waves" {% if chosent == "Waves" %}selected{% endif %}>Waves</option>
+        <option value="Electricity & Magnetism" {% if chosent == "Electricity & Magnetism" %}selected{% endif %}>
+          Electricity & Magnetism</option>
+      </select>
+    </div>
+    <textarea id="summernote" name="editordata"></textarea>
+    <input type="submit" value="Create Note!" id="submitnotebtn" form="createnoteform">
+  </form>
+</div>
 {% endblock %}
