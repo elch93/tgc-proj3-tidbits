@@ -51,23 +51,7 @@ def password_encryptor(user_password):
 def verify_password(user_input, encrypted_password):
     return pbkdf2_sha256.verify(user_input, encrypted_password)
 
-# find notes content in db
 
-
-def search_by_topic(topic):
-    results = client[dbname]['notes'].find({
-        'topic': topic
-    })
-
-    results_array = []
-
-    for i in results:
-        results_array.append(i)
-
-    # return markup of summernote code
-    for i in results_array:
-        i['content'] = Markup(i['content'])
-    return results_array
 
 # load user's notes
 
@@ -205,6 +189,21 @@ def liked_notes(userid):
     return results['liked']
 
 
+# find notes content in db
+def search_by_topic(topic):
+    results = client[dbname]['notes'].find({
+        'topic': topic
+    })
+
+    results_array = []
+
+    for i in results:
+        results_array.append(i)
+
+    # return markup of summernote code
+    for i in results_array:
+        i['content'] = Markup(i['content'])
+    return results_array
 
 # search page
 @app.route('/search', methods=['GET', 'POST'])
@@ -224,9 +223,10 @@ def search():
         subj_query = request.form.get('searchsubject')
         topic_query = request.form.get('searchtopic')
 
-
         results = search_by_topic(topic_query)
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query)
+        
+        user_liked_notes = liked_notes(flask_login.current_user.get_id())
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes = user_liked_notes)
 
 
 # mynotes page
@@ -395,8 +395,8 @@ def savednotes():
 
         for i in saved_notes:
             i['content'] = Markup(i['content'])
-
-        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="Physics", user_notes=saved_notes)
+        user_liked_notes = liked_notes(flask_login.current_user.get_id())
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="Physics", user_notes=saved_notes, user_liked_notes = user_liked_notes)
     if request.method == "POST":
         topic_query = request.form.get('savedtopic')
         subj_query = request.form.get('savedsubject')
@@ -421,8 +421,8 @@ def savednotes():
         if saved_notes:
             for i in saved_notes:
                 i['content'] = Markup(i['content'])
-
-        return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query)
+        user_liked_notes = liked_notes(flask_login.current_user.get_id())
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes = user_liked_notes)
 
 @app.route('/test')
 @flask_login.login_required
