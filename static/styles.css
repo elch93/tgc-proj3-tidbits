@@ -169,7 +169,7 @@ a {
     margin: 0 auto 30px auto;
 }
 
-#resulttable {
+#resulttable, #mysavednotes, #mynotespanel {
     height: 400px;
     overflow-y: scroll;
 }
@@ -225,10 +225,4 @@ a {
 #savednotesbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
-}
-
-/* my notes */
-#mynotespanel {
-    height: 400px;
-    overflow-y: scroll;
 }

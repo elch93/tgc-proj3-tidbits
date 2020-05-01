@@ -194,6 +194,17 @@ def create():
 
         return redirect(url_for('mynotes'))
 
+# return array of user's liked notes
+def liked_notes(userid):
+    results = client[dbname]['registered_users'].find_one({
+            'email': userid
+        }, {
+            'liked': 1,
+            '_id': 0
+        })
+    return results['liked']
+
+
 
 # search page
 @app.route('/search', methods=['GET', 'POST'])
@@ -206,7 +217,8 @@ def search():
         for i in default_result:
             i['content'] = Markup(i['content'])
             results.append(i)
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="Physics")
+        user_liked_notes = liked_notes(flask_login.current_user.get_id())
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="Physics", user_liked_notes = user_liked_notes)
     if request.method == 'POST':
         # search for notes by topics
         subj_query = request.form.get('searchsubject')
@@ -412,7 +424,12 @@ def savednotes():
 
         return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query)
 
-
+@app.route('/test')
+@flask_login.login_required
+def test():
+    print(flask_login.current_user.get_id())
+    liked_notes(flask_login.current_user.get_id())
+    return "TESTING"
 
 # logout
 @app.route('/logout')
