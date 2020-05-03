@@ -241,7 +241,7 @@ a {
 
 
 /* search */
-#Rpanel h1 {
+#Rpanel h1, #Cpanel h1 {
     font-weight: 700;
 }
 
@@ -266,10 +266,6 @@ a {
 
 
 /* create note */
-#Cpanel form {
-    margin: 10px auto;
-}
-
 .note-editor {
     border: #212121 5px solid !important;
     border-radius: 10px !important;
@@ -278,9 +274,18 @@ a {
 
 .note-toolbar {
     border-bottom: #212121 5px solid !important;
-    border-radius: 10px 10px 0 0; */
-/* background-color: #212121 !important; */
+    border-radius: 10px 10px 0 0;
 }
+
+#createnoteform label {
+    margin: 0 10px;
+}
+
+#createnoteform select, #Rpanel select {
+    margin: 0 15px 0 0;
+}
+
+/* common */
 
 #submitnotebtn,
 #leftpanel button,
