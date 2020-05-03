@@ -241,10 +241,14 @@ a {
 
 
 /* search */
+#Rpanel h1 {
+    font-weight: 700;
+}
+
+
 .resultcard {
     max-width: 700px;
     border: 1px #212121 solid;
-    border-radius: 10px;
     padding: 10px;
     box-shadow: 5px 5px 0px 0px #212121;
     margin: 0 auto 30px auto;

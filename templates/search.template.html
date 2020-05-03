@@ -2,8 +2,8 @@
 
 {% block content %}
 <div id="Rpanel">
-  <h1>Search</h1>
-  <div class="container-fluid">
+  <h1>Discover Notes</h1>
+  <div class="container-fluid d-flex justify-content-center">
     <form method="POST" id="searchbysubj">
       <label><b>Select a Subject: </b></label>
       <select size=1 name="searchsubject" id="selectsubjr" onchange="onSubjChange('r')">
@@ -27,6 +27,9 @@
         {% if chosens == 'Chemistry' %}
         <option value="Experimental Chemistry" {% if chosent == "Experimental Chemistry" %}selected{% endif %}>
           Experimental Chemistry</option>
+        <option value="Atomic Structure & Stoichiometry"
+          {% if chosent == "Atomic Structure & Stoichiometry" %}selected{% endif %}>
+          Atomic Structure & Stoichiometry</option>
         <option value="Chemistry of Reactions" {% if chosent == "Chemistry of Reactions" %}selected{% endif %}>Chemistry
           of Reactions</option>
         <option value="Periodicity" {% if chosent == "Periodicity" %}selected{% endif %}>Periodicity</option>
@@ -62,7 +65,9 @@
       <div class="mt-5 row justify-content-between">
         <div class="col-4">Date: {{result['date']}}</div>
         <div class="col-4">Posted By: {{result['displayname']}}</div>
-        <div class="col-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"{% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
+        <div class="col-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
+              class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+              {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
       </div>
     </div>
 

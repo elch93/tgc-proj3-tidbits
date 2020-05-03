@@ -74,7 +74,7 @@
               <input type="password" name="loginpw" placeholder="enter your password">
               <br>
               <br>
-              <input type="submit" value="LOGIN" id="submitl">
+              <input type="submit" value="LOGIN" id="submitl" form="lform">
             </div>
           </div>
           <div id="rform" class="row justify-content-center">
@@ -91,7 +91,7 @@
               <input type="password" name="registerpw" placeholder="enter your password">
               <br>
               <br>
-              <input type="submit" value="REGISTER" id="submitr">
+              <input type="submit" value="REGISTER" id="submitr" form="rform">
             </div>
           </div>
         </form>
@@ -129,10 +129,10 @@
   </main>
 </body>
 <!-- warning alert if user creates an account with a registered email -->
-<!-- {% if myalert %}
-    <script>
-      alert('{{myalert}}')
-    </script>
-    {% endif %} -->
+{% if myalert %}
+<script>
+  alert('{{myalert}}')
+</script>
+{% endif %}
 
 </html>
