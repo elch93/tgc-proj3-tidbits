@@ -13,12 +13,16 @@ function showrform() {
 }
 
 function hideforms() {
-    $('#loginbg').css('transform', 'scale(1)');
     $("#loginpanel").fadeToggle(400);
     setTimeout(function () {
-        $('#getstarted').fadeToggle();
-        $('#herotxt').fadeToggle();
-    }, 800)
+        $('#herotext, #notepic, #sharedata').fadeToggle();
+    }, 600)
+}
+
+// toggle Login/Register Panel
+function toggleLoginPanel() {
+    $('#herotext, #notepic, #sharedata').fadeToggle(400);
+    $('#loginpanel').fadeToggle(600);
 }
 
 // toggle heart
@@ -72,18 +76,8 @@ function onSubjChange(a) {
 }
 
 $(function () {
-    // get started button displayes an overlay
-    $('#getstarted').click(function () {
-        $('#getstarted').fadeToggle();
-        $('#herotxt').fadeToggle();
-        $('#loginbg').css('transform', 'scale(100)');
-        setTimeout(function () {
-            $("#loginpanel").fadeToggle();
-        }, 600)
-        $("#register").css('border-bottom', 'none');
-        $("#login").css('border-bottom', 'gold 5px solid');
-
-    })
+    // hide login/register panel
+    $('#loginpanel').hide()
 
 
 

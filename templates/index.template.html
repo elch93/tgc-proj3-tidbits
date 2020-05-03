@@ -41,33 +41,25 @@
       <div id="herotext">
         <h1>Learn to Teach, <br> Teach to Learn.</h1>
         <p>View exam tips or notes shared by others!<br> Or create and share your own notes with others.</p>
-        <button><p>Get Started</p></button>
+        <button onclick="toggleLoginPanel()"><p>Get Started</p></button>
       </div>
       <img src="/static/images/note.png" id="notepic">
       <img src="/static/images/share.png" id="sharedata">
-      
+      <div id="loginpanel">
+        <a onclick="hideforms()"><i class="fas fa-times"></i></a>
+        <form method="POST">
+          <div class="row mt-5">
+            <div class="col-6"><h3>Login</h3></div>
+            <div class="col-6"><h3>Register</h3></div>
+          </div>
+        </form>
+      </div>
     </div>
 
 
 
 
 
-    <!-- <div class="container-fluid" id="defaultindex">
-      <div class="row">
-        <div class="col-12">
-          <div id="herotxt">
-            <h1>Teach to Learn, <br> Learn to Teach.</h1>
-            <br>
-            <p>Tidbit is a website for anyone to volunteer teach by sharing notes and ideas.<br>
-              Learners can benefit from the notes shared by others.
-            </p>
-            <br>
-          </div>
-          <span id="loginbg"></span>
-          <button id="getstarted">Get Started!</button>
-        </div>
-      </div>
-    </div> -->
 
     <!-- login panel -->
     <!-- <div id="loginpanel">

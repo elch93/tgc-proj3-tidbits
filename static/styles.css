@@ -100,105 +100,43 @@ a {
     }
 }
 
-
-
-
-/* #defaultindex {
-    height: 600px;
-    overflow: hidden;
-    background-color: #212121;
-}
-
-
-#herotxt {
-    position: relative;
-    top: 150px;
-    left: 100px;
-    width: 400px;
-    color: white;
-}
-
-#herotxt p {
-    text-align: justify;
-}
-
-#defaultindex button {
-    position: relative;
-    top: 150px;
-    left: 200px;
-    border-radius: 30px;
-    border: none;
-    padding: 10px 25px;
-    font-weight: bold;
-    background-color: white;
-    transition: 0.4s ease-in-out;
-    color: #212121;
-}
-
-#defaultindex button:hover {
-    background-color: #FBB03B;
-    color: #212121;
-}
-
-
-#loginbg {
-    position: absolute;
-    top: 375px;
-    left: 120px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    background-color: #212121;
-    transform: scale(1);
-    transition: 1.5s ease-in-out;
-    z-index: -1;
-
-} */
-
-
-
 /* login panel */
-/* #loginpanel {
-    color: white;
-    display: none;
+#loginpanel {
+    width: 600px;
+    height: 400px;
     position: absolute;
-    top: 100px;
-    left: 100px;
-    width: 350px;
-}
-
-#loginpanel form {
-    font-weight: bold;
-    text-align: left;
-}
-
-#login,
-#register {
-    transition: 0.3s ease-in-out;
-    padding: 5px;
-}
-
-#rform {
-    display: none;
-}
-
-#submitl,
-#submitr {
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    background-color: gold;
-    padding: 10px 20px;
-    transition: 0.4s ease-in-out;
-}
-
-#submitl:hover,
-#submitr:hover,
-#login:hover,
-#register:hover {
+    top: 120px;
+    left:50%;
+    transform: translate(-50%,0);
+    border-radius: 15px;
     background-color: white;
-    color: #212121;
-} */
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-name: fadeUp;
+}
+
+@keyframes fadeUp {
+    0% {
+        transform: translate(-50%,0);
+    }
+
+    100% {
+        transform: translate(-50%,-20px);
+    }
+}
+
+#loginpanel .fa-times {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+}
+
+#loginpanel form h3 {
+    text-align: center;
+}
 
 
 
