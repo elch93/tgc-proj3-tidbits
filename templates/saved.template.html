@@ -26,6 +26,9 @@
             {% if chosens == 'Chemistry' %}
             <option value="Experimental Chemistry" {% if chosent == "Experimental Chemistry" %}selected{% endif %}>
                 Experimental Chemistry</option>
+            <option value="Atomic Structure & Stoichiometry"
+                {% if chosent == "Atomic Structure & Stoichiometry" %}selected{% endif %}>
+                Atomic Structure & Stoichiometry</option>
             <option value="Chemistry of Reactions" {% if chosent == "Chemistry of Reactions" %}selected{% endif %}>
                 Chemistry of Reactions</option>
             <option value="Periodicity" {% if chosent == "Periodicity" %}selected{% endif %}>Periodicity</option>
@@ -58,11 +61,13 @@
         {% for notes in user_notes %}
         <div class="resultcard">{{notes['content']}}
             <div class="mt-5 row justify-content-between">
-              <div class="col-4">Date: {{notes['date']}}</div>
-              <div class="col-4">Posted By: {{notes['displayname']}}</div>
-              <div class="col-2"><a href="{{url_for( 'savenote', index = notes['_id'] )}}" onclick="likePlus(this)"><i class="fas fa-heart" {% if notes['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"{% endif %}></i></a>&nbsp; <span>{{notes['likes']}}</span></div>
+                <div class="col-4">Date: {{notes['date']}}</div>
+                <div class="col-4">Posted By: {{notes['displayname']}}</div>
+                <div class="col-2"><a href="{{url_for( 'savenote', index = notes['_id'] )}}" onclick="likePlus(this)"><i
+                            class="fas fa-heart" {% if notes['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+                            {% endif %}></i></a>&nbsp; <span>{{notes['likes']}}</span></div>
             </div>
-          </div>
+        </div>
         {%endfor%}
         {% endif %}
     </div>
