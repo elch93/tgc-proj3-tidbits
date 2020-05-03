@@ -241,10 +241,6 @@ a {
 
 
 /* search */
-#Rpanel h1, #Cpanel h1 {
-    font-weight: 700;
-}
-
 
 .resultcard {
     max-width: 700px;
@@ -253,17 +249,6 @@ a {
     box-shadow: 5px 5px 0px 0px #212121;
     margin: 0 auto 30px auto;
 }
-
-#resulttable, #mysavednotes, #mynotespanel {
-    height: 400px;
-    overflow-y: scroll;
-}
-
-#resulttable .fa-heart, #savednotes .fa-heart {
-    color: #212121;
-    transition: 0.4s ease-in-out;
-} 
-
 
 /* create note */
 .note-editor {
@@ -281,11 +266,24 @@ a {
     margin: 0 10px;
 }
 
-#createnoteform select, #Rpanel select {
-    margin: 0 15px 0 0;
-}
+/* mynotes */
+
+
+
 
 /* common */
+#searchbysubj select, #createnoteform select, #searchmynotes select, #searchsavednotes select  {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+}
+
+#Rpanel h1, #Cpanel h1, #UDpanel h1 {
+    font-weight: 700;
+}
+
+#createnoteform select, #Rpanel select, #UDpanel select {
+    margin: 0 15px 0 0;
+}
 
 #submitnotebtn,
 #leftpanel button,
@@ -316,3 +314,13 @@ a {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px #F15A24;
 }
+
+#resulttable, #mysavednotes, #mynotespanel {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#resulttable .fa-heart, #savednotes .fa-heart {
+    color: #212121;
+    transition: 0.4s ease-in-out;
+} 
