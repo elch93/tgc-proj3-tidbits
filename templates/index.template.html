@@ -43,9 +43,12 @@
     <div class="container-fluid" id="homepage">
       <div id="herotext">
         <h1>Learn to Teach, <br> Teach to Learn.</h1>
-        <p>View exam tips or notes shared by others!<br> Or create and share your own notes with others.</p>
+        <p>Fill your knowledge gaps by studying exam tips or notes shared by others.
+          <br>
+          <br>
+          In turn, you can help others by creating and sharing your own tips.</p>
         <button onclick="toggleLoginPanel(this)">
-          <p>Get Started</p>
+          <p>Get Started!</p>
         </button>
       </div>
       <img src="/static/images/note.png" id="notepic">
@@ -94,68 +97,42 @@
         </form>
       </div>
     </div>
-    
+
     {% endif %}
-    
+
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
-
+    <!-- controller page CRUD -->
+    <div class="container-fluid" id="controller">
+      <div class="row">
+        <div class="col-2" id="leftpanel">
+          <div id="profilepic"></div>
+          <h4>{{username}}</h4>
+          <!-- user controls -->
+          <div class="mt-3 d-flex flex-column align-items-center">
+            <div>
+              <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>Create Note</span></a>
+              <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>Search</span></a>
+              <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>My Notes</span></a>
+              <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>Saved Notes</span></a>
+            </div>
+            <a href="{{url_for('logout')}}"><button>LOGOUT</button></a>
+          </div>
+        </div>
+        <div class="col-10" id="rightpanel">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
     {% endif %}
   </main>
 </body>
 <!-- warning alert if user creates an account with a registered email -->
-  <!-- {% if myalert %}
+<!-- {% if myalert %}
     <script>
       alert('{{myalert}}')
     </script>
     {% endif %} -->
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!-- controller page CRUD -->
-<!-- <div class="container-fluid" id="controller">
-      <div class="row">
-        <div class="col-3" id="leftpanel">
-          <div id="profilepic"></div>
-          <h4>{{username}}</h4> -->
-<!-- user controls -->
-<!-- <div class="mt-3">
-            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> Create Note</a>
-            <br>
-            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> Search</a>
-            <br>
-            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> My Notes</a> -->
-<!-- <br>
-            <a href="{{url_for('search')}}"><i class="fas fa-user-plus"></i>Following</a> -->
-<!-- <br>
-            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> Saved Notes</a>
-            <br>
-            <br>
-            <a href="{{url_for('logout')}}"><button>Logout</button></a>
-          </div>
-        </div> -->
-<!-- 
-        <div class="col-9" id="rightpanel">
-          {% block content %}
-          {% endblock %} -->
-
-
-
-<!-- <div class="mycarousel" id="RFpanel">
-            Following
-          </div>
-          <div class="mycarousel" id="RSpanel">
-            Saved Notes
-          </div> -->
-<!-- </div>
-      </div>
-    </div> -->

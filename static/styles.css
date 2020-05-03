@@ -40,11 +40,12 @@ a {
 
 #herotext {
     height: 200px;
-    width: 400px;
+    width: 350px;
     color: white;
     position: relative;
     top: 150px;
-    left: 150px;
+    left: 120px;
+    text-align: justify;
 }
 
 #herotext h1 {
@@ -79,11 +80,13 @@ a {
 
 #sharedata {
     position: relative;
-    bottom: 130px;
+    bottom: 100px;
+    left:50px;
     animation-name: bouncing;
     animation-timing-function: ease-in-out;
     animation-duration: 4s;
     animation-iteration-count: infinite;
+    width: 350px;
 }
 
 @keyframes bouncing {
@@ -193,23 +196,33 @@ a {
 
 
 /* CRUD page */
-/* #leftpanel,
+#leftpanel,
 #rightpanel {
-    height: 568px;
+    min-height: 550px;
 }
 
 #leftpanel a {
     color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 10px 0px;
+    text-align: left;
+    display: block;
 }
 
 
-#leftpanel a:hover {
-    border-bottom: gold 2px solid;
-    text-decoration: none;
-} */
+
+#leftpanel a span:hover {
+    border-bottom: #FBB03B 2px solid;
+}
+
+#leftpanel button {
+    display: block;
+    text-align: center;
+}
 
 /* profile picture */
-/* #profilepic {
+#profilepic {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -226,13 +239,9 @@ a {
     text-align: center;
 }
 
-#leftpanel .mt-3 a {
-    margin: 0px 40px;
-    transition: 0.3s ease-in-out;
-} */
 
 /* search */
-/* .resultcard {
+.resultcard {
     max-width: 700px;
     border: 1px #212121 solid;
     border-radius: 10px;
@@ -249,11 +258,11 @@ a {
 #resulttable .fa-heart, #savednotes .fa-heart {
     color: #212121;
     transition: 0.4s ease-in-out;
-} */
+} 
 
 
 /* create note */
-/* #Cpanel form {
+#Cpanel form {
     margin: 10px auto;
 }
 
@@ -267,7 +276,7 @@ a {
     border-bottom: #212121 5px solid !important;
     border-radius: 10px 10px 0 0; */
 /* background-color: #212121 !important; */
-/* }
+}
 
 #submitnotebtn,
 #leftpanel button,
@@ -277,7 +286,7 @@ a {
 #savednotesbtn {
     margin: 10px auto;
     border: none;
-    background-color: gold;
+    background-color: #FBB03B;
     padding: 5px 10px;
     font-weight: bold;
     border-radius: 10px;
@@ -296,5 +305,5 @@ a {
 #searchmynotesbtn:hover,
 #savednotesbtn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 0px 1px orange;
-} */
+    box-shadow: 0 5px 0px 1px #F15A24;
+}
