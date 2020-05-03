@@ -34,10 +34,11 @@
 
 <!-- if user is anonymous/unregistered -->
 
-{% if current_user.is_anonymous %}
+
 
 <body>
   <main>
+    {% if current_user.is_anonymous %}
     <!-- welcome page -->
     <div class="container-fluid" id="homepage">
       <div id="herotext">
@@ -62,11 +63,11 @@
           </div>
           <div id="lform" class="row justify-content-center">
             <div class="mt-5">
-              <label for="loginemail">Email: </label>
+              <label for="loginemail"><i class="fas fa-envelope"></i> Email: </label>
               <input type="email" name="loginemail" placeholder="enter your email">
               <br>
               <br>
-              <label for="loginpw">Password: </label>
+              <label for="loginpw"><i class="fas fa-key"></i> Password: </label>
               <input type="password" name="loginpw" placeholder="enter your password">
               <br>
               <br>
@@ -75,15 +76,15 @@
           </div>
           <div id="rform" class="row justify-content-center">
             <div class="mt-5">
-              <label for="registername">Display Name: </label>
+              <label for="registername"><i class="far fa-id-card"></i> Display Name: </label>
               <input type="text" name="registername" placeholder="enter a display name">
               <br>
               <br>
-              <label for="registeremail">Email: </label>
+              <label for="registeremail"><i class="fas fa-envelope"></i> Email: </label>
               <input type="email" name="registeremail" placeholder="enter your email">
               <br>
               <br>
-              <label for="registerpw">Password: </label>
+              <label for="registerpw"><i class="fas fa-key"></i> Password: </label>
               <input type="password" name="registerpw" placeholder="enter your password">
               <br>
               <br>
@@ -93,25 +94,33 @@
         </form>
       </div>
     </div>
+    
+    {% endif %}
+    
+    <!-- for registered users -->
+    {% if current_user.is_authenticated %}
+
+    {% endif %}
   </main>
-
-  <!-- warning alert if user creates an account with a registered email -->
-  <!-- {% if myalert %}
-  <script>
-    alert('{{myalert}}')
-  </script>
-  {% endif %} -->
 </body>
-{% endif %}
+<!-- warning alert if user creates an account with a registered email -->
+  <!-- {% if myalert %}
+    <script>
+      alert('{{myalert}}')
+    </script>
+    {% endif %} -->
+</html>
 
 
 
 
-<!-- for registered users -->
-<!-- {% if current_user.is_authenticated %}
 
-<body>
-  <main> -->
+
+
+
+
+
+
 <!-- controller page CRUD -->
 <!-- <div class="container-fluid" id="controller">
       <div class="row">
@@ -149,9 +158,4 @@
           </div> -->
 <!-- </div>
       </div>
-    </div>
-  </main>
-</body>
-{% endif %}
-
-</html> -->
+    </div> -->

@@ -122,6 +122,7 @@ def process_input():
 
                 return redirect(url_for('search'))
             else:
+                # if display name is used, prevent creation
                 myalert = 'The display name ' + create_dname + \
                     ' is already in use. Please try again.'
                 return render_template('index.template.html', myalert=myalert)

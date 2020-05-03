@@ -148,6 +148,7 @@ a {
     margin: 0 80px;
     display: inline;
     transition: ease-in-out 0.3s;
+    font-weight: 700;
 }
 
 #rform,
