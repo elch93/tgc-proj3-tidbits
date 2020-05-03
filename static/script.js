@@ -23,7 +23,6 @@ function hideforms() {
 function toggleLoginPanel(x) {
     $('#herotext, #notepic, #sharedata').fadeToggle(400);
     $('#loginpanel').fadeToggle(600);
-    $(x).parents('#homepage').find('#loginpanel h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
 }
 
 // toggle heart
@@ -80,7 +79,7 @@ $(function () {
     // hide login/register panel
     $('#loginpanel').hide()
     $('#rform').hide()
-
+    $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
 
 
     // summernote
