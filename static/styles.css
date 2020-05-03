@@ -1,6 +1,6 @@
 /* colors */
 /* 
-orange: ##FBB03B
+orange: #FBB03B
 black: #212121
 white: white
 font-family: 'Ubuntu', sans-serif;
@@ -35,7 +35,7 @@ a {
 /* welcome page */
 #homepage {
     height: 600px;
-    background: linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(60,60,60,1) 80%, rgba(59,59,59,1) 100%);
+    background: linear-gradient(180deg, rgba(33, 33, 33, 1) 0%, rgba(60, 60, 60, 1) 80%, rgba(59, 59, 59, 1) 100%);
 }
 
 #herotext {
@@ -92,7 +92,7 @@ a {
     }
 
     50% {
-        transform:translateY(15px);
+        transform: translateY(15px);
     }
 
     100% {
@@ -106,8 +106,8 @@ a {
     height: 400px;
     position: absolute;
     top: 120px;
-    left:50%;
-    transform: translate(-50%,0);
+    left: 50%;
+    transform: translate(-50%, 0);
     border-radius: 15px;
     background-color: white;
     animation-iteration-count: 1;
@@ -119,11 +119,21 @@ a {
 
 @keyframes fadeUp {
     0% {
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
     }
 
     100% {
-        transform: translate(-50%,-20px);
+        transform: translate(-50%, -20px);
+    }
+}
+
+@keyframes fadeUp2 {
+    0% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-10px);
     }
 }
 
@@ -135,9 +145,50 @@ a {
 }
 
 #loginpanel form h3 {
-    text-align: center;
+    margin: 0 80px;
+    display: inline;
+    transition: ease-in-out 0.3s;
 }
 
+#rform,
+#lform {
+    animation: fadeUp2 0.5s ease-in 1 forwards;
+}
+
+#lform div,
+#rform div {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#lform input,
+#rform input {
+    background-color: gainsboro;
+    color: #212121;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+#lform #submitl,
+#rform #submitr {
+    border: none;
+    border-radius: 0px;
+    padding: 10px 20px;
+    background-color: #FBB03B;
+    color: #212121;
+    font-size: 18px;
+    font-weight: 700;
+    transition: ease-in-out 0.3s;
+}
+
+#lform #submitl:hover,
+#rform #submitr:hover {
+    background-color: #212121;
+    color: white;
+} 
 
 
 /* CRUD page */
@@ -214,7 +265,7 @@ a {
 .note-toolbar {
     border-bottom: #212121 5px solid !important;
     border-radius: 10px 10px 0 0; */
-    /* background-color: #212121 !important; */
+/* background-color: #212121 !important; */
 /* }
 
 #submitnotebtn,
