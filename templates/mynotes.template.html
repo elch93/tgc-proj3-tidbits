@@ -69,20 +69,12 @@
         {% if user_notes %}
         {% for notes in user_notes %}
         <div class="resultcard">
-            <div class="row justify-content-between">
-                <div class="col-1">
-                    {{loop.index}}
-                </div>
-                <div class="col-3">
-                    {{notes['date']}}
-                </div>
-                <div class="col-2">
-                    {{notes['subject']}}
+            <div class="row mb-4 justify-content-between">
+                <div class="col-6">
+                    <p>{{loop.index}} )&nbsp; {{notes['subject']}}:&nbsp; {{notes['topic']}}</p>
+                    <p>Posted on:&nbsp; {{notes['date']}}</p>
                 </div>
                 <div class="col-4">
-                    {{notes['topic']}}
-                </div>
-                <div class="col-1">
                     <a href="{{url_for( 'update', index = notes['_id'] )}}"><button>Update</button></a>
                     <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button>Delete</button></a>
                 </div>

@@ -267,6 +267,11 @@ a {
 }
 
 /* mynotes */
+#mynotespanel .row p {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+}
+
 
 
 
@@ -285,12 +290,13 @@ a {
     margin: 0 15px 0 0;
 }
 
+/* buttons */
 #submitnotebtn,
 #leftpanel button,
 #searchbtn,
 #searchsubjbtn,
 #searchmynotesbtn,
-#savednotesbtn {
+#savednotesbtn, #mynotespanel .row button{
     margin: 10px auto;
     border: none;
     background-color: #FBB03B;
@@ -310,11 +316,13 @@ a {
 #submitnotebtn:hover,
 #searchsubjbtn:hover,
 #searchmynotesbtn:hover,
-#savednotesbtn:hover {
+#savednotesbtn:hover,
+#mynotespanel .row button:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px #F15A24;
 }
 
+/* search results container */
 #resulttable, #mysavednotes, #mynotespanel {
     height: 400px;
     overflow-y: scroll;
