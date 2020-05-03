@@ -23,37 +23,54 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;1,700&display=swap" rel="stylesheet"> 
+
   <!-- my script -->
   <script src="/static/script.js"></script>
   <title>Hello, world!</title>
 </head>
 
 <!-- if user is anonymous/unregistered -->
-{% if current_user.is_anonymous %}
 
+{% if current_user.is_anonymous %}
 <body>
   <main>
     <!-- welcome page -->
-    <div class="container-fluid" id="defaultindex">
+    <div class="container-fluid" id="homepage">
+      <div id="herotext">
+        <h1>Learn to Teach, <br> Teach to Learn.</h1>
+        <p>View exam tips or notes shared by others!<br> Or create and share your own notes with others.</p>
+        <button><p>Get Started</p></button>
+      </div>
+      <img src="/static/images/note.png" id="notepic">
+      <img src="/static/images/share.png" id="sharedata">
+      
+    </div>
+
+
+
+
+
+    <!-- <div class="container-fluid" id="defaultindex">
       <div class="row">
-        <div class="col-6">
+        <div class="col-12">
           <div id="herotxt">
-            <h1>Share Your Notes & Ideas</h1>
+            <h1>Teach to Learn, <br> Learn to Teach.</h1>
             <br>
-            <p>Fill in your knowledge gaps with study notes shared by others,
-              or help others by sharing your knowledge.
+            <p>Tidbit is a website for anyone to volunteer teach by sharing notes and ideas.<br>
+              Learners can benefit from the notes shared by others.
             </p>
             <br>
           </div>
           <span id="loginbg"></span>
           <button id="getstarted">Get Started!</button>
         </div>
-        <div class="col-6" id="heroimg"></div>
       </div>
-    </div>
+    </div> -->
 
     <!-- login panel -->
-    <div id="loginpanel">
+    <!-- <div id="loginpanel">
       <form method="POST">
         <div class="row justify-content-between">
           <div class="col-3">
@@ -106,48 +123,56 @@
         <br>
 
       </form>
-    </div>
+    </div> -->
+  
+  
+  
+  
   </main>
+
   <!-- warning alert if user creates an account with a registered email -->
-  {% if myalert %}
+  <!-- {% if myalert %}
   <script>
     alert('{{myalert}}')
   </script>
-  {% endif %}
+  {% endif %} -->
 </body>
 {% endif %}
 
+
+
+
 <!-- for registered users -->
-{% if current_user.is_authenticated %}
+<!-- {% if current_user.is_authenticated %}
 
 <body>
-  <main>
+  <main> -->
     <!-- controller page CRUD -->
-    <div class="container-fluid" id="controller">
+    <!-- <div class="container-fluid" id="controller">
       <div class="row">
         <div class="col-3" id="leftpanel">
           <div id="profilepic"></div>
-          <h4>{{username}}</h4>
+          <h4>{{username}}</h4> -->
           <!-- user controls -->
-          <div class="mt-3">
+          <!-- <div class="mt-3">
             <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> Create Note</a>
             <br>
             <a href="{{url_for('search')}}"><i class="fas fa-search"></i> Search</a>
             <br>
-            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> My Notes</a>
+            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> My Notes</a> -->
             <!-- <br>
             <a href="{{url_for('search')}}"><i class="fas fa-user-plus"></i>Following</a> -->
-            <br>
+            <!-- <br>
             <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> Saved Notes</a>
             <br>
             <br>
             <a href="{{url_for('logout')}}"><button>Logout</button></a>
           </div>
-        </div>
-
+        </div> -->
+<!-- 
         <div class="col-9" id="rightpanel">
           {% block content %}
-          {% endblock %}
+          {% endblock %} -->
           
 
           
@@ -157,11 +182,11 @@
           <div class="mycarousel" id="RSpanel">
             Saved Notes
           </div> -->
-        </div>
+        <!-- </div>
       </div>
     </div>
   </main>
 </body>
 {% endif %}
 
-</html>
+</html> -->

@@ -1,3 +1,14 @@
+/* colors */
+/* 
+orange: ##FBB03B
+black: #212121
+white: white
+font-family: 'Ubuntu', sans-serif;
+
+*/
+
+
+
 /* general */
 html,
 body {
@@ -7,6 +18,7 @@ body {
 
 body {
     overflow-x: hidden;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .gbor {
@@ -20,21 +32,90 @@ a {
 
 
 
-/* welcomme page */
-#defaultindex .col-6 {
+/* welcome page */
+#homepage {
     height: 600px;
-    overflow: hidden;
+    background: linear-gradient(180deg, rgba(33,33,33,1) 0%, rgba(60,60,60,1) 80%, rgba(59,59,59,1) 100%);
 }
 
-#heroimg {
+#herotext {
+    height: 200px;
+    width: 400px;
+    color: white;
+    position: relative;
+    top: 150px;
+    left: 150px;
+}
+
+#herotext h1 {
+    font-weight: 700;
+}
+
+#herotext button {
+    margin: 10px 100px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    transition: ease-in 0.5s;
+    color: #212121;
+}
+
+#herotext button p {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+#herotext button:hover {
+    background-color: #FBB03B;
+    color: white;
+}
+
+#notepic {
+    position: relative;
+    left: 530px;
+}
+
+#sharedata {
+    position: relative;
+    bottom: 130px;
+    animation-name: bouncing;
+    animation-timing-function: ease-in-out;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bouncing {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform:translateY(15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+/* #defaultindex {
+    height: 600px;
+    overflow: hidden;
     background-color: #212121;
 }
+
 
 #herotxt {
     position: relative;
     top: 150px;
-    left: 50px;
-    width: 430px;
+    left: 100px;
+    width: 400px;
+    color: white;
 }
 
 #herotxt p {
@@ -44,18 +125,19 @@ a {
 #defaultindex button {
     position: relative;
     top: 150px;
-    left: 50px;
-    border-radius: 10px;
+    left: 200px;
+    border-radius: 30px;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 25px;
     font-weight: bold;
-    background-color: gold;
+    background-color: white;
     transition: 0.4s ease-in-out;
+    color: #212121;
 }
 
 #defaultindex button:hover {
-    background-color: #212121;
-    color: white;
+    background-color: #FBB03B;
+    color: #212121;
 }
 
 
@@ -71,12 +153,12 @@ a {
     transition: 1.5s ease-in-out;
     z-index: -1;
 
-}
+} */
 
 
 
 /* login panel */
-#loginpanel {
+/* #loginpanel {
     color: white;
     display: none;
     position: absolute;
@@ -116,12 +198,12 @@ a {
 #register:hover {
     background-color: white;
     color: #212121;
-}
+} */
 
 
 
 /* CRUD page */
-#leftpanel,
+/* #leftpanel,
 #rightpanel {
     height: 568px;
 }
@@ -134,10 +216,10 @@ a {
 #leftpanel a:hover {
     border-bottom: gold 2px solid;
     text-decoration: none;
-}
+} */
 
 /* profile picture */
-#profilepic {
+/* #profilepic {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -157,10 +239,10 @@ a {
 #leftpanel .mt-3 a {
     margin: 0px 40px;
     transition: 0.3s ease-in-out;
-}
+} */
 
 /* search */
-.resultcard {
+/* .resultcard {
     max-width: 700px;
     border: 1px #212121 solid;
     border-radius: 10px;
@@ -177,11 +259,11 @@ a {
 #resulttable .fa-heart, #savednotes .fa-heart {
     color: #212121;
     transition: 0.4s ease-in-out;
-}
+} */
 
 
 /* create note */
-#Cpanel form {
+/* #Cpanel form {
     margin: 10px auto;
 }
 
@@ -193,9 +275,9 @@ a {
 
 .note-toolbar {
     border-bottom: #212121 5px solid !important;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0; */
     /* background-color: #212121 !important; */
-}
+/* }
 
 #submitnotebtn,
 #leftpanel button,
@@ -225,4 +307,4 @@ a {
 #savednotesbtn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px orange;
-}
+} */
