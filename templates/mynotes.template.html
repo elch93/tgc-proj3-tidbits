@@ -74,8 +74,8 @@
                     <p>{{loop.index}} )&nbsp; {{notes['subject']}}:&nbsp; {{notes['topic']}}</p>
                     <p>Posted on:&nbsp; {{notes['date']}}</p>
                 </div>
-                <div class="col-4">
-                    <a href="{{url_for( 'update', index = notes['_id'] )}}"><button>Update</button></a>
+                <div class="col-4 d-flex flex-row justify-content-end">
+                    <a href="{{url_for( 'update', index = notes['_id'] )}}" class="mr-3"><button>Update</button></a>
                     <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button>Delete</button></a>
                 </div>
             </div>

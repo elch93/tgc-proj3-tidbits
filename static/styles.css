@@ -262,7 +262,7 @@ a {
     border-radius: 10px 10px 0 0;
 }
 
-#createnoteform label {
+#createnoteform label, #updateform label {
     margin: 0 10px;
 }
 
@@ -277,18 +277,23 @@ a {
 
 
 /* common */
-#searchbysubj select, #createnoteform select, #searchmynotes select, #searchsavednotes select  {
+#searchbysubj select, 
+#createnoteform select, 
+#searchmynotes select, 
+#searchsavednotes select,
+#updateform select  {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
+    margin: 0 15px 0 0;
 }
 
-#Rpanel h1, #Cpanel h1, #UDpanel h1 {
+#Rpanel h1, 
+#Cpanel h1, 
+#UDpanel h1, 
+#Upanel h1 {
     font-weight: 700;
 }
 
-#createnoteform select, #Rpanel select, #UDpanel select {
-    margin: 0 15px 0 0;
-}
 
 /* buttons */
 #submitnotebtn,
