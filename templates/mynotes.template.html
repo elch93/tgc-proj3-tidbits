@@ -61,7 +61,7 @@
                     Investigations</option>
                 {% endif %}
             </select>
-            <input type="submit" value="Search!" form="searchmynotes" id="searchmynotesbtn">
+            <input type="submit" value="&#xf002;" class="fas fa-search" form="searchmynotes" id="searchmynotesbtn">
         </form>
     </div>
 
@@ -75,8 +75,8 @@
                     <p>Posted on:&nbsp; {{notes['date']}}</p>
                 </div>
                 <div class="col-4 d-flex flex-row justify-content-end">
-                    <a href="{{url_for( 'update', index = notes['_id'] )}}" class="mr-3"><button>Update</button></a>
-                    <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button>Delete</button></a>
+                    <a href="{{url_for( 'update', index = notes['_id'] )}}" class="mr-3"><button><i class="fas fa-user-edit"></i> Update</button></a>
+                    <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button><i class="fas fa-trash-alt"></i> Delete</button></a>
                 </div>
             </div>
             <div>
