@@ -68,7 +68,7 @@
     <div id="mynotespanel" class="mt-5">
         {% if user_notes %}
         {% for notes in user_notes %}
-        <div class="resultcard">
+        <div class="mt-5 resultcard">
             <div class="row mb-4 justify-content-between">
                 <div class="col-6">
                     <p>{{loop.index}} )&nbsp; {{notes['subject']}}:&nbsp; {{notes['topic']}}</p>

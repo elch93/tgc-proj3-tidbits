@@ -11,13 +11,13 @@
       width: 700
     });
 
-    $('#summernoteu').summernote('code', '{{content}}');
+    $('#summernoteu').summernote('code', `{{ content }}` );
 
   })
 </script>
 
 
-<div class="mycarousel" id="Upanel">
+<div id="Upanel">
   <h1>Update</h1>
   <form method="POST" id="updateform">
     <div class="container-fluid d-flex justify-content-center">
@@ -38,7 +38,7 @@
       </select>
     </div>
     <textarea id="summernoteu" name="updatedata"></textarea>
-    <input type="submit" value="Update Note!" id="submitnotebtn" form="updateform">
+    <input type="submit" value="UPDATE" id="submitnotebtn" form="updateform">
   </form>
 </div>
 

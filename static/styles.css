@@ -240,13 +240,14 @@ a {
 }
 
 
-/* search */
-
+/* search results */
 .resultcard {
     max-width: 700px;
-    border: 1px #212121 solid;
+    border-radius: 10px;
+    border: 3px #ffffff;
     padding: 10px;
-    box-shadow: 5px 5px 0px 0px #212121;
+    box-shadow: 3px 3px 10px 0px #eeeeee,
+    -3px -3px 10px 0px #eeeeee;
     margin: 0 auto 30px auto;
 }
 
@@ -337,6 +338,7 @@ a {
     transition: 0.4s ease-in-out;
 } 
 
+/* magnifying glass icon button */
 #searchmynotesbtn,
 #searchsubjbtn,
 #savednotesbtn {
