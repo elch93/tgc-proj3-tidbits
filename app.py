@@ -120,7 +120,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('search'))
+                return redirect(url_for('search', chosens = "All"))
             else:
                 # if display name is used, prevent creation
                 myalert = 'The display name ' + create_dname + ' is already in use. Please try again.'
@@ -145,7 +145,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('search'))
+                return redirect(url_for('search', chosens = "All"))
             else:
                 myalert = 'Password is wrong. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
@@ -219,16 +219,25 @@ def search():
             i['content'] = Markup(i['content'])
             results.append(i)
         user_liked_notes = liked_notes(flask_login.current_user.get_id())
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="Physics", user_liked_notes = user_liked_notes)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="All", user_liked_notes = user_liked_notes)
     if request.method == 'POST':
         # search for notes by topics
-        subj_query = request.form.get('searchsubject')
-        topic_query = request.form.get('searchtopic')
+        if not request.form.get('searchsubject') == 'All':
+            subj_query = request.form.get('searchsubject')
+            topic_query = request.form.get('searchtopic')
 
-        results = search_by_topic(topic_query)
-        
-        user_liked_notes = liked_notes(flask_login.current_user.get_id())
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes = user_liked_notes)
+            results = search_by_topic(topic_query)
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes = user_liked_notes)
+        if request.form.get('searchsubject') == 'All':
+            raw_results = client[dbname]['notes'].find()
+            results = []
+            for i in raw_results:
+                i['content'] = Markup(i['content'])
+                results.append(i)
+            
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens='All', user_liked_notes = user_liked_notes)
 
 
 # mynotes page

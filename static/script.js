@@ -71,6 +71,10 @@ function onSubjChange(a) {
     else if (chosenSubj == 'Geography') {
         appendTopics(geogtopics)
     }
+    
+    else if (chosenSubj =='All') {
+        $('#selecttopics' + a).empty()
+    }
 
     
 }

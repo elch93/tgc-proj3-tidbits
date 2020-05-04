@@ -7,13 +7,17 @@
     <form method="POST" id="searchbysubj">
       <label><b>Select a Subject: </b></label>
       <select size=1 name="searchsubject" id="selectsubjr" onchange="onSubjChange('r')">
-        <option value="Physics" {% if chosens == "Phyiscs" %} selected {% endif %}>Physics</option>
+        <option value="All" {% if chosens == "All" %} selected {% endif %}>All</option>
+        <option value="Physics" {% if chosens == "Physics" %} selected {% endif %}>Physics</option>
         <option value="Chemistry" {% if chosens == "Chemistry" %} selected {% endif %}>Chemistry</option>
         <option value="Math" {% if chosens == "Math" %} selected {% endif %}>Math</option>
         <option value="Geography" {% if chosens == "Geography" %} selected {% endif %}>Geography</option>
       </select>
       <label><b>Select a Topic: </b></label>
       <select name="searchtopic" size=1 id="selecttopicsr">
+        {% if chosens == 'All' %}
+        <option> </option>
+        {% endif %}
         {% if chosens == 'Physics' %}
         <option value="Measurement" {% if chosent == "Measurement" %}selected{% endif %}>Measurement</option>
         <option value="Newtonian Mechanics" {% if chosent == "Newtonian Mechanics" %}selected{% endif %}>Newtonian
