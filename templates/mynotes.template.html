@@ -7,6 +7,7 @@
         <form method="POST" id="searchmynotes">
             <label><b>Select a Subject: </b></label>
             <select size=1 name="searchmysubject" id="selectsubju" onchange="onSubjChange('u')">
+                <option value="All" {% if chosens == "All" %} selected {% endif %}>All</option>
                 <option value="Physics" {% if chosens == "Physics" %} selected {% endif %}>Physics</option>
                 <option value="Chemistry" {% if chosens == "Chemistry" %} selected {% endif %}>Chemistry</option>
                 <option value="Math" {% if chosens == "Math" %} selected {% endif %}>Math</option>
@@ -14,6 +15,9 @@
             </select>
             <label><b>Select a Topic: </b></label>
             <select name="searchmytopic" size=1 id="selecttopicsu">
+                {% if chosens == 'All' %}
+                <option> </option>
+                {% endif %}
                 {% if chosens == 'Physics' %}
                 <option value="Measurement" {% if chosent == "Measurement" %}selected{% endif %}>Measurement</option>
                 <option value="Newtonian Mechanics" {% if chosent == "Newtonian Mechanics" %}selected{% endif %}>
@@ -75,8 +79,10 @@
                     <p>Posted on:&nbsp; {{notes['date']}}</p>
                 </div>
                 <div class="col-4 d-flex flex-row justify-content-end">
-                    <a href="{{url_for( 'update', index = notes['_id'] )}}" class="mr-3"><button><i class="fas fa-user-edit"></i> Update</button></a>
-                    <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button><i class="fas fa-trash-alt"></i> Delete</button></a>
+                    <a href="{{url_for( 'update', index = notes['_id'] )}}" class="mr-3"><button><i
+                                class="fas fa-user-edit"></i> Update</button></a>
+                    <a href="{{url_for( 'delete', index = notes['_id'] )}}"><button><i class="fas fa-trash-alt"></i>
+                            Delete</button></a>
                 </div>
             </div>
             <div>
