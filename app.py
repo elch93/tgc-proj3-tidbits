@@ -233,18 +233,49 @@ def search():
         return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="All", user_liked_notes=user_liked_notes)
     if request.method == 'POST':
         # search for notes by topics
-        if not request.form.get('searchsubject') == 'All':
+        if not request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
             subj_query = request.form.get('searchsubject')
             topic_query = request.form.get('searchtopic')
 
             results = search_by_topic(topic_query)
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
-        elif request.form.get('searchsubject') == 'All':
+        # view all notes
+        elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
             results = search_all()
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens='All', user_liked_notes=user_liked_notes)
+        # custom search under all
+        elif request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
+            keyword_query = request.form.get('customsearch')
 
+            custom_search = client[dbname]['notes'].find({
+                'content': {'$regex': keyword_query,  '$options': 'i'}
+            })
+
+            results = []
+            for i in custom_search:
+                i['content'] = Markup(i['content'])
+                results.append(i)
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens='All', user_liked_notes=user_liked_notes)
+        # custom search under a subject & a topic
+        elif not request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
+            keyword_query = request.form.get('customsearch')
+            subj_query = request.form.get('searchsubject')
+            topic_query = request.form.get('searchtopic')
+            custom_search = client[dbname]['notes'].find({
+                'topic': topic_query,
+                'content': {'$regex': keyword_query,  '$options': 'i'}
+            })
+
+            results = []
+            for i in custom_search:
+                i['content'] = Markup(i['content'])
+                results.append(i)
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
+   
 
 # mynotes page
 @app.route('/mynotes', methods=['GET', 'POST'])
