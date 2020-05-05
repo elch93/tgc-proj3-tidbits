@@ -275,7 +275,7 @@ def search():
                 results.append(i)
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
-   
+
 
 # mynotes page
 @app.route('/mynotes', methods=['GET', 'POST'])
@@ -286,8 +286,8 @@ def mynotes():
         return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname, chosens="All")
 
     if request.method == 'POST':
-        # search for user's notes
-        if not request.form.get('searchmysubject') == "All":
+        # search for user's notes by topic
+        if not request.form.get('searchmysubject') == "All" and not request.form.get('custommynotes'):
             topic_query = request.form.get('searchmytopic')
             subj_query = request.form.get('searchmysubject')
             my_notes_query = client[dbname]['notes'].find({
@@ -305,9 +305,50 @@ def mynotes():
             for i in results_array:
                 i['content'] = Markup(i['content'])
             return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
-        elif request.form.get('searchmysubject') == 'All':
+
+        # get all my notes
+        elif request.form.get('searchmysubject') == 'All' and not request.form.get('custommynotes'):
             my_notes_query = client[dbname]['notes'].find({
                 'owner': flask_login.current_user.get_id()
+            })
+
+            results_array = []
+
+            for i in my_notes_query:
+                results_array.append(i)
+
+            # return markup of summernote code
+            for i in results_array:
+                i['content'] = Markup(i['content'])
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens='All')
+        # get my notes by topic + custom query
+        elif request.form.get('searchmysubject') != 'All' and request.form.get('custommynotes'):
+            topic_query = request.form.get('searchmytopic')
+            subj_query = request.form.get('searchmysubject')
+            custom_query = request.form.get('custommynotes')
+
+            my_notes_query = client[dbname]['notes'].find({
+                'owner': flask_login.current_user.get_id(),
+                'topic': topic_query,
+                'subject': subj_query,
+                'content': {'$regex': custom_query, '$options': 'i'}
+            })
+
+            results_array = []
+
+            for i in my_notes_query:
+                results_array.append(i)
+            # return markup of summernote code
+            for i in results_array:
+                i['content'] = Markup(i['content'])
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
+
+        # get all my notes + custom query
+        elif request.form.get('searchmysubject') == 'All' and request.form.get('custommynotes'):
+            custom_query = request.form.get('custommynotes')
+            my_notes_query = client[dbname]['notes'].find({
+                'owner': flask_login.current_user.get_id(),
+                'content': {'$regex': custom_query, '$options': 'i'}
             })
 
             results_array = []
