@@ -360,7 +360,7 @@ def mynotes():
             for i in results_array:
                 i['content'] = Markup(i['content'])
             return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens='All')
-      
+
 
 # update page
 @app.route('/update/<index>', methods=['GET', 'POST'])
@@ -406,7 +406,7 @@ def delete(index):
              })
         return redirect(url_for('mynotes'))
 
-# like/save note
+# liking/saving a note
 @app.route('/like/<index>', methods=["GET"])
 @flask_login.login_required
 def savenote(index):
@@ -502,7 +502,8 @@ def savednotes():
         user_liked_notes = liked_notes(flask_login.current_user.get_id())
         return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="All", user_notes=saved_notes, user_liked_notes=user_liked_notes)
     if request.method == "POST":
-        if not request.form.get('savedsubject') == 'All':
+        # return by topic & subject
+        if not request.form.get('savedsubject') == 'All' and not request.form.get('customsavednotes'):
             topic_query = request.form.get('savedtopic')
             subj_query = request.form.get('savedsubject')
             # get array of objectids that user liked
@@ -528,7 +529,8 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
-        elif request.form.get('savedsubject') == 'All':
+        # returns all subjects and topics
+        elif request.form.get('savedsubject') == 'All' and not request.form.get('customsavednotes'):
             saved_notes_query = client[dbname]['registered_users'].find_one({
                 'email': flask_login.current_user.get_id()
             }, {
@@ -549,6 +551,66 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
+        # return by topic and custom search
+        elif not request.form.get('savedsubject') == 'All' and request.form.get('customsavednotes'):
+            topic_query = request.form.get('savedtopic')
+            subj_query = request.form.get('savedsubject')
+            custom_query = request.form.get('customsavednotes')
+
+            saved_notes_query = client[dbname]['registered_users'].find_one({
+                'email': flask_login.current_user.get_id()
+            }, {
+                'liked': 1,
+                '_id': 0
+            })
+
+            # filter out topics we don't need
+            saved_notes = []
+            # compare to notes collection
+            for i in saved_notes_query['liked']:
+                note = client[dbname]['notes'].find_one({
+                    '_id': i,
+                    'content': {'$regex': custom_query, '$options': 'i'}
+                })
+                if note:
+                    if note['topic'] == topic_query:
+                        saved_notes.append(note)
+
+            if saved_notes:
+                for i in saved_notes:
+                    i['content'] = Markup(i['content'])
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
+
+        # return results from all and custom search
+        elif request.form.get('savedsubject') == 'All' and request.form.get('customsavednotes'):
+            custom_query = request.form.get('customsavednotes')
+
+            saved_notes_query = client[dbname]['registered_users'].find_one({
+                'email': flask_login.current_user.get_id()
+            }, {
+                'liked': 1,
+                '_id': 0
+            })
+
+            # filter out topics we don't need
+            saved_notes = []
+            # compare to notes collection
+            for i in saved_notes_query['liked']:
+                note = client[dbname]['notes'].find_one({
+                    '_id': i,
+                    'content': {'$regex': custom_query, '$options':'i'}
+                })
+                if note:
+                    saved_notes.append(note)
+
+            if saved_notes:
+                for i in saved_notes:
+                    i['content'] = Markup(i['content'])
+            user_liked_notes = liked_notes(flask_login.current_user.get_id())
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
+
+
 
 
 @app.route('/test')
