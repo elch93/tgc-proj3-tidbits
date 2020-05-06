@@ -80,7 +80,7 @@
     <b>Page: &nbsp;</b>
     <!-- page number -->
     {% for i in range(pages) %}
-    <a onclick="displayPage( {{i}} )">{{i}}&nbsp;</a>
+    <a onclick="displayPage( {{i+1}} )">{{i+1}}&nbsp;</a>
     {% endfor %}
   </div>
 
@@ -88,6 +88,7 @@
   {% set n = namespace(counter = 0) %}
   <!-- if there's only 1 page -->
   {% if pages == 1 %} <!-- second nested if-->
+  <div class="container-fluid resulttable" id="page{{pages}}">
     {% for result in searchresults %}
     <div class="mt-5 resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
@@ -99,11 +100,13 @@
       </div>
     </div>
     {% endfor %}
+  </div>
+    
 
   <!-- if there's more than 1 page -->
   {%elif pages > 1%}
   {% for i in range(pages) %} <!-- for pages(range) loop-->
-  <div class="container-fluid" id="resulttable">
+  <div class="container-fluid resulttable" id="page{{pages}}">
     <!-- inner loop -->
     <!-- if there's a remainder -->
     {% if resultslen%5 > 0 and i == pages - 1 %}
@@ -132,7 +135,6 @@
     </div>
     {% endfor %}
     {% endif %} <!-- if end for multiple pages -->
-
   </div>
   {% set n.counter = n.counter + 5 %}
   {% endfor %} <!-- if end for pages(range)-->
@@ -141,8 +143,13 @@
 </div>
 
 <script>
+  $('.resulttable').hide()
+
   function displayPage(x) {
+    $('.resulttable').hide()
     console.log(x)
+    $('.resulttable').eq(x-1).show()
+    
   }
 </script>
 

@@ -328,12 +328,12 @@ a {
 }
 
 /* search results container */
-#resulttable, #mysavednotes, #mynotespanel {
+.resulttable, #mysavednotes, #mynotespanel {
     height: 400px;
     overflow-y: scroll;
 }
 
-#resulttable .fa-heart, #savednotes .fa-heart {
+.resulttable .fa-heart, #savednotes .fa-heart {
     color: #212121;
     transition: 0.4s ease-in-out;
 } 
