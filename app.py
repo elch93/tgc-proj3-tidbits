@@ -53,8 +53,6 @@ def verify_password(user_input, encrypted_password):
 
 
 # load user's notes
-
-
 def load_user_notes(user):
     user_notes = client[dbname]['notes'].find({
         'owner': user
@@ -82,7 +80,6 @@ def index():
         return render_template('index.template.html', username=user_data['displayname'], user_notes=user_notes)
     else:
         return render_template('index.template.html')
-
 
 # signup & login
 @app.route('/', methods=["POST"])
@@ -212,25 +209,27 @@ def search_by_topic(topic):
 
 def search_all():
     raw_results = client[dbname]['notes'].find()
-    results = []
-    for i in raw_results:
+    results = list(raw_results)
+    for i in results:
         i['content'] = Markup(i['content'])
-        results.append(i)
     return results
 
-# search page
+# search/discover page
 @app.route('/search', methods=['GET', 'POST'])
 @flask_login.login_required
 def search():
     if request.method == 'GET':
         # default load
-        results = []
-        default_result = client[dbname]['notes'].find().limit(5)
-        for i in default_result:
+        
+        default_result = client[dbname]['notes'].find()
+        
+        sresults = list(default_result)
+        for i in sresults:
             i['content'] = Markup(i['content'])
-            results.append(i)
+
         user_liked_notes = liked_notes(flask_login.current_user.get_id())
-        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens="All", user_liked_notes=user_liked_notes)
+        return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=sresults, chosens="All", user_liked_notes=user_liked_notes)
+    
     if request.method == 'POST':
         # search for notes by topics
         if not request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):

@@ -63,9 +63,30 @@
       <input type="submit" value="&#xf002;" class="fas fa-search" form="searchbysubj" id="searchsubjbtn">
     </form>
   </div>
-  <div class="mt-5 container-fluid" id="resulttable">
-    {% if searchresults %}
-    {% for result in searchresults %}
+  
+  {% if searchresults %}
+    <!-- pagination -->
+    {% set resultslen = searchresults|length %}
+    {% if resultslen%5 > 0 %}
+    {% set pages = resultslen//5 + 1 %}
+    {% else %}
+    {% set pages = resultslen//5 %}
+    {% endif %}
+  <div class='row pr-5 justify-content-end'>
+    <!-- page number -->
+    {% for i in range(pages) %}
+    {{i}}
+    {% endfor %}
+  </div>
+  <!-- outer loop -->
+  {% set n = namespace(counter = 0) %}
+  {% for i in range(pages) %}
+  <div class="container-fluid" id="resulttable">
+    <!-- inner loop -->
+    <!-- if there's a remainder -->
+    {% if resultslen%5 > 0 %}
+    {% if i != pages - 1 %}
+    {% for result in searchresults[n.counter:n.counter+5] %}
     <div class="mt-5 resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
         <div class="col-4">Date: {{result['date']}}</div>
@@ -75,10 +96,28 @@
               {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
       </div>
     </div>
-
     {% endfor %}
     {% endif %}
+    {% if i == pages - 1 %}
+    {% for result in searchresults[n.counter:resultslen] %}
+    <div class="mt-5 resultcard">{{result['content']}}
+      <div class="mt-5 row justify-content-between">
+        <div class="col-4">Date: {{result['date']}}</div>
+        <div class="col-4">Posted By: {{result['displayname']}}</div>
+        <div class="col-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
+              class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+              {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+
+    {% set n.counter = n.counter + 5 %}
+    {% endif %}
   </div>
+  {% endfor %}
+  {% endif %}
 </div>
 
 
