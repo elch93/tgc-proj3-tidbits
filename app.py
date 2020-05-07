@@ -24,11 +24,8 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
-
-
 class User(flask_login.UserMixin):
     pass
-
 
 @login_manager.user_loader
 def user_loader(email):
@@ -309,9 +306,9 @@ def mynotes():
 
     if request.method == 'POST':
         # search for user's notes by topic
-        if not request.form.get('searchmysubject') == "All" and not request.form.get('custommynotes'):
-            topic_query = request.form.get('searchmytopic')
-            subj_query = request.form.get('searchmysubject')
+        if not request.form.get('searchsubject') == "All" and not request.form.get('customsearch'):
+            topic_query = request.form.get('searchtopic')
+            subj_query = request.form.get('searchsubject')
             my_notes_query = client[dbname]['notes'].find({
                 'owner': flask_login.current_user.get_id(),
                 'topic': topic_query,
@@ -329,7 +326,7 @@ def mynotes():
             return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
 
         # get all my notes
-        elif request.form.get('searchmysubject') == 'All' and not request.form.get('custommynotes'):
+        elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
             my_notes_query = client[dbname]['notes'].find({
                 'owner': flask_login.current_user.get_id()
             })
@@ -344,10 +341,10 @@ def mynotes():
                 i['content'] = Markup(i['content'])
             return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens='All')
         # get my notes by topic + custom query
-        elif request.form.get('searchmysubject') != 'All' and request.form.get('custommynotes'):
-            topic_query = request.form.get('searchmytopic')
-            subj_query = request.form.get('searchmysubject')
-            custom_query = request.form.get('custommynotes')
+        elif request.form.get('searchsubject') != 'All' and request.form.get('customsearch'):
+            topic_query = request.form.get('searchtopic')
+            subj_query = request.form.get('searchsubject')
+            custom_query = request.form.get('customsearch')
 
             my_notes_query = client[dbname]['notes'].find({
                 'owner': flask_login.current_user.get_id(),
@@ -366,8 +363,8 @@ def mynotes():
             return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
 
         # get all my notes + custom query
-        elif request.form.get('searchmysubject') == 'All' and request.form.get('custommynotes'):
-            custom_query = request.form.get('custommynotes')
+        elif request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
+            custom_query = request.form.get('customsearch')
             my_notes_query = client[dbname]['notes'].find({
                 'owner': flask_login.current_user.get_id(),
                 'content': {'$regex': custom_query, '$options': 'i'}
@@ -525,9 +522,9 @@ def savednotes():
         return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="All", user_notes=saved_notes, user_liked_notes=user_liked_notes)
     if request.method == "POST":
         # return by topic & subject
-        if not request.form.get('savedsubject') == 'All' and not request.form.get('customsavednotes'):
-            topic_query = request.form.get('savedtopic')
-            subj_query = request.form.get('savedsubject')
+        if not request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
+            topic_query = request.form.get('searchtopic')
+            subj_query = request.form.get('searchsubject')
             # get array of objectids that user liked
             saved_notes_query = client[dbname]['registered_users'].find_one({
                 'email': flask_login.current_user.get_id()
@@ -552,7 +549,7 @@ def savednotes():
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
         # returns all subjects and topics
-        elif request.form.get('savedsubject') == 'All' and not request.form.get('customsavednotes'):
+        elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
             saved_notes_query = client[dbname]['registered_users'].find_one({
                 'email': flask_login.current_user.get_id()
             }, {
@@ -574,10 +571,10 @@ def savednotes():
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
         # return by topic and custom search
-        elif not request.form.get('savedsubject') == 'All' and request.form.get('customsavednotes'):
-            topic_query = request.form.get('savedtopic')
-            subj_query = request.form.get('savedsubject')
-            custom_query = request.form.get('customsavednotes')
+        elif not request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
+            topic_query = request.form.get('searchtopic')
+            subj_query = request.form.get('searchsubject')
+            custom_query = request.form.get('customsearch')
 
             saved_notes_query = client[dbname]['registered_users'].find_one({
                 'email': flask_login.current_user.get_id()
@@ -605,8 +602,8 @@ def savednotes():
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
 
         # return results from all and custom search
-        elif request.form.get('savedsubject') == 'All' and request.form.get('customsavednotes'):
-            custom_query = request.form.get('customsavednotes')
+        elif request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
+            custom_query = request.form.get('customsearch')
 
             saved_notes_query = client[dbname]['registered_users'].find_one({
                 'email': flask_login.current_user.get_id()
@@ -631,16 +628,6 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
-
-
-
-
-@app.route('/test')
-@flask_login.login_required
-def test():
-    print(flask_login.current_user.get_id())
-    liked_notes(flask_login.current_user.get_id())
-    return "TESTING"
 
 # logout
 @app.route('/logout')

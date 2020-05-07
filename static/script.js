@@ -18,7 +18,6 @@ function hideforms() {
         $('#herotext, #notepic, #sharedata').fadeToggle();
     }, 600)
 }
-
 // toggle Login/Register Panel
 function toggleLoginPanel(x) {
     $('#herotext, #notepic, #sharedata').fadeToggle(400);
@@ -41,8 +40,8 @@ function likePlus(a) {
 }
 
 // alter topic list in select html
-function onSubjChange(a) {
-    let chosenSubj = $('#selectsubj' + a).val()
+function onSubjChange() {
+    let chosenSubj = $('#selectsubj').val()
     let physicstopics = ['All', 'Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism']
     let chemtopics = ['All', 'Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
     let geogtopics = ['All', 'Our Dynamic Planet', 'Our Changing World']
@@ -50,13 +49,13 @@ function onSubjChange(a) {
 
     function appendTopics(subj) {
         for (topic of subj) {
-            $('#selecttopics' + a).append(`
+            $('#selecttopics').append(`
             <option value='${topic}'>${topic}</option>
         `)
         }
     }
 
-    $('#selecttopics' + a).empty()
+    $('#selecttopics').empty()
     if (chosenSubj == 'Physics') {
         appendTopics(physicstopics)
     } else if (chosenSubj == 'Chemistry') {
@@ -66,7 +65,7 @@ function onSubjChange(a) {
     } else if (chosenSubj == 'Geography') {
         appendTopics(geogtopics)
     } else if (chosenSubj == 'All') {
-        $('#selecttopics' + a).empty()
+        $('#selecttopics').empty()
     }
 
 
