@@ -128,13 +128,12 @@
     $('.resulttable').eq(0).show()
     let maxPage = $('.resulttable').length
     let currentPage = 1
-    console.log('maxpage:', maxPage)
 
     function displayPage(x) {
         $('.resulttable').hide()
 
         $('.resulttable').eq(x - 1).show()
-        currentPage = x
+        currentPage = parseInt(x)
     }
 
     function displayNext() {

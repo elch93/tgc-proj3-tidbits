@@ -536,7 +536,7 @@ def savednotes():
         for i in saved_notes:
             i['content'] = Markup(i['content'])
         user_liked_notes = liked_notes(flask_login.current_user.get_id())
-        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="All", user_notes=saved_notes, user_liked_notes=user_liked_notes)
+        return render_template('saved.template.html', username=flask_login.current_user.displayname, chosens="All", searchresults=saved_notes, user_liked_notes=user_liked_notes)
     if request.method == "POST":
         # search for user's liked notes by topic without keywords
         if not request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
@@ -570,7 +570,7 @@ def savednotes():
                 for i in saved_notes:
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
-            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
         
         # get all liked notes
         elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
@@ -593,7 +593,7 @@ def savednotes():
                 for i in saved_notes:
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
-            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
         
         # get liked notes by topic + custom query
         elif not request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
@@ -628,7 +628,7 @@ def savednotes():
                 for i in saved_notes:
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
-            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
 
         # return results from all and custom search
         elif request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
@@ -656,7 +656,7 @@ def savednotes():
                 for i in saved_notes:
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
-            return render_template('saved.template.html', username=flask_login.current_user.displayname, user_notes=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
+            return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
 
 # logout
 @app.route('/logout')
