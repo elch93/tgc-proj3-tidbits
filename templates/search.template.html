@@ -78,10 +78,12 @@
 
   <div class='row pr-5 justify-content-end'>
     <b>Page: &nbsp;</b>
+    <a onclick="displayPrev()">Prev &nbsp;</a>
     <!-- page number -->
     {% for i in range(pages) %}
-    <a onclick="displayPage( {{i+1}} )">{{i+1}}&nbsp;</a>
+    <a onclick="displayPage( `{{i+1}}` )">{{i+1}}&nbsp;</a>
     {% endfor %}
+    <a onclick="displayNext()">Next &nbsp;</a>
   </div>
 
   
@@ -144,12 +146,28 @@
 
 <script>
   $('.resulttable').hide()
+  $('.resulttable').eq(0).show()
+  let maxPage = $('.resulttable').length
+  let currentPage = 1
+  console.log('maxpage:', maxPage)
 
   function displayPage(x) {
     $('.resulttable').hide()
-    console.log(x)
-    $('.resulttable').eq(x-1).show()
     
+    $('.resulttable').eq(x-1).show()
+    currentPage = x
+  }
+
+  function displayNext() {
+    if ((currentPage + 1) <= maxPage){
+      displayPage(currentPage+1);
+    }
+  }
+
+  function displayPrev() {
+    if ((currentPage - 1) > 0 ){
+      displayPage(currentPage-1)
+    }
   }
 </script>
 
