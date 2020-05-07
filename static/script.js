@@ -47,7 +47,7 @@ function onSubjChange(a) {
     let chosenSubj = $('#selectsubj' + a).val()
     let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
     let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
-    let geogtopics = ['Our Dynamic Planet', 'Our Changing World', 'Geographical Skills & Investigations']
+    let geogtopics = ['Our Dynamic Planet', 'Our Changing World']
     let mathtopics = ['Number & Algebra','Geometry & Measurement','Statistics & Probablity']
     
     function appendTopics(subj){
@@ -101,7 +101,7 @@ $(function () {
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
             ['insert',['table','picture']],
-            ['view', ['fullscreen', 'codeview', 'help']]
+            ['view', ['fullscreen']]
           ]
     });
 
