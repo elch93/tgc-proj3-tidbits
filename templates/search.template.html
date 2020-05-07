@@ -19,6 +19,7 @@
         <option> </option>
         {% endif %}
         {% if chosens == 'Physics' %}
+        <option value="All" {% if chosent == "All" %}selected{% endif %}>All</option>
         <option value="Measurement" {% if chosent == "Measurement" %}selected{% endif %}>Measurement</option>
         <option value="Newtonian Mechanics" {% if chosent == "Newtonian Mechanics" %}selected{% endif %}>Newtonian
           Mechanics</option>
@@ -29,6 +30,7 @@
           Electricity & Magnetism</option>
         {% endif %}
         {% if chosens == 'Chemistry' %}
+        <option value="All" {% if chosent == "All" %}selected{% endif %}>All</option>
         <option value="Experimental Chemistry" {% if chosent == "Experimental Chemistry" %}selected{% endif %}>
           Experimental Chemistry</option>
         <option value="Atomic Structure & Stoichiometry"
@@ -42,6 +44,7 @@
         </option>
         {% endif %}
         {% if chosens == 'Math' %}
+        <option value="All" {% if chosent == "All" %}selected{% endif %}>All</option>
         <option value="Number & Algebra" {% if chosent == "Number & Algebra" %}selected{% endif %}>Number & Algebra
         </option>
         <option value="Geometry & Measurement" {% if chosent == "Geometry & Measurement" %}selected{% endif %}>Geometry
@@ -50,6 +53,7 @@
           Statistics & Probablity</option>
         {% endif %}
         {% if chosens == 'Geography' %}
+        <option value="All" {% if chosent == "All" %}selected{% endif %}>All</option>
         <option value="Our Dynamic Planet" {% if chosent == "Our Dynamic Planet" %}selected{% endif %}>Our Dynamic
           Planet</option>
         <option value="Our Changing World" {% if chosent == "Our Changing World" %}selected{% endif %}>Our Changing

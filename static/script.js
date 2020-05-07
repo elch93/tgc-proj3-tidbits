@@ -13,7 +13,7 @@ function showrform(x) {
 }
 
 function hideforms() {
-    $("#loginpanel").fadeToggle(400);
+    $('#loginpanel').fadeToggle(400);
     setTimeout(function () {
         $('#herotext, #notepic, #sharedata').fadeToggle();
     }, 600)
@@ -29,31 +29,29 @@ function toggleLoginPanel(x) {
 function likePlus(a) {
     //console.log($(a).parent().text())
     if ($(a).children('i').css('color') == 'rgb(33, 33, 33)') {
-        $(a).children('i').css('color','rgb(255, 0, 0)')
+        $(a).children('i').css('color', 'rgb(255, 0, 0)')
         newLikes = parseInt($(a).parent().text()) + 1
         $(a).parent().children('span').text(newLikes.toString())
-    }
-
-    else if ($(a).children('i').css('color') == 'rgb(255, 0, 0)') {
-        $(a).children('i').css('color','rgb(33, 33, 33)')
+    } else if ($(a).children('i').css('color') == 'rgb(255, 0, 0)') {
+        $(a).children('i').css('color', 'rgb(33, 33, 33)')
         newLikes = parseInt($(a).parent().text()) - 1
         $(a).parent().children('span').text(newLikes.toString())
     }
-    
+
 }
 
 // alter topic list in select html
 function onSubjChange(a) {
     let chosenSubj = $('#selectsubj' + a).val()
-    let physicstopics = ["Measurement", "Newtonian Mechanics", "Thermal Physics", "Waves", "Electricity & Magnetism"]
-    let chemtopics = ['Experimental Chemistry','Atomic Structure & Stoichiometry','Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
-    let geogtopics = ['Our Dynamic Planet', 'Our Changing World']
-    let mathtopics = ['Number & Algebra','Geometry & Measurement','Statistics & Probablity']
-    
-    function appendTopics(subj){
+    let physicstopics = ['All', 'Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism']
+    let chemtopics = ['All', 'Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
+    let geogtopics = ['All', 'Our Dynamic Planet', 'Our Changing World']
+    let mathtopics = ['All', 'Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity']
+
+    function appendTopics(subj) {
         for (topic of subj) {
             $('#selecttopics' + a).append(`
-            <option value="${topic}">${topic}</option>
+            <option value='${topic}'>${topic}</option>
         `)
         }
     }
@@ -61,22 +59,17 @@ function onSubjChange(a) {
     $('#selecttopics' + a).empty()
     if (chosenSubj == 'Physics') {
         appendTopics(physicstopics)
-    }
-    else if (chosenSubj == 'Chemistry') {
+    } else if (chosenSubj == 'Chemistry') {
         appendTopics(chemtopics)
-    }
-    else if (chosenSubj == 'Math') {
+    } else if (chosenSubj == 'Math') {
         appendTopics(mathtopics)
-    }
-    else if (chosenSubj == 'Geography') {
+    } else if (chosenSubj == 'Geography') {
         appendTopics(geogtopics)
-    }
-    
-    else if (chosenSubj =='All') {
+    } else if (chosenSubj == 'All') {
         $('#selecttopics' + a).empty()
     }
 
-    
+
 }
 
 $(function () {
@@ -100,9 +93,9 @@ $(function () {
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
-            ['insert',['table','picture']],
+            ['insert', ['table', 'picture']],
             ['view', ['fullscreen']]
-          ]
+        ]
     });
 
 
