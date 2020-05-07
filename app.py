@@ -191,20 +191,35 @@ def liked_notes(userid):
 
 
 # find notes content in db
-def search_by_topic(topic):
-    results = client[dbname]['notes'].find({
-        'topic': topic
-    })
+def search_by_topic(subject, topic):
+    if topic != 'All':
+        results = client[dbname]['notes'].find({
+            'topic': topic
+        })
 
-    results_array = []
+        results_array = []
 
-    for i in results:
-        results_array.append(i)
+        for i in results:
+            results_array.append(i)
 
-    # return markup of summernote code
-    for i in results_array:
-        i['content'] = Markup(i['content'])
-    return results_array
+        # return markup of summernote code
+        for i in results_array:
+            i['content'] = Markup(i['content'])
+        return results_array
+    elif topic == 'All':
+        results = client[dbname]['notes'].find({
+            'subject': subject
+        })
+
+        results_array = []
+
+        for i in results:
+            results_array.append(i)
+
+        # return markup of summernote code
+        for i in results_array:
+            i['content'] = Markup(i['content'])
+        return results_array
 
 
 def search_all():
@@ -236,7 +251,7 @@ def search():
             subj_query = request.form.get('searchsubject')
             topic_query = request.form.get('searchtopic')
 
-            results = search_by_topic(topic_query)
+            results = search_by_topic(subj_query, topic_query)
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=results, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
         # view all notes
@@ -263,10 +278,18 @@ def search():
             keyword_query = request.form.get('customsearch')
             subj_query = request.form.get('searchsubject')
             topic_query = request.form.get('searchtopic')
-            custom_search = client[dbname]['notes'].find({
-                'topic': topic_query,
-                'content': {'$regex': keyword_query,  '$options': 'i'}
-            })
+
+            if topic_query != 'All':
+                custom_search = client[dbname]['notes'].find({
+                    'topic': topic_query,
+                    'content': {'$regex': keyword_query,  '$options': 'i'}
+                })
+
+            elif topic_query == 'All':
+                custom_search = client[dbname]['notes'].find({
+                    'subject': subj_query,
+                    'content': {'$regex': keyword_query,  '$options': 'i'}
+                })
 
             results = []
             for i in custom_search:
