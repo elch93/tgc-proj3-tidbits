@@ -303,7 +303,7 @@ def search():
 def mynotes():
     if request.method == 'GET':
         user_notes = load_user_notes(flask_login.current_user.get_id())
-        return render_template('mynotes.template.html', user_notes=user_notes, username=flask_login.current_user.displayname, chosens="All")
+        return render_template('mynotes.template.html', searchresults=user_notes, username=flask_login.current_user.displayname, chosens="All")
 
     if request.method == 'POST':
         # search for user's notes by topic without keywords
@@ -332,7 +332,7 @@ def mynotes():
             # return markup of summernote code
             for i in results_array:
                 i['content'] = Markup(i['content'])
-            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, searchresults=results_array, chosens=subj_query, chosent=topic_query)
 
         # get all my notes
         elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
@@ -348,7 +348,7 @@ def mynotes():
             # return markup of summernote code
             for i in results_array:
                 i['content'] = Markup(i['content'])
-            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens='All')
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, searchresults=results_array, chosens='All')
         # get my notes by topic + custom query
         elif request.form.get('searchsubject') != 'All' and request.form.get('customsearch'):
             topic_query = request.form.get('searchtopic')
@@ -377,7 +377,7 @@ def mynotes():
             # return markup of summernote code
             for i in results_array:
                 i['content'] = Markup(i['content'])
-            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens=subj_query, chosent=topic_query)
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, searchresults=results_array, chosens=subj_query, chosent=topic_query)
 
         # get all my notes + custom query
         elif request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
@@ -395,7 +395,7 @@ def mynotes():
             # return markup of summernote code
             for i in results_array:
                 i['content'] = Markup(i['content'])
-            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, user_notes=results_array, chosens='All')
+            return render_template('mynotes.template.html', username=flask_login.current_user.displayname, searchresults=results_array, chosens='All')
 
 
 # update page

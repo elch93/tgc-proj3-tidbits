@@ -301,7 +301,7 @@ a {
 #searchbtn,
 #searchsubjbtn,
 #searchmynotesbtn,
-#savednotesbtn, #mynotespanel .row button{
+#savednotesbtn, .resultcard button{
     margin: 10px auto;
     border: none;
     background-color: #FBB03B;
@@ -322,7 +322,7 @@ a {
 #searchsubjbtn:hover,
 #searchmynotesbtn:hover,
 #savednotesbtn:hover,
-#mynotespanel .row button:hover {
+.resultcard .row button:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px #F15A24;
 }
