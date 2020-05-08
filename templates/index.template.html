@@ -40,6 +40,16 @@
   <main>
     {% if current_user.is_anonymous %}
     <!-- welcome page -->
+    <!-- warning alert if user creates an account with a registered email -->
+    {% if myalert %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{myalert}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+
     <div class="container-fluid" id="homepage">
       <div id="herotext">
         <h1>Learn to Teach, <br> Teach to Learn.</h1>
@@ -129,10 +139,10 @@
   </main>
 </body>
 <!-- warning alert if user creates an account with a registered email -->
-{% if myalert %}
+<!-- {% if myalert %}
 <script>
   alert('{{myalert}}')
 </script>
-{% endif %}
+{% endif %} -->
 
 </html>
