@@ -77,6 +77,31 @@ $(function () {
     $('#rform').hide()
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
 
+    // sprites appear on hover
+    $('#toolbar a').eq(0).hover(function(){
+        $('#createsprite').css('transform','translateY(-50px)')
+    },function(){
+        $('#createsprite').css('transform','translateY(0px)')
+    })
+
+    $('#toolbar a').eq(1).hover(function(){
+        $('#searchsprite').css('transform','translateY(-50px)')
+    },function(){
+        $('#searchsprite').css('transform','translateY(0px)')
+    })
+
+    $('#toolbar a').eq(2).hover(function(){
+        $('#notesprite').css('transform','translateY(-50px)')
+    },function(){
+        $('#notesprite').css('transform','translateY(0px)')
+    })
+
+    $('#toolbar a').eq(3).hover(function(){
+        $('#likesprite').css('transform','translateY(-50px)')
+    },function(){
+        $('#likesprite').css('transform','translateY(0px)')
+    })
+
 
     // summernote
     $('#summernote').summernote({
@@ -92,7 +117,7 @@ $(function () {
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
-            ['insert', ['table', 'picture']],
+            ['insert', ['table']],
             ['view', ['fullscreen']]
         ]
     });

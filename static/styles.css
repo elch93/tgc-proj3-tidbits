@@ -7,8 +7,6 @@ font-family: 'Ubuntu', sans-serif;
 
 */
 
-
-
 /* general */
 html,
 body {
@@ -25,9 +23,9 @@ body {
     border: 3px solid gold;
 }
 
-a {
+a, a:hover {
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 
@@ -47,6 +45,10 @@ a {
     background-color: #212121;
     color: #eeeeee;
     text-align: center;
+}
+
+#mainbody h1 {
+    font-weight: 700;
 }
 
 #mainbody p:nth-child(2) {
@@ -70,11 +72,28 @@ a {
     background-color: #FBB03B;
 }
 
-/* login panel */
-#rform {
-    margin: 0 auto;
+#plussign {
+    position: absolute;
+    top: 220px;
+    right: 80px;
+    width: 100px;
 }
 
+#dividesign {
+    position: absolute;
+    top: 350px;
+    left: 150px;
+    width: 70px;
+}
+
+#pencil {
+    position: absolute;
+    top: 380px;
+    right: 250px;
+    width: 50px;
+}
+
+/* login panel */
 #loginpanel {
     width: 600px;
     height: 400px;
@@ -84,32 +103,7 @@ a {
     transform: translate(-50%, 0);
     border-radius: 15px;
     background-color: white;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-    animation-name: fadeUp;
     color: #212121;
-}
-
-@keyframes fadeUp {
-    0% {
-        transform: translate(-50%, 0);
-    }
-
-    100% {
-        transform: translate(-50%, -20px);
-    }
-}
-
-@keyframes fadeUp2 {
-    0% {
-        transform: translateY(5px);
-    }
-
-    100% {
-        transform: translateY(-10px);
-    }
 }
 
 #loginpanel .fa-times {
@@ -126,10 +120,6 @@ a {
     font-weight: 700;
 }
 
-#rform,
-#lform {
-    animation: fadeUp2 0.5s ease-in 1 forwards;
-}
 
 #lform div,
 #rform div {
@@ -168,7 +158,71 @@ a {
 
 
 /* CRUD page */
-#leftpanel,
+#toolbar {
+    background-color: #212121;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-weight: 500;
+    margin: 10px auto;
+    z-index: 999;
+    position: relative;
+}
+
+#toolbar a {
+    padding: 10px 0 0 0;
+    color: #ffffff;
+    transition: ease-in-out 0.3s;
+}
+
+#toolbar a:hover {
+    color: #ffffff;
+    border-bottom: 3px #FBB03B solid;
+}
+
+#mybanner {
+    height: 50px;
+}
+
+#createsprite {
+    position: absolute;
+    top: 68px;
+    left: 530px;
+    height: 50px;
+    transition: ease-in-out 0.3s;
+    z-index: 1;
+}
+
+#searchsprite {
+    position: absolute;
+    top: 68px;
+    left: 690px;
+    height: 50px;
+    transition: ease-in-out 0.3s;
+    z-index: 1;
+}
+
+#notesprite {
+    position: absolute;
+    top: 68px;
+    left: 850px;
+    height: 50px;
+    transition: ease-in-out 0.3s;
+    z-index: 1;
+}
+
+#likesprite {
+    position: absolute;
+    top: 68px;
+    left: 1010px;
+    height: 50px;
+    transition: ease-in-out 0.3s;
+    z-index: 1;
+}
+
+/* #leftpanel,
 #rightpanel {
     min-height: 550px;
 }
@@ -191,10 +245,10 @@ a {
 #leftpanel button {
     display: block;
     text-align: center;
-}
+} */
 
 /* profile picture */
-#profilepic {
+/* #profilepic {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -209,7 +263,7 @@ a {
 
 #leftpanel h4 {
     text-align: center;
-}
+} */
 
 
 /* search results */

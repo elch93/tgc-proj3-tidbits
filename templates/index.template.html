@@ -61,6 +61,9 @@
       <button onclick="toggleLoginPanel(this)">
         GET STARTED!
       </button>
+      <img src="/static/images/plus.png" id='plussign'>
+      <img src="/static/images/divide.png" id='dividesign'>
+      <img src="/static/images/pencil.png" id='pencil'>
     </div>
 
     <div id="loginpanel">
@@ -76,11 +79,11 @@
         </div>
         <div id="lform" class="row justify-content-center">
           <div class="mt-5">
-            <label for="loginemail"><i class="fas fa-envelope"></i> Email: </label>
+            <label for="loginemail"><i class="fas fa-envelope"></i> :&nbsp;</label>
             <input type="email" name="loginemail" placeholder="enter your email">
             <br>
             <br>
-            <label for="loginpw"><i class="fas fa-key"></i> Password: </label>
+            <label for="loginpw"><i class="fas fa-key"></i> :&nbsp;</label>
             <input type="password" name="loginpw" placeholder="enter your password">
             <br>
             <br>
@@ -89,15 +92,15 @@
         </div>
         <div id="rform" class="row justify-content-center">
           <div class="mt-5">
-            <label for="registername"><i class="far fa-id-card"></i> Display Name: </label>
+            <label for="registername"><i class="far fa-id-card"></i> :&nbsp;</label>
             <input type="text" name="registername" placeholder="enter a display name">
             <br>
             <br>
-            <label for="registeremail"><i class="fas fa-envelope"></i> Email: </label>
+            <label for="registeremail"><i class="fas fa-envelope"></i> :&nbsp;</label>
             <input type="email" name="registeremail" placeholder="enter your email">
             <br>
             <br>
-            <label for="registerpw"><i class="fas fa-key"></i> Password: </label>
+            <label for="registerpw"><i class="fas fa-key"></i> :&nbsp;</label>
             <input type="password" name="registerpw" placeholder="enter your password">
             <br>
             <br>
@@ -111,13 +114,46 @@
 
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
+    <div class="container">
+      <div class="container-fluid mt-2">
+        <img src="/static/images/bannerlite.png" id='mybanner'>
+        <img src="/static/images/create.png" id='createsprite'>
+        <img src="/static/images/search.png" id='searchsprite'>
+        <img src="/static/images/mynotes.png" id='notesprite'>
+        <img src="/static/images/liked.png" id='likesprite'>
+      </div>
+      <div id="toolbar">
+        <div class="row">
+          <div class="col-3">
+            <h4>{{username}}</h4>
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>Create Note</span></a>
+              </div>
+              <div class="col-2">
+                <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>Search</span></a>
+              </div>
+              <div class="col-2">
+                <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>My Notes</span></a>
+              </div>
+              <div class="col-3">
+                <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>Saved Notes</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- controller page CRUD -->
-    <div class="container-fluid" id="controller">
+    <!-- <div class="container-fluid" id="controller">
       <div class="row">
         <div class="col-2" id="leftpanel">
           <div id="profilepic"></div>
           <h4>{{username}}</h4>
-          <!-- user controls -->
           <div class="mt-3 d-flex flex-column align-items-center">
             <div>
               <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>Create Note</span></a>
@@ -133,7 +169,7 @@
           {% endblock %}
         </div>
       </div>
-    </div>
+    </div> -->
     {% endif %}
   </main>
 </body>
