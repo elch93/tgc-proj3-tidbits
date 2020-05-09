@@ -33,77 +33,48 @@ a {
 
 
 /* welcome page */
-#homepage {
-    height: 600px;
-    background: linear-gradient(180deg, rgba(33, 33, 33, 1) 0%, rgba(60, 60, 60, 1) 80%, rgba(59, 59, 59, 1) 100%);
+#heroimage {
+    text-align: center;
+    padding: 20px 0;
 }
 
-#herotext {
-    height: 200px;
-    width: 350px;
-    color: white;
-    position: relative;
-    top: 150px;
-    left: 120px;
-    text-align: justify;
+#herobanner {
+    width: 70%;
 }
 
-#herotext h1 {
-    font-weight: 700;
+#mainbody {
+    height: 320px;
+    background-color: #212121;
+    color: #eeeeee;
+    text-align: center;
 }
 
-#herotext button {
-    margin: 10px 100px;
+#mainbody p:nth-child(2) {
+    width: 460px;
+    margin: 20px auto;
+    font-size: 18px;
+}
+
+#mainbody button {
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    background-color: white;
-    transition: ease-in 0.5s;
+    border-radius: 10px;
+    background-color: #eeeeee;
     color: #212121;
-}
-
-#herotext button p {
     font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
+    padding: 10px 20px;
+    margin: 10px 0;
+    transition: ease-in-out 0.5s;
 }
 
-#herotext button:hover {
+#mainbody button:hover {
     background-color: #FBB03B;
-    color: white;
-}
-
-#notepic {
-    position: relative;
-    left: 530px;
-}
-
-#sharedata {
-    position: relative;
-    bottom: 100px;
-    left:50px;
-    animation-name: bouncing;
-    animation-timing-function: ease-in-out;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    width: 350px;
-}
-
-@keyframes bouncing {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(15px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
 }
 
 /* login panel */
+#rform {
+    margin: 0 auto;
+}
+
 #loginpanel {
     width: 600px;
     height: 400px;
@@ -118,6 +89,7 @@ a {
     animation-timing-function: ease-in-out;
     animation-duration: 1s;
     animation-name: fadeUp;
+    color: #212121;
 }
 
 @keyframes fadeUp {

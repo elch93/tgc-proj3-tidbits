@@ -25,7 +25,7 @@ Students/Learners:
 
 ## Scope
 ### Required Functionalities
-- CREATE/UPDATE/DEL: Allows users to create a profile and post their notes. (flask, mongodb, summernote)
+- CREATE/UPDATE/DELETE: Allows users to create a profile and post their notes. (flask, mongodb, summernote)
 - READ: Users can access and search for the subjects they want to learn about. (js, mongodb, flask)
 - Allow users to save notes to their accounts. (mongodb)
 - Allow users to give a like to the note. (js, mongodb)
@@ -118,6 +118,7 @@ The colors used are mainly black background and white text, with orange, red and
 - Github
 - Heroku
 - Google Chrome, Firefox
+- Adobe Illustrator
 
 ## Testing
 ### Website Functions
@@ -180,5 +181,5 @@ The colors used are mainly black background and white text, with orange, red and
 
 ### Acknowledgements
 - This project is inspired by an app called Deepstash and websites like StackOverflow.
-
+- The original character design is inspired by artist [Brent Kobayashi](http://www.meowza.org/).
 - This is for educational use.

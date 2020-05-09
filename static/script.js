@@ -15,12 +15,12 @@ function showrform(x) {
 function hideforms() {
     $('#loginpanel').fadeToggle(400);
     setTimeout(function () {
-        $('#herotext, #notepic, #sharedata').fadeToggle();
+        $('#heroimage, #mainbody').fadeToggle();
     }, 600)
 }
 // toggle Login/Register Panel
 function toggleLoginPanel(x) {
-    $('#herotext, #notepic, #sharedata').fadeToggle(400);
+    $('#heroimage, #mainbody').fadeToggle(400);
     $('#loginpanel').fadeToggle(600);
 }
 

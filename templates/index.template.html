@@ -39,7 +39,6 @@
 <body>
   <main>
     {% if current_user.is_anonymous %}
-    <!-- welcome page -->
     <!-- warning alert if user creates an account with a registered email -->
     {% if myalert %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -49,63 +48,63 @@
       </button>
     </div>
     {% endif %}
+    <!-- welcome page -->
+    <div class="container-fluid" id="heroimage">
+      <img src='/static/images/banner.png' id='herobanner'>
+    </div>
+    <div class="container-fluid pt-2" id='mainbody'>
+      <h1>SHARING IS CARING</h1>
+      <p><b>TIDBITS</b> is a notes sharing website for students taking the GCE ‘O’ Levels.
+        Share your notes with the community or discover useful notes that will fill
+        your knowledge gaps.
+      </p>
+      <button onclick="toggleLoginPanel(this)">
+        GET STARTED!
+      </button>
+    </div>
 
-    <div class="container-fluid" id="homepage">
-      <div id="herotext">
-        <h1>Learn to Teach, <br> Teach to Learn.</h1>
-        <p>Fill your knowledge gaps by studying exam tips or notes shared by others.
-          <br>
-          <br>
-          In turn, you can help others by creating and sharing your own tips.</p>
-        <button onclick="toggleLoginPanel(this)">
-          <p>Get Started!</p>
-        </button>
-      </div>
-      <img src="/static/images/note.png" id="notepic">
-      <img src="/static/images/share.png" id="sharedata">
-      <div id="loginpanel">
-        <a onclick="hideforms()"><i class="fas fa-times"></i></a>
-        <form method="POST">
-          <div class="row mt-5">
-            <div class="col-6"><a onclick="showlform(this)">
-                <h3>Login</h3>
-              </a></div>
-            <div class="col-6"><a onclick="showrform(this)">
-                <h3>Register</h3>
-              </a></div>
+    <div id="loginpanel">
+      <a onclick="hideforms()"><i class="fas fa-times"></i></a>
+      <form method="POST">
+        <div class="row mt-5">
+          <div class="col-6"><a onclick="showlform(this)">
+              <h3>Login</h3>
+            </a></div>
+          <div class="col-6"><a onclick="showrform(this)">
+              <h3>Register</h3>
+            </a></div>
+        </div>
+        <div id="lform" class="row justify-content-center">
+          <div class="mt-5">
+            <label for="loginemail"><i class="fas fa-envelope"></i> Email: </label>
+            <input type="email" name="loginemail" placeholder="enter your email">
+            <br>
+            <br>
+            <label for="loginpw"><i class="fas fa-key"></i> Password: </label>
+            <input type="password" name="loginpw" placeholder="enter your password">
+            <br>
+            <br>
+            <input type="submit" value="LOGIN" id="submitl">
           </div>
-          <div id="lform" class="row justify-content-center">
-            <div class="mt-5">
-              <label for="loginemail"><i class="fas fa-envelope"></i> Email: </label>
-              <input type="email" name="loginemail" placeholder="enter your email">
-              <br>
-              <br>
-              <label for="loginpw"><i class="fas fa-key"></i> Password: </label>
-              <input type="password" name="loginpw" placeholder="enter your password">
-              <br>
-              <br>
-              <input type="submit" value="LOGIN" id="submitl">
-            </div>
+        </div>
+        <div id="rform" class="row justify-content-center">
+          <div class="mt-5">
+            <label for="registername"><i class="far fa-id-card"></i> Display Name: </label>
+            <input type="text" name="registername" placeholder="enter a display name">
+            <br>
+            <br>
+            <label for="registeremail"><i class="fas fa-envelope"></i> Email: </label>
+            <input type="email" name="registeremail" placeholder="enter your email">
+            <br>
+            <br>
+            <label for="registerpw"><i class="fas fa-key"></i> Password: </label>
+            <input type="password" name="registerpw" placeholder="enter your password">
+            <br>
+            <br>
+            <input type="submit" value="REGISTER" id="submitr">
           </div>
-          <div id="rform" class="row justify-content-center">
-            <div class="mt-5">
-              <label for="registername"><i class="far fa-id-card"></i> Display Name: </label>
-              <input type="text" name="registername" placeholder="enter a display name">
-              <br>
-              <br>
-              <label for="registeremail"><i class="fas fa-envelope"></i> Email: </label>
-              <input type="email" name="registeremail" placeholder="enter your email">
-              <br>
-              <br>
-              <label for="registerpw"><i class="fas fa-key"></i> Password: </label>
-              <input type="password" name="registerpw" placeholder="enter your password">
-              <br>
-              <br>
-              <input type="submit" value="REGISTER" id="submitr">
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
 
     {% endif %}
