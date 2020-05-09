@@ -171,13 +171,18 @@ a, a:hover {
     position: relative;
 }
 
+#toolbar .col-9 {
+    text-align: center;
+}
+
 #toolbar a {
-    padding: 10px 0 0 0;
+    padding: 10px 0 3px 0;
+    margin: 10px 0;
     color: #ffffff;
     transition: ease-in-out 0.3s;
 }
 
-#toolbar a:hover {
+#toolbar .col-9 a:hover {
     color: #ffffff;
     border-bottom: 3px #FBB03B solid;
 }
@@ -189,7 +194,7 @@ a, a:hover {
 #createsprite {
     position: absolute;
     top: 68px;
-    left: 530px;
+    left: 590px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -198,7 +203,7 @@ a, a:hover {
 #searchsprite {
     position: absolute;
     top: 68px;
-    left: 690px;
+    left: 730px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -216,10 +221,14 @@ a, a:hover {
 #likesprite {
     position: absolute;
     top: 68px;
-    left: 1010px;
+    left: 1040px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
+}
+
+#blkcontent {
+    height: 450px;
 }
 
 /* #leftpanel,
