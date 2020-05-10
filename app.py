@@ -660,7 +660,7 @@ def savednotes():
 @app.route('/profile/<userid>')
 def profile(userid):
 
-    return "TEST"
+    return render_template('profile.template.html', username=userid)
 
 
 
