@@ -114,7 +114,7 @@
 
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
-    <div class="container">
+    <div class="container" id="spriteset">
       <div class="container-fluid mt-2">
         <img src="/static/images/bannerlite.png" id='mybanner'>
         <img src="/static/images/create.png" id='createsprite'>
@@ -123,7 +123,7 @@
         <img src="/static/images/liked.png" id='likesprite'>
       </div>
     </div>
-    <div class='.navbar-fixed-top' id="toolbar">
+    <div id="toolbar">
       <div class="row">
         <div class="col-3 mt-2 mb-2">
           <a href="{{url_for('profile', userid = username)}}">{{username}} &nbsp;</a>
@@ -143,11 +143,35 @@
       </div>
     </div>
 
-    <div class="container-fluid" id="blkcontent">
-      {% block content %}
-      {% endblock %}
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mobnav">
+      <img src="/static/images/bannerlite.png" id='mybannerm'>
+      <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item mt-3">
+            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
+          </li>
+          <li class="nav-item mt-3">
+            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
+          </li>
+          <li class="nav-item mt-3">
+            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
+          </li>
+          <li class="nav-item mt-3">
+            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- <div class="container-fluid" id="blkcontent">
+      {#% block content %#}
+      {#% endblock %#}
+    </div> -->
     {% endif %}
   </main>
 </body>
+
 </html>

@@ -162,6 +162,10 @@ a, a:hover {
 
 
 /* toolbar */
+#mobnav {
+    display: none;
+}
+
 #toolbar {
     background-color: #212121;
     border-radius: 15px;
@@ -358,10 +362,9 @@ a, a:hover {
     border-bottom: 1px solid #212121;
 }
 
-/* profile page */
 
 @media (max-width: 768px) {
-
+    /* home page */
     #herobanner {
         width: 90%;
     }
@@ -411,6 +414,30 @@ a, a:hover {
         text-align: center;
     }
 
+    /* logged in home page */
+    #mybanner, #toolbar, #spriteset {
+        display: none;
+    }
+
+    #mybannerm {
+        height: 40px;
+        margin: 0 auto;
+    }
+
+    #mobnav {
+        display: block;
+        width: 100%;
+        height: auto;
+        background-color: #ffffff;
+    }
+
+    #mobnav a, #mobnav a:hover {
+        cursor: pointer;
+        text-decoration: none !important;
+        color: #212121;
+        font-size: 16px;
+        font-weight: 500;
+    }
 
 }
 
