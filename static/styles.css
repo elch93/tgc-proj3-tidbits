@@ -329,7 +329,7 @@ a, a:hover {
 #optionbar #searchsubjbtn {
     padding: 5px;
     border: none;
-    background-color:  none;
+    background-color: #eeeeee;
     color: #212121;
     border-radius: 10px;
     font-weight: 700;
@@ -437,6 +437,21 @@ a, a:hover {
         color: #212121;
         font-size: 16px;
         font-weight: 500;
+    }
+
+    /* options bar */
+    #optionbar {
+        width: 100%;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    #optionbar select,#optionbar input {
+        margin:10px ;
+    }
+
+    #blkcontent {
+        overflow-x: hidden;
     }
 
 }
