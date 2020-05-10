@@ -2,7 +2,6 @@
 
 {% block content %}
 <div id="UDpanel">
-    <h1>My Notes</h1>
     {% include 'options.template.html' %}
 
 
@@ -42,17 +41,18 @@
         <div class="mt-5 resultcard">
             <div class="row mb-4 justify-content-between">
                 <div class="col-6">
-                    <p>{{result['subject']}}:&nbsp; {{result['topic']}}</p>
-                    <p>Posted on:&nbsp; {{result['date']}}</p>
+                    <p><b>{{result['subject']}}:&nbsp;</b> {{result['topic']}}</p>
+                    <p><b>Posted on:&nbsp;</b> {{result['date']}}</p>
                 </div>
                 <div class="col-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
-                                class="fas fa-user-edit"></i> Update</button></a>
-                    <a href="{{url_for( 'delete', index = result['_id'] )}}"><button><i class="fas fa-trash-alt"></i>
-                            Delete</button></a>
+                                class="fas fa-user-edit"></i> </button>
+                    </a>
+                    <a href="{{url_for( 'delete', index = result['_id'] )}}">
+                        <button><i class="fas fa-trash-alt"></i></button>
+                    </a>
                 </div>
             </div>
-            <hr>
             <div>
                 {{result['content']}}
             </div>
@@ -124,6 +124,10 @@
 </div>
 
 <script>
+    // page indicator/reminder for users
+    $('#toolbar .col-9 a').eq(2).css('background-color', '#FFFFFF')
+    $('#toolbar .col-9 a').eq(2).css('color', '#212121')
+
     $('.resulttable').hide()
     $('.resulttable').eq(0).show()
     let maxPage = $('.resulttable').length

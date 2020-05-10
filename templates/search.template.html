@@ -74,8 +74,8 @@
     {% for result in searchresults[n.counter:n.counter+5] %}
     <div class="mt-5 resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
-        <div class="col-4">Date: {{result['date']}}</div>
-        <div class="col-4">Posted By: {{result['displayname']}}</div>
+        <div class="col-4"><b>Date: </b>{{result['date']}}</div>
+        <div class="col-4"><b>Posted By: </b>{{result['displayname']}}</div>
         <div class="col-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
               class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
               {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>

@@ -56,8 +56,6 @@ function onSubjChange() {
     }
 
     $('#selecttopics').empty()
-    $('#selecttopics').show()
-    $('#searchbysubj label').eq(1).show()
 
     if (chosenSubj == 'Physics') {
         appendTopics(physicstopics)
@@ -68,8 +66,7 @@ function onSubjChange() {
     } else if (chosenSubj == 'Geography') {
         appendTopics(geogtopics)
     } else if (chosenSubj == 'All') {
-        $('#selecttopics').hide()
-        $('#searchbysubj label').eq(1).hide()
+        $('#selecttopics').empty()
     }
 
 
@@ -110,8 +107,6 @@ $(function () {
     $('#loginpanel').hide()
     $('#rform').hide()
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
-    $('#selecttopics').hide()
-    $('#searchbysubj label').eq(1).hide()
 
     // sprites appear on hover
     $('#toolbar a').eq(1).hover(function(){
