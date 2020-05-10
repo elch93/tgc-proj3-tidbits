@@ -56,6 +56,9 @@ function onSubjChange() {
     }
 
     $('#selecttopics').empty()
+    $('#selecttopics').show()
+    $('#searchbysubj label').eq(1).show()
+
     if (chosenSubj == 'Physics') {
         appendTopics(physicstopics)
     } else if (chosenSubj == 'Chemistry') {
@@ -65,8 +68,39 @@ function onSubjChange() {
     } else if (chosenSubj == 'Geography') {
         appendTopics(geogtopics)
     } else if (chosenSubj == 'All') {
-        $('#selecttopics').empty()
+        $('#selecttopics').hide()
+        $('#searchbysubj label').eq(1).hide()
     }
+
+
+}
+
+function onSubjChange2() {
+    let chosenSubj = $('#selectsubjc').val()
+    let physicstopics = ['Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism']
+    let chemtopics = ['Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
+    let geogtopics = ['Our Dynamic Planet', 'Our Changing World']
+    let mathtopics = ['Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity']
+
+    function appendTopics(subj) {
+        for (topic of subj) {
+            $('#selecttopicsc').append(`
+            <option value='${topic}'>${topic}</option>
+        `)
+        }
+    }
+
+    $('#selecttopicsc').empty()
+
+    if (chosenSubj == 'Physics') {
+        appendTopics(physicstopics)
+    } else if (chosenSubj == 'Chemistry') {
+        appendTopics(chemtopics)
+    } else if (chosenSubj == 'Math') {
+        appendTopics(mathtopics)
+    } else if (chosenSubj == 'Geography') {
+        appendTopics(geogtopics)
+    } 
 
 
 }
@@ -76,6 +110,8 @@ $(function () {
     $('#loginpanel').hide()
     $('#rform').hide()
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
+    $('#selecttopics').hide()
+    $('#searchbysubj label').eq(1).hide()
 
     // sprites appear on hover
     $('#toolbar a').eq(1).hover(function(){
@@ -105,7 +141,7 @@ $(function () {
 
     // summernote
     $('#summernote').summernote({
-        placeholder: 'Hello Bootstrap 4',
+        placeholder: 'Start creating your note here!',
         tabsize: 2,
         height: 300,
         width: 700,

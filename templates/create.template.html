@@ -3,17 +3,16 @@
 {% block content %}
 <!-- Create a note and save it into the database -->
 <div id="Cpanel">
-  <h1>Create A Note</h1>
   <form method="POST" id="createnoteform">
-    <div class="container-fluid d-flex justify-content-center">
-      <label><b>Select a Subject: </b></label>
-      <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange('c')">
+    <div id='selectbar'>
+      <label><b>Select a Subject: &nbsp;</b></label>
+      <select size=1 name="postedsubject" id="selectsubjc" onchange="onSubjChange2()">
         <option value="Physics">Physics</option>
         <option value="Chemistry">Chemistry</option>
         <option value="Math">Math</option>
         <option value="Geography">Geography</option>
       </select>
-      <label><b>Select a Topic: </b></label>
+      <label><b>Select a Topic: &nbsp;</b></label>
       <select name="subjecttopics" size=1 id="selecttopicsc">
         <option value="Measurement">Measurement</option>
         <option value="Newtonian Mechanics">Newtonian Mechanics</option>
@@ -26,4 +25,10 @@
     <input type="submit" value="CREATE NOTE" id="submitnotebtn" form="createnoteform">
   </form>
 </div>
+
+<script>
+   // page indicator/reminder for users
+   $('#toolbar .col-9 a').eq(0).css('background-color','#F7931E')
+   $('#toolbar .col-9 a').eq(0).css('color','#212121')
+</script>
 {% endblock %}
