@@ -139,7 +139,8 @@ $(function () {
         placeholder: 'Start creating your note here!',
         tabsize: 2,
         height: 300,
-        width: 700,
+        width: 800,
+        fontSizes: ['8', '10', '12', '14', '16', '18', '20', '22', '24' , '36', '48', '64'],
         toolbar: [
             // [groupName, [list of button]]
             ['style', ['style', 'bold', 'italic', 'underline', 'clear']],

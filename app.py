@@ -658,6 +658,9 @@ def savednotes():
 # profile page
 @flask_login.login_required
 @app.route('/profile/<userid>')
+def profile(userid):
+
+    return "TEST"
 
 
 

@@ -126,6 +126,7 @@
     <div class='.navbar-fixed-top' id="toolbar">
       <div class="row">
         <div class="col-3 mt-2 mb-2">
+          <a href="{{url_for('profile', userid = username)}}"></a>
           {{username}} &nbsp;
           <a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
         </div>
