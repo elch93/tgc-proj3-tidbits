@@ -52,7 +52,7 @@
     <div class="container-fluid" id="heroimage">
       <img src='/static/images/banner.png' id='herobanner'>
     </div>
-    <div class="container-fluid pt-2" id='mainbody'>
+    <div class="container-fluid pt-3" id='mainbody'>
       <h1>SHARING IS CARING</h1>
       <p><b>TIDBITS</b> is a notes sharing website for students taking the GCE ‘O’ Levels.
         Share your notes with the community or discover useful notes that will fill
@@ -114,7 +114,7 @@
 
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
-    <div class="container" id="spriteset">
+    <div class="container-fluid" id="spriteset">
       <div class="container-fluid mt-2">
         <img src="/static/images/bannerlite.png" id='mybanner'>
         <img src="/static/images/create.png" id='createsprite'>
@@ -131,13 +131,10 @@
         </div>
         <div class="col-9 mt-2 mb-2">
           <div class="row justify-content-end">
-            <div class="col-3"></div>
-            <div class="col-9">
               <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
               <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
               <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
               <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
-            </div>
           </div>
         </div>
       </div>

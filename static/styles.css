@@ -38,14 +38,15 @@ a, a:hover {
 #heroimage {
     text-align: center;
     padding: 20px 0;
+    min-height: 300px;
 }
 
 #herobanner {
-    width: 70%;
+    max-width: 900px;
 }
 
 #mainbody {
-    height: 320px;
+    min-height: 400px;
     background-color: #212121;
     color: #eeeeee;
     text-align: center;
@@ -56,7 +57,7 @@ a, a:hover {
 }
 
 #mainbody p {
-    width: 460px;
+    width: 480px;
     margin: 20px auto;
     font-size: 18px;
 }
@@ -69,7 +70,7 @@ a, a:hover {
     font-weight: 700;
     padding: 10px 20px;
     margin: 10px 0;
-    transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.3s;
 }
 
 #mainbody button:hover {
@@ -78,22 +79,22 @@ a, a:hover {
 
 #plussign {
     position: absolute;
-    top: 220px;
-    right: 80px;
+    top: 270px;
+    right: 7%;
     width: 100px;
 }
 
 #dividesign {
     position: absolute;
     top: 350px;
-    left: 150px;
+    left: 10%;
     width: 70px;
 }
 
 #pencil {
     position: absolute;
-    top: 380px;
-    right: 250px;
+    top: 420px;
+    right: 19%;
     width: 50px;
 }
 
@@ -196,35 +197,6 @@ a, a:hover {
     border-radius: 10px;
     margin: 0 0 0 5px;
     transition: ease-in-out 0.3s;
-}
-
-#toolbar .col-9 a:hover:nth-child(4) .fa-heart {
-    color:#FF094D ;
-}
-
-#toolbar .col-9 a:hover:nth-child(1) .fa-plus-circle {
-    animation-name: wiggle;
-    animation-timing-function: ease-in-out;
-    animation-duration: 0.8s;
-    animation-iteration-count: 1;
-}
-
-@keyframes wiggle {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(30deg);
-    }
-
-    75% {
-        transform: rotate(-30deg);
-    }
-
-    100%{
-        transform: rotate(0deg);
-    }
 }
 
 #mybanner {
@@ -366,15 +338,20 @@ a, a:hover {
 @media (max-width: 768px) {
     /* home page */
     #herobanner {
-        width: 90%;
+        margin: 30px 0;
+        max-width: 350px;
+    }
+
+    #heroimage {
+        min-height: 200px;
     }
 
     #mainbody {
-        height: 100%;
+        min-height: 600px;
     }
 
     #mainbody p {
-        width: 100%;
+        max-width: 340px;
     }
 
     #mainbody button {
@@ -382,26 +359,24 @@ a, a:hover {
     }
 
     #plussign {
-        position: absolute;
-        top: 130px;
-        right: 30px;
-        width: 30px;
-    }
-    
-    #dividesign {
-        position: absolute;
-        top: 190px;
-        left: 50px;
-        width: 30px;
-    }
-    
-    #pencil {
-        position: absolute;
-        top: 380px;
-        right: 30px;
-        width: 30px;
+        top: 180px;
+        width: 40px;
     }
 
+    #pencil {
+        top: 450px;
+        right: 15%;
+        width: 20px;
+    }
+
+    #dividesign {
+        top: 153px;
+        left: 7%;
+        width: 60px;
+    }
+
+
+    /* login mobile */
     #loginpanel {
         width: 350px;
     }
@@ -446,7 +421,7 @@ a, a:hover {
         text-align: left;
     }
 
-    #optionbar select,#optionbar input {
+    #optionbar select {
         margin:10px ;
     }
 
@@ -483,72 +458,42 @@ a, a:hover {
     }
 }
 
+@media (min-width: 768.5px) and (max-width: 1024px) {
+    body {
+        background-color: gold !important ;
+    }
 
-/* common */
-/* #searchbysubj select, 
-#createnoteform select, 
-#searchmynotes select, 
-#searchsavednotes select,
-#updateform select  {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    margin: 0 15px 0 0;
+    #herobanner {
+        max-width: 700px;
+    }
+
+    #heroimage {
+        min-height: 200px;
+    }
+
+    #mainbody {
+        min-height: 600px;
+    }
+
+    #plussign {
+        top: 210px;
+        width: 70px;
+    }
+
+    #pencil {
+        right: 15%;
+        width: 30px;
+    }
+
+    #dividesign {
+        top: 360px;
+        left: 7%;
+        width: 60px;
+    }
+
+
+    #mybanner {
+        height: 30px;
+    }
+
 }
-
-#Rpanel h1, 
-#Cpanel h1, 
-#UDpanel h1, 
-#Upanel h1 {
-    font-weight: 700;
-} */
-
-
-/* buttons
-#submitnotebtn,
-#leftpanel button,
-#searchbtn,
-#searchsubjbtn,
-#searchmynotesbtn,
-#savednotesbtn, .resultcard button{
-    margin: 10px auto;
-    border: none;
-    background-color: #FBB03B;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-radius: 10px;
-    transform: translateY(0);
-    transition: 0.6s ease-in-out;
-}
-
-#submitnotebtn {
-    display: block;
-}
-
-#searchbtn:hover,
-#leftpanel button:hover,
-#submitnotebtn:hover,
-#searchsubjbtn:hover,
-#searchmynotesbtn:hover,
-#savednotesbtn:hover,
-.resultcard .row button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 0px 1px #F15A24;
-} */
-
-/* search results container */
-/* .resulttable, #mysavednotes, #mynotespanel {
-    height: 400px;
-    overflow-y: scroll;
-} */
-
-/* .resulttable .fa-heart, #savednotes .fa-heart {
-    color: #212121;
-    transition: 0.4s ease-in-out;
-}  */
-
-/* magnifying glass icon button */
-/* #searchmynotesbtn,
-#searchsubjbtn,
-#savednotesbtn {
-    padding: 10px;
-} */
