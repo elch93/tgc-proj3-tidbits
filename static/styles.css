@@ -272,11 +272,11 @@ a, a:hover {
     text-align: center;
 }
 
-#createnoteform #selectbar label {
+#selectbar label {
     margin: 0 0 0 10px;
 }
 
-#createnoteform #selectbar {
+#selectbar {
     padding: 10px 20px;
 }
 
@@ -305,12 +305,6 @@ a, a:hover {
 #submitnotebtn:hover {
     box-shadow: 0 8px 0 0 #F7781E;
     transform: translateY(-8px);
-}
-
-#submitnotebtn:active {
-    transition: ease-in-out 0.3s;
-    box-shadow: none;
-    transform: translateY(0px);
 }
 
 /* options bar */
@@ -361,6 +355,8 @@ a, a:hover {
 #UDpanel .resultcard .row {
     border-bottom: 1px solid #212121;
 }
+
+/* update page */
 
 
 

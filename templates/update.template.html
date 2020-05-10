@@ -29,27 +29,26 @@
 
 
 <div id="Upanel">
-  <h1>Update</h1>
   <form method="POST" id="updateform">
-    <div class="container-fluid d-flex justify-content-center">
-      <label><b>Select a Subject: </b></label>
-      <select size=1 name="updatesubject" id="selectsubju2" onchange="onSubjChange('u2')">
+    <div id='selectbar'>
+      <label><b>Select a Subject: &nbsp;</b></label>
+      <select size=1 name="updatesubject" id="selectsubjc" onchange="onSubjChange2()">
         <option value="Physics">Physics</option>
         <option value="Chemistry">Chemistry</option>
         <option value="Math">Math</option>
         <option value="Geography">Geography</option>
       </select>
-      <label><b>Select a Topic: </b></label>
-      <select name="updatetopic" size=1 id="selecttopicsu2">
+      <label><b>Select a Topic: &nbsp;</b></label>
+      <select name="updatetopic" size=1 id="selecttopicsc">
         <option value="Measurement">Measurement</option>
         <option value="Newtonian Mechanics">Newtonian Mechanics</option>
         <option value="Thermal Physics">Thermal Physics</option>
         <option value="Waves">Waves</option>
         <option value="Electricity & Magnetism">Electricity & Magnetism</option>
       </select>
+      <input type="submit" value="UPDATE" id="submitnotebtn" form="updateform">
     </div>
     <textarea id="summernoteu" name="updatedata"></textarea>
-    <input type="submit" value="UPDATE" id="submitnotebtn" form="updateform">
   </form>
 </div>
 
