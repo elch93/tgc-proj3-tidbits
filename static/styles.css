@@ -2,7 +2,8 @@
 /* 
 orange: #FBB03B
 black: #212121
-white: white
+white: #FFFFFF
+red: #FF094D
 font-family: 'Ubuntu', sans-serif;
 
 */
@@ -182,9 +183,44 @@ a, a:hover {
     transition: ease-in-out 0.3s;
 }
 
+#toolbar .col-9 a {
+    padding: 0;
+    margin: 0 0 0 50px;
+    transition: ease-in-out 0.3s;
+}
+
 #toolbar .col-9 a:hover {
     color: #ffffff;
     border-bottom: 3px #FBB03B solid;
+}
+
+#toolbar .col-9 a:hover:nth-child(4) .fa-heart {
+    color:#FF094D ;
+}
+
+#toolbar .col-9 a:hover:nth-child(1) .fa-plus-circle {
+    animation-name: wiggle;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(30deg);
+    }
+
+    75% {
+        transform: rotate(-30deg);
+    }
+
+    100%{
+        transform: rotate(0deg);
+    }
 }
 
 #mybanner {
@@ -194,7 +230,7 @@ a, a:hover {
 #createsprite {
     position: absolute;
     top: 68px;
-    left: 590px;
+    left: 630px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -203,7 +239,7 @@ a, a:hover {
 #searchsprite {
     position: absolute;
     top: 68px;
-    left: 730px;
+    left: 750px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -212,7 +248,7 @@ a, a:hover {
 #notesprite {
     position: absolute;
     top: 68px;
-    left: 850px;
+    left: 900px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -221,7 +257,7 @@ a, a:hover {
 #likesprite {
     position: absolute;
     top: 68px;
-    left: 1040px;
+    left: 1070px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -231,52 +267,11 @@ a, a:hover {
     height: 450px;
 }
 
-/* #leftpanel,
-#rightpanel {
-    min-height: 550px;
-}
 
-#leftpanel a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    margin: 10px 0px;
-    text-align: left;
-    display: block;
-}
-
-
-
-#leftpanel a span:hover {
-    border-bottom: #FBB03B 2px solid;
-}
-
-#leftpanel button {
-    display: block;
-    text-align: center;
-} */
-
-/* profile picture */
-/* #profilepic {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    background-color: white;
-    margin: 20px auto;
-}
-
-#leftpanel {
-    background-color: #212121;
-    color: white;
-}
-
-#leftpanel h4 {
-    text-align: center;
-} */
 
 
 /* search results */
-.resultcard {
+/* .resultcard {
     max-width: 700px;
     border-radius: 10px;
     border: 3px #ffffff;
@@ -284,10 +279,10 @@ a, a:hover {
     box-shadow: 3px 3px 10px 0px #eeeeee,
     -3px -3px 10px 0px #eeeeee;
     margin: 0 auto 30px auto;
-}
+} */
 
 /* create note */
-.note-editor {
+/* .note-editor {
     border: #212121 5px solid !important;
     border-radius: 10px !important;
     margin: 20px auto;
@@ -300,19 +295,19 @@ a, a:hover {
 
 #createnoteform label, #updateform label {
     margin: 0 10px;
-}
+} */
 
 /* mynotes */
-#mynotespanel .row p {
+/* #mynotespanel .row p {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
-}
+} */
 
 
 
 
 /* common */
-#searchbysubj select, 
+/* #searchbysubj select, 
 #createnoteform select, 
 #searchmynotes select, 
 #searchsavednotes select,
@@ -327,10 +322,10 @@ a, a:hover {
 #UDpanel h1, 
 #Upanel h1 {
     font-weight: 700;
-}
+} */
 
 
-/* buttons */
+/* buttons
 #submitnotebtn,
 #leftpanel button,
 #searchbtn,
@@ -360,22 +355,22 @@ a, a:hover {
 .resultcard .row button:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 0px 1px #F15A24;
-}
+} */
 
 /* search results container */
-.resulttable, #mysavednotes, #mynotespanel {
+/* .resulttable, #mysavednotes, #mynotespanel {
     height: 400px;
     overflow-y: scroll;
-}
+} */
 
-.resulttable .fa-heart, #savednotes .fa-heart {
+/* .resulttable .fa-heart, #savednotes .fa-heart {
     color: #212121;
     transition: 0.4s ease-in-out;
-} 
+}  */
 
 /* magnifying glass icon button */
-#searchmynotesbtn,
+/* #searchmynotesbtn,
 #searchsubjbtn,
 #savednotesbtn {
     padding: 10px;
-}
+} */
