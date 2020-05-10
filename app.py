@@ -101,7 +101,8 @@ def process_input():
                     "password": password_encryptor(create_pw),
                     'following': [],
                     'followers': [],
-                    'liked': []
+                    'liked': [],
+                    'joindate': datetime.now().strftime('%y-%m-%d %a %H:%M')
                 })
 
                 # then allow the user to login
@@ -666,6 +667,10 @@ def profile(userid):
     })
     userlikes = userinfo['liked']
     userfollowing = userinfo['following']
+    userfollowers = userinfo['followers']
+
+    usernotes = load_user_notes(flask_login.current_user.get_id())
+    print(len(userfollowers))
 
     return render_template('profile.template.html', username=userid)
 

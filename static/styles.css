@@ -55,7 +55,7 @@ a, a:hover {
     font-weight: 700;
 }
 
-#mainbody p:nth-child(2) {
+#mainbody p {
     width: 460px;
     margin: 20px auto;
     font-size: 18px;
@@ -360,7 +360,59 @@ a, a:hover {
 
 /* profile page */
 
+@media (max-width: 768px) {
 
+    #herobanner {
+        width: 90%;
+    }
+
+    #mainbody {
+        height: 100%;
+    }
+
+    #mainbody p {
+        width: 100%;
+    }
+
+    #mainbody button {
+        margin: 30px 0;
+    }
+
+    #plussign {
+        position: absolute;
+        top: 130px;
+        right: 30px;
+        width: 30px;
+    }
+    
+    #dividesign {
+        position: absolute;
+        top: 190px;
+        left: 50px;
+        width: 30px;
+    }
+    
+    #pencil {
+        position: absolute;
+        top: 380px;
+        right: 30px;
+        width: 30px;
+    }
+
+    #loginpanel {
+        width: 350px;
+    }
+
+    #loginpanel form h3 {
+        margin: 0px;
+    }
+
+    #loginpanel .col-6 {
+        text-align: center;
+    }
+
+
+}
 
 
 /* common */
