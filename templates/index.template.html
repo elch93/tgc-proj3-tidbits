@@ -122,21 +122,21 @@
         <img src="/static/images/mynotes.png" id='notesprite'>
         <img src="/static/images/liked.png" id='likesprite'>
       </div>
-      <div id="toolbar">
-        <div class="row">
-          <div class="col-3 mt-2 mb-2">
-            {{username}} &nbsp;
-            <a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
-          </div>
-          <div class="col-9 mt-2 mb-2">
-            <div class="row justify-content-end">
-              <div class="col-3"></div>
-              <div class="col-9">
-                <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
-                <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
-                <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
-                <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
-              </div>
+    </div>
+    <div class='.navbar-fixed-top' id="toolbar">
+      <div class="row">
+        <div class="col-3 mt-2 mb-2">
+          {{username}} &nbsp;
+          <a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+        <div class="col-9 mt-2 mb-2">
+          <div class="row justify-content-end">
+            <div class="col-3"></div>
+            <div class="col-9">
+              <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
+              <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
+              <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
+              <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
             </div>
           </div>
         </div>

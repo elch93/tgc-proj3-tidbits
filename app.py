@@ -174,8 +174,6 @@ def create():
         return redirect(url_for('mynotes'))
 
 # return array of user's liked notes
-
-
 def liked_notes(userid):
     results = client[dbname]['registered_users'].find_one({
         'email': userid
@@ -656,6 +654,14 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
+
+# profile page
+@flask_login.login_required
+@app.route('/profile/<userid>')
+
+
+
+
 
 # logout
 @app.route('/logout')

@@ -19,8 +19,9 @@ body {
 
 body {
     overflow-x: hidden;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif !important;
 }
+
 
 .gbor {
     border: 3px solid gold;
@@ -164,7 +165,7 @@ a, a:hover {
 #toolbar {
     background-color: #212121;
     border-radius: 15px;
-    width: 100%;
+    width: 90%;
     height: 100%;
     color: #ffffff;
     padding: 10px 20px;
@@ -186,9 +187,9 @@ a, a:hover {
 }
 
 #toolbar .col-9 a {
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 10px;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
     transition: ease-in-out 0.3s;
 }
 
@@ -228,7 +229,7 @@ a, a:hover {
 #createsprite {
     position: absolute;
     top: 68px;
-    left: 50%;
+    left: 53%;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -246,7 +247,7 @@ a, a:hover {
 #notesprite {
     position: absolute;
     top: 68px;
-    left: 72%;
+    left: 71%;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -255,7 +256,7 @@ a, a:hover {
 #likesprite {
     position: absolute;
     top: 68px;
-    left: 85%;
+    left: 82%;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -267,7 +268,7 @@ a, a:hover {
 
 /* create page */
 #selectbar {
-    width: 800px;
+    width: auto;
     margin: 0 auto;
     text-align: center;
 }
