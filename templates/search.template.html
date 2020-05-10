@@ -2,7 +2,6 @@
 
 {% block content %}
 <div id="Rpanel">
-  <h1>Discover Notes</h1>
   
   {% include 'options.template.html' %}
 
@@ -97,6 +96,11 @@
 </div>
 
 <script>
+  // page indicator/reminder for users
+  $('#toolbar .col-9 a').eq(1).css('background-color','#F7931E')
+  $('#toolbar .col-9 a').eq(1).css('color','#212121')
+  
+
   $('.resulttable').hide()
   $('.resulttable').eq(0).show()
   let maxPage = $('.resulttable').length

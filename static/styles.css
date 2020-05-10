@@ -1,6 +1,8 @@
 /* colors */
 /* 
 orange: #FBB03B
+dark orange: #F7931E
+darker orange: #F7781E
 black: #212121
 white: #FFFFFF
 red: #FF094D
@@ -166,7 +168,6 @@ a, a:hover {
     height: 100%;
     color: #ffffff;
     padding: 10px 20px;
-    font-weight: 500;
     margin: 10px auto;
     z-index: 999;
     position: relative;
@@ -177,6 +178,7 @@ a, a:hover {
 }
 
 #toolbar a {
+    font-weight: 500;
     padding: 10px 0 3px 0;
     margin: 10px 0;
     color: #ffffff;
@@ -184,14 +186,10 @@ a, a:hover {
 }
 
 #toolbar .col-9 a {
-    padding: 0;
-    margin: 0 0 0 50px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 0 0 0 10px;
     transition: ease-in-out 0.3s;
-}
-
-#toolbar .col-9 a:hover {
-    color: #ffffff;
-    border-bottom: 3px #FBB03B solid;
 }
 
 #toolbar .col-9 a:hover:nth-child(4) .fa-heart {
@@ -230,7 +228,7 @@ a, a:hover {
 #createsprite {
     position: absolute;
     top: 68px;
-    left: 630px;
+    left: 610px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -239,7 +237,7 @@ a, a:hover {
 #searchsprite {
     position: absolute;
     top: 68px;
-    left: 750px;
+    left: 730px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -248,7 +246,7 @@ a, a:hover {
 #notesprite {
     position: absolute;
     top: 68px;
-    left: 900px;
+    left: 870px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
@@ -257,7 +255,7 @@ a, a:hover {
 #likesprite {
     position: absolute;
     top: 68px;
-    left: 1070px;
+    left: 1040px;
     height: 50px;
     transition: ease-in-out 0.3s;
     z-index: 1;
