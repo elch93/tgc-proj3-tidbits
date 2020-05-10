@@ -100,6 +100,7 @@ def process_input():
                     "email": create_email,
                     "password": password_encryptor(create_pw),
                     'following': [],
+                    'followers': [],
                     'liked': []
                 })
 
@@ -659,6 +660,12 @@ def savednotes():
 @flask_login.login_required
 @app.route('/profile/<userid>')
 def profile(userid):
+    userinfo = client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id(),
+        'displayname': userid
+    })
+    userlikes = userinfo['liked']
+    userfollowing = userinfo['following']
 
     return render_template('profile.template.html', username=userid)
 

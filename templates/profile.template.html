@@ -1,1 +1,13 @@
+{% extends 'index.template.html' %}
+
+{% block content %}
 {{username}}
+
+
+<script>
+    // page indicator/reminder for users
+    $('#toolbar a').eq(0).css('background-color','#FFFFFF')
+    $('#toolbar a').eq(0).css('color','#212121')
+ </script>
+
+{% endblock %}
