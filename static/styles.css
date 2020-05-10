@@ -352,7 +352,7 @@ a, a:hover {
 } 
 
 /* mynotes */
-#UDpanel .resultcard .col-4 button {
+#UDpanel .resultcard .col-sm-4 button {
     background-color: #ffffff;
     border: none;
     padding: 10px;
@@ -475,6 +475,12 @@ a, a:hover {
         padding: 0px !important;
     }
 
+    /* mynotes */
+    #UDpanel .resultcard .col-12 button {
+        background-color: #ffffff;
+        border: none;
+        padding: 10px;
+    }
 }
 
 
