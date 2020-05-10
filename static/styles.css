@@ -87,7 +87,7 @@ a, a:hover {
 #dividesign {
     position: absolute;
     top: 350px;
-    left: 10%;
+    left: 20%;
     width: 70px;
 }
 
@@ -203,40 +203,24 @@ a, a:hover {
     height: 50px;
 }
 
+#spriteset {
+    width: 95%;
+    padding: 10px 20px;
+    margin: 10px auto;
+}
+
+#spriteset .col-9 img {
+    height: 50px;
+    transition: ease-in-out 0.3s;
+    z-index: 1;
+    position: relative;
+    top: 70px;
+    margin: 0 40px;
+    text-align: center;
+}
+
 #createsprite {
-    position: absolute;
-    top: 68px;
-    left: 53%;
-    height: 50px;
-    transition: ease-in-out 0.3s;
-    z-index: 1;
-}
-
-#searchsprite {
-    position: absolute;
-    top: 68px;
-    left: 60%;
-    height: 50px;
-    transition: ease-in-out 0.3s;
-    z-index: 1;
-}
-
-#notesprite {
-    position: absolute;
-    top: 68px;
-    left: 71%;
-    height: 50px;
-    transition: ease-in-out 0.3s;
-    z-index: 1;
-}
-
-#likesprite {
-    position: absolute;
-    top: 68px;
-    left: 82%;
-    height: 50px;
-    transition: ease-in-out 0.3s;
-    z-index: 1;
+    margin: 0 15px !important;
 }
 
 #blkcontent {
@@ -493,7 +477,7 @@ a, a:hover {
 
 
     #mybanner {
-        height: 30px;
+        height: 50px;
     }
 
 }

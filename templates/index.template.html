@@ -114,13 +114,19 @@
 
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
-    <div class="container-fluid" id="spriteset">
-      <div class="container-fluid mt-2">
-        <img src="/static/images/bannerlite.png" id='mybanner'>
-        <img src="/static/images/create.png" id='createsprite'>
-        <img src="/static/images/search.png" id='searchsprite'>
-        <img src="/static/images/mynotes.png" id='notesprite'>
-        <img src="/static/images/liked.png" id='likesprite'>
+    <div id="spriteset">
+      <div class="row mt-2">
+        <div class="col-3">
+          <img src="/static/images/bannerlite.png" id='mybanner'>
+        </div>
+        <div class="col-9">
+          <div class="row justify-content-end">
+            <img src="/static/images/create.png" id='createsprite'>
+            <img src="/static/images/search.png" id='searchsprite'>
+            <img src="/static/images/mynotes.png" id='notesprite'>
+            <img src="/static/images/liked.png" id='likesprite'>
+          </div>
+        </div>
       </div>
     </div>
     <div id="toolbar">
@@ -131,10 +137,10 @@
         </div>
         <div class="col-9 mt-2 mb-2">
           <div class="row justify-content-end">
-              <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
-              <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
-              <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
-              <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
+            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
+            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
+            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
+            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
           </div>
         </div>
       </div>
@@ -142,7 +148,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light" id="mobnav">
       <img src="/static/images/bannerlite.png" id='mybannerm'>
-      <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
