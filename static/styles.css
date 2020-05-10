@@ -223,9 +223,9 @@ a, a:hover {
     margin: 0 15px !important;
 }
 
-#blkcontent {
+/* #blkcontent {
     height: 450px;
-}
+} */
 
 /* create page */
 #selectbar {
@@ -413,12 +413,15 @@ a, a:hover {
         overflow-x: hidden;
     }
 
+
+    /* create page */
     #selectbar {
         text-align: left;
     }
 
-    #selectbar label {
+    #selectbar label, #selectbar select {
         margin: 5px 0;
+        display: block;
     }
 
     #submitnotebtn {
@@ -475,9 +478,17 @@ a, a:hover {
         width: 60px;
     }
 
-
     #mybanner {
         height: 50px;
+    }
+
+    /* create */
+    .note-editor {
+        width: 90% !important;
+    }
+
+    #submitnotebtn {
+        margin: 10px;
     }
 
 }
