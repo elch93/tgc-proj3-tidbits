@@ -169,7 +169,7 @@ a, a:hover {
 #toolbar {
     background-color: #212121;
     border-radius: 15px;
-    width: 90%;
+    width: 95%;
     height: 100%;
     color: #ffffff;
     padding: 10px 20px;
@@ -468,6 +468,11 @@ a, a:hover {
 
     .note-editor {
         width: 90% !important;
+    }
+
+    /* search page */
+    .resulttable {
+        padding: 0px !important;
     }
 
 }
