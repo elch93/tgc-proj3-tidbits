@@ -459,7 +459,7 @@ def savenote(index):
             'likes': 1, '_id': 0
         })
         print(selected_note['likes'])
-        updated_likes = selected_note['likes'] + 1
+        updated_likes = int(selected_note['likes']) + 1
         client[dbname]['notes'].update_one({
             '_id': ObjectId(index)
         }, {
@@ -489,7 +489,7 @@ def savenote(index):
         }, {
             'likes': 1, '_id': 0
         })
-        updated_likes = selected_note['likes'] - 1
+        updated_likes = int(selected_note['likes']) - 1
         client[dbname]['notes'].update_one({
             '_id': ObjectId(index)
         }, {

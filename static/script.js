@@ -26,7 +26,7 @@ function toggleLoginPanel(x) {
 
 // toggle heart
 function likePlus(a) {
-    //console.log($(a).parent().text())
+    // console.log($(a).parent().children('span').text())
     if ($(a).children('i').css('color') == 'rgb(33, 33, 33)') {
         $(a).children('i').css('color', 'rgb(255, 0, 0)')
         newLikes = parseInt($(a).parent().text()) + 1
