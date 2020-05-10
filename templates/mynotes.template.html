@@ -48,7 +48,7 @@
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
                                 class="fas fa-user-edit"></i> </button>
                     </a>
-                    <a href="{{url_for( 'delete', index = result['_id'] )}}">
+                    <a onclick="confirmDel( `{{result['_id']}}` )">
                         <button><i class="fas fa-trash-alt"></i></button>
                     </a>
                 </div>
@@ -79,7 +79,7 @@
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
                                 class="fas fa-user-edit"></i> Update</button></a>
-                    <a href="{{url_for( 'delete', index = result['_id'] )}}"><button><i class="fas fa-trash-alt"></i>
+                    <a onclick="confirmDel( `{{result['_id']}}` )"><button><i class="fas fa-trash-alt"></i>
                             Delete</button></a>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
                                 class="fas fa-user-edit"></i> Update</button></a>
-                    <a href="{{url_for( 'delete', index = result['_id'] )}}"><button><i class="fas fa-trash-alt"></i>
+                    <a onclick="confirmDel( `{{result['_id']}}` )"><button><i class="fas fa-trash-alt"></i>
                             Delete</button></a>
                 </div>
             </div>
@@ -123,6 +123,12 @@
     <!-- first if end-->
 </div>
 
+<div id='confirmpanel'>
+    <p><b>Are you sure you want to delete?</b></p>
+    <a href=""><button>Yes</button></a>
+    <a onclick="closeConfirmation()" class="ml-5"><button>No</button></a>
+</div>
+
 <script>
     // page indicator/reminder for users
     $('#toolbar .col-9 a').eq(2).css('background-color', '#FFFFFF')
@@ -132,6 +138,18 @@
     $('.resulttable').eq(0).show()
     let maxPage = $('.resulttable').length
     let currentPage = 1
+
+    function confirmDel(noteid) {
+        let deleteroute = "delete/" + noteid.toString()
+        $('#confirmpanel').show()
+        
+        $('#confirmpanel').find('a').eq(0).attr("href", deleteroute.toString())
+        console.log('test', $('#confirmpanel').find('a').eq(0))
+    }
+
+    function closeConfirmation() {
+        $('#confirmpanel').hide()
+    }
 
     function displayPage(x) {
         $('.resulttable').hide()

@@ -24,8 +24,11 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 # create user
+
+
 class User(flask_login.UserMixin):
     pass
+
 
 @login_manager.user_loader
 def user_loader(email):
@@ -118,12 +121,14 @@ def process_input():
                 return redirect(url_for('search', chosens="All"))
             else:
                 # if display name is used, prevent creation
-                myalert = 'The display name "' + create_dname + '" is already in use. Please try again.'
+                myalert = 'The display name "' + create_dname + \
+                    '" is already in use. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
 
         else:
             # if found, prevent creation
-            myalert = 'The email "' + create_email + '" is already in use. Please try again.'
+            myalert = 'The email "' + create_email + \
+                '" is already in use. Please try again.'
             return render_template('index.template.html', myalert=myalert)
 
     # user is trying to login
@@ -176,6 +181,8 @@ def create():
         return redirect(url_for('mynotes'))
 
 # return array of user's liked notes
+
+
 def liked_notes(userid):
     results = client[dbname]['registered_users'].find_one({
         'email': userid
@@ -233,16 +240,16 @@ def search_all():
 def search():
     if request.method == 'GET':
         # default load
-        
+
         default_result = client[dbname]['notes'].find()
-        
+
         sresults = list(default_result)
         for i in sresults:
             i['content'] = Markup(i['content'])
 
         user_liked_notes = liked_notes(flask_login.current_user.get_id())
         return render_template('search.template.html', username=flask_login.current_user.displayname, searchresults=sresults, chosens="All", user_liked_notes=user_liked_notes)
-    
+
     if request.method == 'POST':
         # search for notes by topics wo keywords
         if not request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
@@ -361,7 +368,7 @@ def mynotes():
                     'subject': subj_query,
                     'content': {'$regex': custom_query, '$options': 'i'}
                 })
-            
+
             elif topic_query == 'All':
                 my_notes_query = client[dbname]['notes'].find({
                     'owner': flask_login.current_user.get_id(),
@@ -552,8 +559,6 @@ def savednotes():
             # filter out topics we don't need
             saved_notes = []
 
-            
-
             for i in saved_notes_query['liked']:
                 note = client[dbname]['notes'].find_one({
                     '_id': i
@@ -570,7 +575,7 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens=subj_query, chosent=topic_query, user_liked_notes=user_liked_notes)
-        
+
         # get all liked notes
         elif request.form.get('searchsubject') == 'All' and not request.form.get('customsearch'):
             saved_notes_query = client[dbname]['registered_users'].find_one({
@@ -593,7 +598,7 @@ def savednotes():
                     i['content'] = Markup(i['content'])
             user_liked_notes = liked_notes(flask_login.current_user.get_id())
             return render_template('saved.template.html', username=flask_login.current_user.displayname, searchresults=saved_notes, chosens='All', user_liked_notes=user_liked_notes)
-        
+
         # get liked notes by topic + custom query
         elif not request.form.get('searchsubject') == 'All' and request.form.get('customsearch'):
             topic_query = request.form.get('searchtopic')
@@ -646,7 +651,7 @@ def savednotes():
             for i in saved_notes_query['liked']:
                 note = client[dbname]['notes'].find_one({
                     '_id': i,
-                    'content': {'$regex': custom_query, '$options':'i'}
+                    'content': {'$regex': custom_query, '$options': 'i'}
                 })
                 if note:
                     saved_notes.append(note)
@@ -673,9 +678,6 @@ def profile(userid):
     print(len(userfollowers))
 
     return render_template('profile.template.html', username=userid)
-
-
-
 
 
 # logout
