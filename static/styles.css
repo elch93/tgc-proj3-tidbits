@@ -454,6 +454,22 @@ a, a:hover {
         overflow-x: hidden;
     }
 
+    #selectbar {
+        text-align: left;
+    }
+
+    #selectbar label {
+        margin: 5px 0;
+    }
+
+    #submitnotebtn {
+        margin: 10px 0;
+    }
+
+    .note-editor {
+        width: 90% !important;
+    }
+
 }
 
 
