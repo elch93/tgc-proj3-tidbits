@@ -518,6 +518,15 @@ def savenote(index):
 
         return ('', 204)
 
+# follow
+@app.route('/follow/<profile>', methods=["GET"])
+@flask_login.login_required
+def follow(profile):
+    return "TEST"
+    # check if user was followed before, if not, grant a like and save
+    # else unsaved and minus one like
+
+
 # view saved notes
 @app.route('/savednotes', methods=["GET", "POST"])
 @flask_login.login_required

@@ -482,11 +482,25 @@ a:hover {
     }
 
     .intro {
-        width: 320px;
+        width: 300px;
     }
 
     #createbg {
-        height:130px;
+        left: 150px;
+        bottom: 50px;
+        height:110px;
+    }
+
+    #searchbg, #happybg {
+        height: 100px;
+    }
+
+    #mynotesbg {
+        left: 10px;
+    }
+    
+    #cheerbg {
+        left: 30px;
     }
 
     #mainpanel {
