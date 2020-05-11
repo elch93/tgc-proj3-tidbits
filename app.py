@@ -118,7 +118,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('search', chosens="All"))
+                return redirect(url_for('profile', userid = logged_in_user.displayname))
             else:
                 # if display name is used, prevent creation
                 myalert = 'The display name "' + create_dname + \
@@ -145,7 +145,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('search'))
+                return redirect(url_for('profile', userid = logged_in_user.displayname))
             else:
                 myalert = 'Password is wrong. Please try again.'
                 return render_template('index.template.html', myalert=myalert)

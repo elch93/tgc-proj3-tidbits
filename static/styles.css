@@ -202,7 +202,65 @@ a:hover {
     color: #212121;
 }
 
+/* profile page */
+#introcontainer {
+    width: 850px;
+    margin: 10px auto;
+}
+
+#introcontainer a:hover {
+    transform: scale(1.1);
+    text-decoration: none !important;
+}
+
+#introcontainer a {
+    transition: ease-in-out 0.4s;
+    text-decoration: none !important;
+}
+
+.intro {
+    font-family: 'Ubuntu', sans-serif;
+    color: #212121;
+    padding: 20px;
+    width: 350px;
+    height: 200px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 10px 0px #eeeeee,
+    -3px -3px 10px 0px #eeeeee;
+}
+
+#createbg {
+    height: 150px;
+    position: relative;
+    left: 170px;
+    bottom: 90px;
+}
+
+#searchbg {
+    height: 130px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#mynotesbg {
+    position: relative;
+    left: 70px;
+    bottom: 30px;
+    height: 150px;
+}
+
+#likedbg {
+    height: 140px;
+    position: relative;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+}
+
 /* create page */
+
+
 #selectbar {
     width: auto;
     margin: 0 auto;
@@ -268,13 +326,6 @@ a:hover {
 }
 
 /* search page */
-#searchbg {
-    position: absolute;
-    height: 300px;
-    top: 380px;
-    left: 100px;
-}
-
 .resulttable {
     width: 750px;
     height: 550px;
@@ -429,7 +480,7 @@ a:hover {
     #dropdownm a {
         color: #ffffff;
         font-weight: 500;
-        border-radius:10px ;
+        border-radius: 10px;
         padding: 5px 10px;
         transition: ease-in-out 0.2s;
     }
@@ -503,6 +554,7 @@ a:hover {
 
 /* medium sized devices */
 @media (min-width: 768px) and (max-width: 1024px) {
+
     /* home page */
     #herobanner {
         max-width: 700px;
@@ -549,10 +601,6 @@ a:hover {
     }
 
     /* create */
-    #createbg {
-        display: none;
-    }
-
     .note-editor {
         width: 90% !important;
     }
