@@ -190,7 +190,7 @@ a:hover {
     color: #ffffff;
     transition: ease-in-out 0.3s;
     display: block;
-    margin: 20px 0;
+    margin: 20px 10px;
     padding: 5px 10px;
     transition: ease-in-out 0.2s;
 }
@@ -532,8 +532,14 @@ a:hover {
     }
 
     #toolbar {
-        padding: 10px;
         text-align: center;
+    }
+
+    #optionbar {
+        margin: 0px auto;
+        font-size: 16px;
+        text-align: left;
+        width: 100%;
     }
 
     /* create */
