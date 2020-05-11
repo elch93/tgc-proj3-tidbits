@@ -36,7 +36,7 @@
     <!-- if there's only 1 page -->
     {% if pages == 1 %}
     <!-- second nested if-->
-    <div class="container-fluid resulttable" id="page{{pages}}">
+    <div class="resulttable" id="page{{pages}}">
         {% for result in searchresults %}
         <div class="mt-5 resultcard">
             <div class="row mb-4 justify-content-between">
@@ -65,7 +65,7 @@
     {%elif pages > 1%}
     {% for i in range(pages) %}
     <!-- for pages(range) loop-->
-    <div class="container-fluid resulttable" id="page{{pages}}">
+    <div class="resulttable" id="page{{pages}}">
         <!-- inner loop -->
         <!-- if there's a remainder -->
         {% if resultslen%5 > 0 and i == pages - 1 %}

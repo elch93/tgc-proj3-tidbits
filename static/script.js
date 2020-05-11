@@ -39,6 +39,11 @@ function likePlus(a) {
 
 }
 
+//display dropdown
+function displayDropdown(){
+    $('#dropdownm').css('transform','translateY(0px)')
+}
+
 // alter topic list in select html
 function onSubjChange() {
     let chosenSubj = $('#selectsubj').val()
@@ -107,6 +112,8 @@ $(function () {
     $('#loginpanel').hide()
     $('#rform').hide()
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
+
+    
 
     // summernote
     $('#summernote').summernote({

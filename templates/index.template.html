@@ -115,7 +115,34 @@
     {% if current_user.is_authenticated %}
     <!-- for registered users -->
     <div class="row" id="mainpanel">
-      <div class="col-2">
+      <div class="d-block d-md-none row p-0">
+        <nav id="toolbarm">
+          <button onclick="displayDropdown()"><i class="fas fa-bars"></i></button>
+          <div id="dropdownm">
+            <ul>
+              <li> <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp;
+                  &nbsp;<span id="displayname">{{username}}</span>&nbsp;</a>
+              </li>
+              <li>
+                <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE &nbsp;</span></a>
+              </li>
+              <li>
+                <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH &nbsp;</span></a>
+              </li>
+              <li>
+                <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES &nbsp;</span></a>
+              </li>
+              <li>
+                <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES &nbsp;</span></a>
+              </li>
+              <li>
+                <a href="{{url_for('logout')}}"><span>LOGOUT &nbsp;</span><i class="fas fa-sign-out-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="d-none d-md-block col-md-2 p-0">
         <nav id="toolbar">
           <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span
               id="displayname">{{username}}</span>&nbsp;</a>
@@ -126,8 +153,8 @@
           <a href="{{url_for('logout')}}"><span>LOGOUT &nbsp;</span><i class="fas fa-sign-out-alt"></i></a>
         </nav>
       </div>
-      <div class="col-10">
-        <section class="container-fluid" id="blkcontent">
+      <div class="col-12 col-md-10 p-0">
+        <section id="blkcontent">
           {% block content %}
           {% endblock %}
         </section>

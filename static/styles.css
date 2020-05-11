@@ -19,6 +19,7 @@ body {
 
 body {
     overflow-x: hidden;
+    overflow-y: hidden;
     font-family: 'Ubuntu', sans-serif !important;
 }
 
@@ -32,8 +33,6 @@ a, a:hover {
     text-decoration: none !important;
 }
 
-
-
 /* welcome page */
 #heroimage {
     text-align: center;
@@ -46,10 +45,11 @@ a, a:hover {
 }
 
 #mainbody {
-    min-height: 425px;
+    min-height: 470px;
     background-color: #212121;
     color: #eeeeee;
     text-align: center;
+    margin: 20px 0;
 }
 
 #mainbody h1 {
@@ -159,16 +159,12 @@ a, a:hover {
 #rform #submitr:hover {
     background-color: #212121;
     color: white;
-} 
-
-
-/* toolbar */
-#mobnav {
-    display: none;
 }
 
+/* toolbar */
 #mainpanel {
     overflow-y: hidden;
+    overflow-x: hidden;
     height: 100vh;
 }
 
@@ -180,7 +176,7 @@ a, a:hover {
 }
 
 #displayname {
-    font-size: 22px;
+    font-size: 26px;
 }
 
 #toolbar .fa-user-circle {
@@ -246,19 +242,11 @@ a, a:hover {
     transform: translateY(-8px);
 }
 
-#createbg {
-    position: absolute;
-    height: 300px;
-    top:330px;
-    right: 150px;
-}
-
 /* options bar */
 #optionbar {
     background-color: #eeeeee;
     padding: 10px;
-    width: 70%;
-    margin: 0 auto;
+    width: 100%;
     text-align: center;
 }
 
@@ -285,9 +273,9 @@ a, a:hover {
 
 .resulttable {
     width: 750px;
-    height: 470px;
+    height: 550px;
     overflow-y: scroll;
-    margin: 0px auto;
+    margin: 30px auto;
 }
 
 .resultcard {
@@ -402,7 +390,29 @@ a, a:hover {
     }
 
     /* logged in home page */
+    #toolbarm button{
+        margin: 10px 40px;
+        background-color: #ffffff;
+        border: none;
+    }
 
+    #toolbarm li {
+        text-decoration: none;
+        list-style: none;
+        margin: 15px 5px;
+    }
+
+    #toolbarm a {
+        color: #212121 !important;
+        font-weight: 500;
+    }
+
+    #dropdownm {
+        background-color: #ffffff;
+        position: absolute;
+        z-index: 999;
+        transform: translateY(-300px);
+    }
 
     /* options bar */
     #optionbar {
