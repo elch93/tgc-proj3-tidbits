@@ -185,6 +185,10 @@ a:hover {
     width:700px;
 }
 
+#userinfo a {
+    color: #212121;
+}
+
 #toolbar .fa-user-circle {
     font-size: 26px;
 }
@@ -276,6 +280,14 @@ a:hover {
 #userheader a {
     margin: 0 0 0 20px;
     color: #212121;
+}
+
+#followlist a {
+    color: #212121;
+}
+
+#followlist li {
+    list-style: none;
 }
 
 /* create page */

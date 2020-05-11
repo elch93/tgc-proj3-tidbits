@@ -571,6 +571,28 @@ def follow(profile):
     # else unsaved and minus one like
 
 
+
+# view followers
+@app.route('/followers/', methods=["GET"])
+@flask_login.login_required
+def viewfollowers():
+    userdata = client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id()
+    })
+
+    return render_template('view.template.html', data=userdata['followers'], username=userdata['displayname'])
+
+# view following
+@app.route('/following/', methods=["GET"])
+@flask_login.login_required
+def viewfollowing():
+    userdata = client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id()
+    })
+
+    return render_template('view.template.html', data=userdata['following'], username=userdata['displayname'])
+
+
 # view saved notes
 @app.route('/savednotes', methods=["GET", "POST"])
 @flask_login.login_required

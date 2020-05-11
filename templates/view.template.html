@@ -1,0 +1,9 @@
+{% extends 'index.template.html' %}
+
+{% block content %}
+<ul id="followlist">
+{% for i in data %}
+    <li><a href="{{url_for('profile', userid=i)}}">{{i}}</a></li>
+{% endfor %}
+</ul>
+{% endblock%}

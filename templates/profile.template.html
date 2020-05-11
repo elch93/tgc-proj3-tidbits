@@ -18,10 +18,28 @@
 
 <div class="container-fluid" id="userinfo">
     <div class="row">
-        <div class="col-3"><b>Followers: {{followers}}</b></div>
-        <div class="col-3"><b>Following: {{following}}</b></div>
+        <div class="col-3">
+            {% if current_user.displayname == profilename %}
+            <a href="{{url_for('viewfollowers')}}"><b>Followers: {{followers}}</b></a>
+            {% else %}
+            <b>Followers: {{followers}}</b>
+            {%endif%}
+        </div>
+        <div class="col-3">
+            {% if current_user.displayname == profilename %}
+            <a href="{{url_for('viewfollowing')}}"><b>Following: {{following}}</b></a>
+            {% else %}
+            <b>Following: {{following}}</b>
+            {%endif%}
+        </div>
         <div class="col-3"><b>Likes Received: {{likes_received}}</b></div>
-        <div class="col-3"><b>Liked Notes: {{liked}}</b></div>
+        <div class="col-3">
+            {% if current_user.displayname == profilename %}
+            <a href="{{url_for('savednotes')}}"><b>Liked Notes: {{liked}}</b></a>
+            {% else %}
+            <b>Liked Notes: {{liked}}</b>
+            {%endif%}
+        </div>
     </div>
 </div>
 
