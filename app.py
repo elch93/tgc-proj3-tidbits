@@ -674,12 +674,18 @@ def profile(userid):
     userfollowers = userinfo['followers']
 
     usernotes = load_user_notes(dict(userinfo)['email'])
-
+    user_notes = []
     likes_received = 0
-    for i in usernotes:
-        likes_received += i['likes']
 
-    return render_template('profile.template.html', username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
+    if usernotes:
+        for i in usernotes:
+            likes_received += i['likes']
+            i['content'] = Markup(i['content'])
+            user_notes.append(i)
+
+    user_liked_notes = liked_notes(flask_login.current_user.get_id())
+
+    return render_template('profile.template.html',user_liked_notes=user_liked_notes, searchresults=user_notes, username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
 
 
 # logout

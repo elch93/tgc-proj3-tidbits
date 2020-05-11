@@ -45,12 +45,130 @@
         </a>
     </div>
 </div>
+{% else %}
+{% if searchresults %}
+<!-- first if-->
+<!-- pagination -->
+{% set resultslen = searchresults|length %}
+
+{% if resultslen <= 5 %}
+{% set pages = 1 %}
+{% elif resultslen%5 > 0 %}
+{% set pages = resultslen//5 + 1 %}
+{% else %}
+{% set pages = resultslen//5 %}
+{% endif %}
+
+<!-- show page navigation if there are multiple pages -->
+{% if pages > 1 %}
+<div class='row pt-3 pr-5 mb-3 justify-content-end'>
+    <b>Page: &nbsp;</b>
+    <a onclick="displayPrev()">Prev &nbsp;</a>
+    <!-- page number -->
+    {% for i in range(pages) %}
+    <a onclick="displayPage( `{{i+1}}` )">{{i+1}}&nbsp;</a>
+    {% endfor %}
+    <a onclick="displayNext()">Next &nbsp;</a>
+</div>
+{% endif %}
+
+{% set n = namespace(counter = 0) %}
+<!-- if there's only 1 page -->
+{% if pages == 1 %}
+<!-- second nested if-->
+<div class="resulttable" id="page{{pages}}">
+    {% for result in searchresults %}
+    <div class="resultcard">{{result['content']}}
+        <div class="mt-5 row justify-content-between">
+            <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+            <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i
+                        class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
+            <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}"
+                    onclick="likePlus(this)"><i class="fas fa-heart"
+                        {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+                        {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- if there's more than 1 page -->
+{%elif pages > 1%}
+{% for i in range(pages) %}
+<!-- for pages(range) loop-->
+<div class="resulttable" id="page{{pages}}">
+    <!-- inner loop -->
+    <!-- if there's a remainder -->
+    {% if resultslen%5 > 0 and i == pages - 1 %}
+    {% for result in searchresults[n.counter:resultslen] %}
+    <div class="resultcard">{{result['content']}}
+        <div class="mt-5 row justify-content-between">
+            <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+            <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i
+                        class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
+            <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}"
+                    onclick="likePlus(this)"><i class="fas fa-heart"
+                        {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+                        {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- if there's no remainder -->
+    {% else %}
+    {% for result in searchresults[n.counter:n.counter+5] %}
+    <div class="resultcard">{{result['content']}}
+        <div class="mt-5 row justify-content-between">
+            <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+            <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i
+                        class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
+            <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}"
+                    onclick="likePlus(this)"><i class="fas fa-heart"
+                        {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
+                        {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!-- if end for multiple pages -->
+</div>
+{% set n.counter = n.counter + 5 %}
+{% endfor %}
+<!-- if end for pages(range)-->
+{% endif %}
+<!-- second nested if end-->
+{% endif %}
+<!-- first if end-->
+
 {% endif %}
 
 <script>
     // page indicator/reminder for users
     $('#toolbar a').eq(0).css('background-color', '#FFFFFF')
     $('#toolbar a').eq(0).css('color', '#212121')
+
+    $('.resulttable').hide()
+    $('.resulttable').eq(0).show()
+    let maxPage = $('.resulttable').length
+    let currentPage = 1
+
+    function displayPage(x) {
+        $('.resulttable').hide()
+        $('.resulttable').eq(x - 1).show()
+        currentPage = parseInt(x)
+    }
+
+    function displayNext() {
+        if ((currentPage + 1) <= maxPage) {
+            displayPage(currentPage + 1);
+        }
+    }
+
+    function displayPrev() {
+        if ((currentPage - 1) > 0) {
+            displayPage(currentPage - 1);
+        }
+    }
 </script>
 
 {% endblock %}
