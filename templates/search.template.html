@@ -38,8 +38,8 @@
     {% for result in searchresults %}
     <div class="resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
-        <div class="col-12 col-sm-4"><b><i class="fas fa-calendar-alt"></i>&nbsp; </b>{{result['date']}}</div>
-        <div class="col-12 col-sm-4"><b><i class="fas fa-user-circle"></i>&nbsp; </b>{{result['displayname']}}</div>
+        <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+        <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
         <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
               class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
               {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
@@ -60,8 +60,8 @@
     {% for result in searchresults[n.counter:resultslen] %}
     <div class="resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
-        <div class="col-12 col-sm-4"><b><i class="fas fa-calendar-alt"></i>&nbsp; </b>{{result['date']}}</div>
-        <div class="col-12 col-sm-4"><b><i class="fas fa-user-circle"></i>&nbsp; </b>{{result['displayname']}}</div>
+        <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+        <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
         <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
               class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
               {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>
@@ -73,8 +73,8 @@
     {% for result in searchresults[n.counter:n.counter+5] %}
     <div class="resultcard">{{result['content']}}
       <div class="mt-5 row justify-content-between">
-        <div class="col-12 col-sm-4"><b><i class="fas fa-calendar-alt"></i>&nbsp; </b>{{result['date']}}</div>
-        <div class="col-12 col-sm-4"><b><i class="fas fa-user-circle"></i>&nbsp; </b>{{result['displayname']}}</div>
+        <div class="col-12 col-sm-4"><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</div>
+        <div class="col-12 col-sm-4"><a href="{{url_for('profile', userid = result['displayname'])}}"><i class="fas fa-user-circle"></i>&nbsp; {{result['displayname']}}</a></div>
         <div class="col-12 col-sm-2"><a href="{{url_for( 'savenote', index = result['_id'] )}}" onclick="likePlus(this)"><i
               class="fas fa-heart" {% if result['_id'] in user_liked_notes %}style="color: rgb(255, 0, 0)"
               {% endif %}></i></a>&nbsp; <span>{{result['likes']}}</span></div>

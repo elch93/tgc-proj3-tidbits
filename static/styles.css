@@ -363,6 +363,10 @@ a:hover {
     transition: 0.4s ease-in-out;
 }
 
+.resultcard .row a {
+    color: #212121;
+}
+
 /* mynotes */
 #UDpanel .resultcard .col-sm-4 button {
     background-color: #ffffff;
