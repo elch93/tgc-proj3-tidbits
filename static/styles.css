@@ -20,7 +20,6 @@ body {
 body {
     overflow-x: hidden;
     overflow-y: hidden;
-    font-family: 'Ubuntu', sans-serif !important;
 }
 
 
@@ -51,6 +50,7 @@ a:hover {
     color: #eeeeee;
     text-align: center;
     margin: 20px 0;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #mainbody h1 {
@@ -110,6 +110,7 @@ a:hover {
     border-radius: 15px;
     background-color: white;
     color: #212121;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #loginpanel .fa-times {
@@ -174,6 +175,7 @@ a:hover {
     color: #ffffff;
     padding: 20px;
     height: 770px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #displayname {
@@ -408,6 +410,7 @@ a:hover {
         z-index: 9999;
         width: 100%;
         background-color: #212121;
+        font-family: 'Ubuntu', sans-serif;
     }
 
     #toolbarm button {
@@ -436,6 +439,7 @@ a:hover {
     }
 
     #dropdownm {
+        font-family: 'Ubuntu', sans-serif;
         width: 100%;
         background-color: #212121;
         position: absolute;
@@ -446,6 +450,7 @@ a:hover {
 
     /* options bar */
     #optionbar {
+        font-family: 'Ubuntu', sans-serif;
         margin: 0px auto;
         font-size: 16px;
         text-align: left;
@@ -464,6 +469,7 @@ a:hover {
 
     /* create page */
     #selectbar {
+        font-family: 'Ubuntu', sans-serif;
         text-align: left;
     }
 
