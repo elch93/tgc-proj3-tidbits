@@ -19,7 +19,7 @@ body {
 
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -165,7 +165,6 @@ a:hover {
 
 /* toolbar */
 #mainpanel {
-    overflow-y: hidden;
     overflow-x: hidden;
     height: 100vh;
 }
@@ -180,6 +179,10 @@ a:hover {
 
 #displayname {
     font-size: 26px;
+}
+
+#userinfo {
+    width:700px;
 }
 
 #toolbar .fa-user-circle {

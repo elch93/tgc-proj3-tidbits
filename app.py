@@ -667,17 +667,19 @@ def savednotes():
 @app.route('/profile/<userid>')
 def profile(userid):
     userinfo = client[dbname]['registered_users'].find_one({
-        'email': flask_login.current_user.get_id(),
         'displayname': userid
     })
     userlikes = userinfo['liked']
     userfollowing = userinfo['following']
     userfollowers = userinfo['followers']
 
-    usernotes = load_user_notes(flask_login.current_user.get_id())
-    print(len(userfollowers))
+    usernotes = load_user_notes(dict(userinfo)['email'])
 
-    return render_template('profile.template.html', username=userid)
+    likes_received = 0
+    for i in usernotes:
+        likes_received += i['likes']
+
+    return render_template('profile.template.html', username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
 
 
 # logout
