@@ -39,9 +39,17 @@ function likePlus(a) {
 
 }
 
-//display dropdown
+//toggle dropdown
 function displayDropdown(){
-    $('#dropdownm').css('transform','translateY(0px)')
+    $('#dropdownm').css('transform','translateY(40px)')
+    $('#toolbarm button').eq(0).hide()
+    $('#toolbarm button').eq(1).show()
+}
+
+function hideDropdown(){
+    $('#dropdownm').css('transform','translateY(-300px)')
+    $('#toolbarm button').eq(1).hide()
+    $('#toolbarm button').eq(0).show()
 }
 
 // alter topic list in select html
@@ -112,7 +120,7 @@ $(function () {
     $('#loginpanel').hide()
     $('#rform').hide()
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
-
+    $('#toolbarm button').eq(1).hide()
     
 
     // summernote

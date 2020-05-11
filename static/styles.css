@@ -390,35 +390,60 @@ a, a:hover {
     }
 
     /* logged in home page */
-    #toolbarm button{
-        margin: 10px 40px;
-        background-color: #ffffff;
-        border: none;
+    #mainpanel {
+        width: 100vw;
+        margin: 0 !important;
     }
 
-    #toolbarm li {
+    #blkcontent {
+        overflow-x: hidden;
+    }
+
+    #toolbarm {
+        position: absolute;
+        top:0;
+        z-index: 9999;
+        width: 100%;
+        background-color: #212121;
+    }
+
+    #toolbarm button{
+        margin: 10px;
+        border: none;
+        background-color: #212121;
+        color: #ffffff ;
+    }
+
+    #dropdownm li {
         text-decoration: none;
         list-style: none;
         margin: 15px 5px;
     }
 
-    #toolbarm a {
-        color: #212121 !important;
+    #dropdownm a {
+        color: #ffffff !important;
         font-weight: 500;
     }
 
+    #dropdownm .fa-user-circle {
+        font-size: 26px;
+    }
+
     #dropdownm {
-        background-color: #ffffff;
+        width: 100%;
+        background-color: #212121;
         position: absolute;
         z-index: 999;
         transform: translateY(-300px);
+        transition: ease-in-out 0.5s;
     }
 
     /* options bar */
     #optionbar {
-        width: 100%;
+        margin: 50px auto 0 auto;
         font-size: 16px;
         text-align: left;
+        width: 320px;
     }
 
     #optionbar select, #optionbar label {
@@ -426,20 +451,11 @@ a, a:hover {
         display: block;
     }
 
-    #blkcontent {
-        overflow-x: hidden;
-    }
-
     #optionbar #searchsubjbtn {
         padding: 5px 0px;
     }
 
-
     /* create page */
-    #createbg{
-        display: none;
-    }
-
     #selectbar {
         text-align: left;
     }
@@ -459,7 +475,8 @@ a, a:hover {
 
     /* search page */
     .resulttable {
-        padding: 0px !important;
+        padding: 0 15px !important;
+        width: 100vw;
     }
 
     /* mynotes */
