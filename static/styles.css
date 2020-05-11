@@ -340,7 +340,7 @@ a:hover {
 /* search page */
 .resulttable {
     width: 750px;
-    height: 550px;
+    height: 450px;
     overflow-y: scroll;
     margin: 30px auto;
 }
@@ -474,6 +474,13 @@ a:hover {
         margin: 10px auto;
     }
 
+    .intro {
+        width: 320px;
+    }
+
+    #createbg {
+        height:130px;
+    }
 
     #mainpanel {
         width: 100vw;
