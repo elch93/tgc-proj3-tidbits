@@ -239,15 +239,27 @@ a:hover {
 #searchbg {
     height: 130px;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    left:20px;
+}
+
+#happybg {
+    height: 130px;
+    position: relative;
+    left:20px;
 }
 
 #mynotesbg {
     position: relative;
-    left: 70px;
-    bottom: 30px;
-    height: 150px;
+    left: 30px;
+    bottom: 10px;
+    height: 130px;
+}
+
+#cheerbg {
+    position: relative;
+    left: 50px;
+    top: 10px;
+    height: 80px;
 }
 
 #likedbg {
