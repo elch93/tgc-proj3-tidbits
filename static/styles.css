@@ -173,19 +173,27 @@ a, a:hover {
     width: 95%;
     height: 100%;
     color: #ffffff;
-    padding: 10px 20px;
-    margin: 10px auto;
+    padding: 0px 20px;
+    margin: 0px auto;
     z-index: 999;
     position: relative;
+    bottom: 20px;
 }
 
 #toolbar .col-9 {
     text-align: center;
 }
 
+#displayname {
+    font-size: 22px;
+}
+
+#toolbar .fa-user-circle {
+    font-size: 26px;
+}
+
 #toolbar a {
     font-weight: 500;
-    padding: 5px 10px;
     border-radius: 10px;
     margin: 10px 0;
     color: #ffffff;
@@ -200,21 +208,21 @@ a, a:hover {
 }
 
 #mybanner {
-    height: 50px;
+    height: 30px;
 }
 
 #spriteset {
     width: 95%;
-    padding: 10px 20px;
+    padding: 0px 20px;
     margin: 10px auto;
 }
 
 #spriteset .col-9 img {
-    height: 50px;
+    height: 45px;
     transition: ease-in-out 0.3s;
     z-index: 1;
     position: relative;
-    top: 70px;
+    top: 40px;
     margin: 0 40px;
     text-align: center;
 }
@@ -269,8 +277,8 @@ a, a:hover {
 /* options bar */
 #optionbar {
     background-color: #eeeeee;
-    padding: 10px 20px;
-    width: 90%;
+    padding: 10px;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
 }

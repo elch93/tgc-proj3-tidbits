@@ -115,7 +115,7 @@
     <!-- for registered users -->
     {% if current_user.is_authenticated %}
     <div id="spriteset">
-      <div class="row mt-2">
+      <div class="row">
         <div class="col-3">
           <img src="/static/images/bannerlite.png" id='mybanner'>
         </div>
@@ -131,11 +131,11 @@
     </div>
     <div id="toolbar">
       <div class="row">
-        <div class="col-3 mt-2 mb-2">
-          <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp;{{username}}&nbsp;</a>
+        <div class="col-3 mb-2 mt-2">
+          <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span id="displayname">{{username}}</span>&nbsp;</a>
           <a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
         </div>
-        <div class="col-9 mt-2 mb-2">
+        <div class="col-9 mb-2 mt-2">
           <div class="row justify-content-end">
             <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
             <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
