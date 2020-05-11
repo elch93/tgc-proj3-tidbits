@@ -49,7 +49,7 @@
     </div>
     {% endif %}
     <!-- welcome page -->
-    <div class="container-fluid" id="heroimage">
+    <section class="container-fluid" id="heroimage">
       <img src='/static/images/banner.png' id='herobanner'>
     </div>
     <div class="container-fluid pt-3" id='mainbody'>
@@ -64,9 +64,9 @@
       <img src="/static/images/plus.png" id='plussign'>
       <img src="/static/images/divide.png" id='dividesign'>
       <img src="/static/images/pencil.png" id='pencil'>
-    </div>
+    </section>
 
-    <div id="loginpanel">
+    <section id="loginpanel">
       <a onclick="hideforms()"><i class="fas fa-times"></i></a>
       <form method="POST">
         <div class="row mt-5">
@@ -108,7 +108,7 @@
           </div>
         </div>
       </form>
-    </div>
+    </section>
 
     {% endif %}
 
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div id="toolbar">
+    <nav id="toolbar">
       <div class="row">
         <div class="col-3 mb-2 mt-2">
           <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span id="displayname">{{username}}</span>&nbsp;</a>
@@ -144,7 +144,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </nav>
 
     <nav class="navbar navbar-expand-lg navbar-light" id="mobnav">
       <img src="/static/images/bannerlite.png" id='mybannerm'>
@@ -170,10 +170,10 @@
       </div>
     </nav>
 
-    <div class="container-fluid" id="blkcontent">
+    <section class="container-fluid" id="blkcontent">
       {% block content %}
       {% endblock %}
-    </div>
+    </section>
     {% endif %}
   </main>
 </body>

@@ -274,6 +274,13 @@ a, a:hover {
     transform: translateY(-8px);
 }
 
+#createbg {
+    position: absolute;
+    height: 300px;
+    top:330px;
+    right: 150px;
+}
+
 /* options bar */
 #optionbar {
     background-color: #eeeeee;
@@ -358,7 +365,7 @@ a, a:hover {
     color: #212121;
 }
 
-
+/* small devices */
 @media (max-width: 768px) {
     /* home page */
     #herobanner {
@@ -460,6 +467,10 @@ a, a:hover {
 
 
     /* create page */
+    #createbg {
+        display: none;
+    }
+
     #selectbar {
         text-align: left;
     }
@@ -490,6 +501,7 @@ a, a:hover {
     }
 }
 
+/* medium sized devices */
 @media (min-width: 768.5px) and (max-width: 1024px) {
     #herobanner {
         max-width: 700px;
@@ -519,11 +531,14 @@ a, a:hover {
         width: 60px;
     }
 
-    #mybanner {
-        height: 50px;
+    /* create */
+    #createbg {
+        position: absolute;
+        height: 100px;
+        top:570px;
+        right: 10px;
     }
 
-    /* create */
     .note-editor {
         width: 90% !important;
     }
