@@ -5,11 +5,11 @@
     <b>{{profilename}}</b>
     {% if not current_user.displayname == profilename %}
 
-    <a href="{{url_for('follow', profile=profilename)}}">
+    <a href="{{url_for('follow', profile=profilename)}}" onclick="toggleFollow(this)">
         {%if follow == False %}
-        <i class="fas fa-user-plus"></i> Follow
+        <i class="fas fa-user-plus"></i> <span>Follow</span>
         {% else %}
-        <i class="fas fa-user-minus"></i> Unfollow
+        <i class="fas fa-user-minus"></i> <span>Unfollow</span>
         {% endif %}
     </a>
 
@@ -22,7 +22,7 @@
             {% if current_user.displayname == profilename %}
             <a href="{{url_for('viewfollowers')}}"><b>Followers: {{followers}}</b></a>
             {% else %}
-            <b>Followers: {{followers}}</b>
+            <b>Followers: <span id="profilefollowers">{{followers}}</span></b>
             {%endif%}
         </div>
         <div class="col-3">

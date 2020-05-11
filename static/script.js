@@ -36,7 +36,24 @@ function likePlus(a) {
         newLikes = parseInt($(a).parent().text()) - 1
         $(a).parent().children('span').text(newLikes.toString())
     }
+}
 
+//toggle follow
+function toggleFollow(a) {
+    // unfollow
+    if ($(a).children('i').attr('class') == "fas fa-user-minus") {
+        $(a).children('i').attr('class', 'fas fa-user-plus')
+        $(a).children('span').text("Follow")
+        newFollowers = parseInt($("#profilefollowers").text()) - 1
+        $("#profilefollowers").text(newFollowers.toString())
+    }
+    // follow
+    else if ($(a).children('i').attr('class') == "fas fa-user-plus") {
+        $(a).children('i').attr('class', 'fas fa-user-minus')
+        $(a).children('span').text("Unfollow")
+        newFollowers = parseInt($("#profilefollowers").text()) + 1
+        $("#profilefollowers").text(newFollowers.toString())
+    }
 }
 
 //toggle dropdown
