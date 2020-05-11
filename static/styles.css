@@ -273,6 +273,11 @@ a:hover {
     transform: translateX(-50%);
 }
 
+#userheader a {
+    margin: 0 0 0 20px;
+    color: #212121;
+}
+
 /* create page */
 
 

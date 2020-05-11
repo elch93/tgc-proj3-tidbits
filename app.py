@@ -522,7 +522,51 @@ def savenote(index):
 @app.route('/follow/<profile>', methods=["GET"])
 @flask_login.login_required
 def follow(profile):
-    return "TEST"
+    userdata = client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id()
+    })
+
+    print(userdata['following'])
+
+    # check if user follows this profile
+    # if not followed, add to list of follow
+    if profile not in userdata['following']:
+        client[dbname]['registered_users'].update_one({
+            'email': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname
+        }, {
+            '$push': {
+                'following': profile
+            }
+        })
+
+        client[dbname]['registered_users'].update_one({
+            'displayname': profile
+        }, {
+            '$push': {
+                'followers': flask_login.current_user.displayname
+            }
+        })
+    
+    elif profile in userdata['following']:
+        client[dbname]['registered_users'].update_one({
+            'email': flask_login.current_user.get_id(),
+            'displayname': flask_login.current_user.displayname
+        }, {
+            '$pull': {
+                'following': profile
+            }
+        })
+
+        client[dbname]['registered_users'].update_one({
+            'displayname': profile
+        }, {
+            '$pull': {
+                'followers': flask_login.current_user.displayname
+            }
+        })
+
+    return ('', 204)
     # check if user was followed before, if not, grant a like and save
     # else unsaved and minus one like
 
@@ -694,7 +738,17 @@ def profile(userid):
 
     user_liked_notes = liked_notes(flask_login.current_user.get_id())
 
-    return render_template('profile.template.html',user_liked_notes=user_liked_notes, searchresults=user_notes, username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
+    # checked if user is following profile
+    current_user_data = client[dbname]['registered_users'].find_one({
+        'email': flask_login.current_user.get_id()
+    })
+
+    if userid in current_user_data['following']:
+        follow = True
+    else:
+        follow = False
+
+    return render_template('profile.template.html',follow=follow, user_liked_notes=user_liked_notes, searchresults=user_notes, username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
 
 
 # logout
