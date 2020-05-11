@@ -403,6 +403,10 @@ a:hover {
 
 /* small devices */
 @media (max-width: 768px) {
+    
+    #mainpanel {
+        overflow-y: scroll;
+    }
 
     /* home page */
     #herobanner {
@@ -458,6 +462,19 @@ a:hover {
     }
 
     /* logged in home page */
+    #introcontainer {
+        width: 90%;
+        margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #introcontainer a {
+        padding: 0;
+        margin: 10px auto;
+    }
+
+
     #mainpanel {
         width: 100vw;
         margin: 0 !important;
@@ -597,6 +614,11 @@ a:hover {
     }
 
     /* logged in med sized devices */
+    #displayname {
+        font-size: 16px;
+    }
+
+
     #toolbar i {
         display: block;
     }
