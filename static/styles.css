@@ -167,21 +167,16 @@ a, a:hover {
     display: none;
 }
 
-#toolbar {
-    background-color: #212121;
-    border-radius: 15px;
-    width: 95%;
-    height: 100%;
-    color: #ffffff;
-    padding: 0px 20px;
-    margin: 0px auto;
-    z-index: 999;
-    position: relative;
-    bottom: 20px;
+#mainpanel {
+    overflow-y: hidden;
+    height: 100vh;
 }
 
-#toolbar .col-9 {
-    text-align: center;
+#toolbar {
+    background-color: #212121;
+    color: #ffffff;
+    padding: 20px;
+    height: 770px;
 }
 
 #displayname {
@@ -195,42 +190,18 @@ a, a:hover {
 #toolbar a {
     font-weight: 500;
     border-radius: 10px;
-    margin: 10px 0;
     color: #ffffff;
     transition: ease-in-out 0.3s;
-}
-
-#toolbar .col-9 a {
+    display: block;
+    margin: 20px 0;
     padding: 5px 10px;
-    border-radius: 10px;
-    margin: 0 0 0 5px;
-    transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.2s;
 }
 
-#mybanner {
-    height: 30px;
+#toolbar a:hover {
+    background-color: #FBB03B;
+    color: #212121;
 }
-
-#spriteset {
-    width: 95%;
-    padding: 0px 20px;
-    margin: 10px auto;
-}
-
-#spriteset .col-9 img {
-    height: 45px;
-    transition: ease-in-out 0.3s;
-    z-index: 1;
-    position: relative;
-    top: 40px;
-    margin: 0 40px;
-    text-align: center;
-}
-
-#createsprite {
-    margin: 0 15px !important;
-}
-
 
 /* create page */
 #selectbar {
@@ -256,6 +227,7 @@ a, a:hover {
     border: #212121 5px solid !important;
     border-radius: 10px !important;
     margin: 10px auto;
+
 }
 
 #submitnotebtn {
@@ -304,9 +276,18 @@ a, a:hover {
 }
 
 /* search page */
+#searchbg {
+    position: absolute;
+    height: 300px;
+    top:380px;
+    left: 100px;
+}
+
 .resulttable {
-    height: 450px;
+    width: 750px;
+    height: 470px;
     overflow-y: scroll;
+    margin: 0px auto;
 }
 
 .resultcard {
@@ -316,7 +297,7 @@ a, a:hover {
     padding: 20px;
     box-shadow: 3px 3px 10px 0px #eeeeee,
     -3px -3px 10px 0px #eeeeee;
-    margin: 0 auto 30px auto;
+    margin: 40px auto;
 }
 
 .resulttable .fa-heart {
@@ -421,29 +402,7 @@ a, a:hover {
     }
 
     /* logged in home page */
-    #mybanner, #toolbar, #spriteset {
-        display: none;
-    }
 
-    #mybannerm {
-        height: 40px;
-        margin: 0 auto;
-    }
-
-    #mobnav {
-        display: block;
-        width: 100%;
-        height: auto;
-        background-color: #ffffff;
-    }
-
-    #mobnav a, #mobnav a:hover {
-        cursor: pointer;
-        text-decoration: none !important;
-        color: #212121;
-        font-size: 16px;
-        font-weight: 500;
-    }
 
     /* options bar */
     #optionbar {
@@ -467,7 +426,7 @@ a, a:hover {
 
 
     /* create page */
-    #createbg {
+    #createbg{
         display: none;
     }
 
@@ -533,10 +492,7 @@ a, a:hover {
 
     /* create */
     #createbg {
-        position: absolute;
-        height: 100px;
-        top:570px;
-        right: 10px;
+        display: none;
     }
 
     .note-editor {

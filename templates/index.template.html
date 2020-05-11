@@ -51,19 +51,19 @@
     <!-- welcome page -->
     <section class="container-fluid" id="heroimage">
       <img src='/static/images/banner.png' id='herobanner'>
-    </div>
-    <div class="container-fluid pt-3" id='mainbody'>
-      <h1>SHARING IS CARING</h1>
-      <p><b>TIDBITS</b> is a notes sharing website for students taking the GCE ‘O’ Levels.
-        Share your notes with the community or discover useful notes that will fill
-        your knowledge gaps.
-      </p>
-      <button onclick="toggleLoginPanel(this)">
-        GET STARTED!
-      </button>
-      <img src="/static/images/plus.png" id='plussign'>
-      <img src="/static/images/divide.png" id='dividesign'>
-      <img src="/static/images/pencil.png" id='pencil'>
+      </div>
+      <div class="container-fluid pt-3" id='mainbody'>
+        <h1>SHARING IS CARING</h1>
+        <p><b>TIDBITS</b> is a notes sharing website for students taking the GCE ‘O’ Levels.
+          Share your notes with the community or discover useful notes that will fill
+          your knowledge gaps.
+        </p>
+        <button onclick="toggleLoginPanel(this)">
+          GET STARTED!
+        </button>
+        <img src="/static/images/plus.png" id='plussign'>
+        <img src="/static/images/divide.png" id='dividesign'>
+        <img src="/static/images/pencil.png" id='pencil'>
     </section>
 
     <section id="loginpanel">
@@ -112,68 +112,28 @@
 
     {% endif %}
 
-    <!-- for registered users -->
     {% if current_user.is_authenticated %}
-    <div id="spriteset">
-      <div class="row">
-        <div class="col-3">
-          <img src="/static/images/bannerlite.png" id='mybanner'>
-        </div>
-        <div class="col-9">
-          <div class="row justify-content-end">
-            <img src="/static/images/create.png" id='createsprite'>
-            <img src="/static/images/search.png" id='searchsprite'>
-            <img src="/static/images/mynotes.png" id='notesprite'>
-            <img src="/static/images/liked.png" id='likesprite'>
-          </div>
-        </div>
+    <!-- for registered users -->
+    <div class="row" id="mainpanel">
+      <div class="col-2">
+        <nav id="toolbar">
+          <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span
+              id="displayname">{{username}}</span>&nbsp;</a>
+          <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE &nbsp;</span></a>
+          <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH &nbsp;</span></a>
+          <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES &nbsp;</span></a>
+          <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES &nbsp;</span></a>
+          <a href="{{url_for('logout')}}"><span>LOGOUT &nbsp;</span><i class="fas fa-sign-out-alt"></i></a>
+        </nav>
+      </div>
+      <div class="col-10">
+        <section class="container-fluid" id="blkcontent">
+          {% block content %}
+          {% endblock %}
+        </section>
       </div>
     </div>
-    <nav id="toolbar">
-      <div class="row">
-        <div class="col-3 mb-2 mt-2">
-          <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span id="displayname">{{username}}</span>&nbsp;</a>
-          <a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
-        </div>
-        <div class="col-9 mb-2 mt-2">
-          <div class="row justify-content-end">
-            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
-            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
-            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
-            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
-          </div>
-        </div>
-      </div>
-    </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light" id="mobnav">
-      <img src="/static/images/bannerlite.png" id='mybannerm'>
-      <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item mt-3">
-            <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>
-          </li>
-          <li class="nav-item mt-3">
-            <a href="{{url_for('search')}}"><i class="fas fa-search"></i> <span>SEARCH</span></a>
-          </li>
-          <li class="nav-item mt-3">
-            <a href="{{url_for('mynotes')}}"><i class="fas fa-sticky-note"></i> <span>MY NOTES</span></a>
-          </li>
-          <li class="nav-item mt-3">
-            <a href="{{url_for('savednotes')}}"><i class="fas fa-heart"></i> <span>LIKED NOTES</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <section class="container-fluid" id="blkcontent">
-      {% block content %}
-      {% endblock %}
-    </section>
     {% endif %}
   </main>
 </body>
