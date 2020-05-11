@@ -28,7 +28,8 @@ body {
     border: 3px solid gold;
 }
 
-a, a:hover {
+a,
+a:hover {
     cursor: pointer;
     text-decoration: none !important;
 }
@@ -230,7 +231,7 @@ a, a:hover {
     border: none;
     border-radius: 10px;
     padding: 5px 10px;
-    background-color:  #FBB03B;
+    background-color: #FBB03B;
     color: #212121;
     font-weight: 700;
     margin: 0 0 0 10px;
@@ -250,7 +251,8 @@ a, a:hover {
     text-align: center;
 }
 
-#optionbar label, #optionbar input {
+#optionbar label,
+#optionbar input {
     margin: 0 0 0 10px;
 }
 
@@ -267,7 +269,7 @@ a, a:hover {
 #searchbg {
     position: absolute;
     height: 300px;
-    top:380px;
+    top: 380px;
     left: 100px;
 }
 
@@ -284,14 +286,14 @@ a, a:hover {
     border: 3px #ffffff;
     padding: 20px;
     box-shadow: 3px 3px 10px 0px #eeeeee,
-    -3px -3px 10px 0px #eeeeee;
+        -3px -3px 10px 0px #eeeeee;
     margin: 40px auto;
 }
 
 .resulttable .fa-heart {
     color: #212121;
     transition: 0.4s ease-in-out;
-} 
+}
 
 /* mynotes */
 #UDpanel .resultcard .col-sm-4 button {
@@ -329,13 +331,14 @@ a, a:hover {
     transition: ease-in-out 0.3s;
 }
 
-#confirmpanel a:hover button{
+#confirmpanel a:hover button {
     background-color: #F7781E;
     color: #212121;
 }
 
 /* small devices */
 @media (max-width: 768px) {
+
     /* home page */
     #herobanner {
         margin: 30px 0;
@@ -401,17 +404,17 @@ a, a:hover {
 
     #toolbarm {
         position: absolute;
-        top:0;
+        top: 0;
         z-index: 9999;
         width: 100%;
         background-color: #212121;
     }
 
-    #toolbarm button{
+    #toolbarm button {
         margin: 10px;
         border: none;
         background-color: #212121;
-        color: #ffffff ;
+        color: #ffffff;
     }
 
     #dropdownm li {
@@ -421,8 +424,11 @@ a, a:hover {
     }
 
     #dropdownm a {
-        color: #ffffff !important;
+        color: #ffffff;
         font-weight: 500;
+        border-radius:10px ;
+        padding: 5px 10px;
+        transition: ease-in-out 0.2s;
     }
 
     #dropdownm .fa-user-circle {
@@ -440,14 +446,15 @@ a, a:hover {
 
     /* options bar */
     #optionbar {
-        margin: 50px auto 0 auto;
+        margin: 0px auto;
         font-size: 16px;
         text-align: left;
-        width: 320px;
+        width: 90%;
     }
 
-    #optionbar select, #optionbar label {
-        margin:10px ;
+    #optionbar select,
+    #optionbar label {
+        margin: 10px;
         display: block;
     }
 
@@ -460,7 +467,8 @@ a, a:hover {
         text-align: left;
     }
 
-    #selectbar label, #selectbar select {
+    #selectbar label,
+    #selectbar select {
         margin: 5px 0;
         display: block;
     }
@@ -488,7 +496,8 @@ a, a:hover {
 }
 
 /* medium sized devices */
-@media (min-width: 768.5px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* home page */
     #herobanner {
         max-width: 700px;
     }
@@ -517,6 +526,16 @@ a, a:hover {
         width: 60px;
     }
 
+    /* logged in med sized devices */
+    #toolbar i {
+        display: block;
+    }
+
+    #toolbar {
+        padding: 10px;
+        text-align: center;
+    }
+
     /* create */
     #createbg {
         display: none;
@@ -528,6 +547,12 @@ a, a:hover {
 
     #submitnotebtn {
         margin: 10px;
+    }
+
+    /* search */
+    .resulttable {
+        padding: 0 15px !important;
+        width: 90%;
     }
 
 }
