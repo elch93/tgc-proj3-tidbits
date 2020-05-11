@@ -486,6 +486,10 @@ a:hover {
     }
 
     /* logged in home page */
+    #userinfo {
+        width:350px;
+    }
+
     #introcontainer {
         width: 90%;
         margin: 10px auto;
