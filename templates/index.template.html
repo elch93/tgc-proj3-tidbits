@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/static/styles.css">
   <!-- Bootstrap CSS -->
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
   </script>
@@ -50,7 +50,7 @@
     {% endif %}
     <!-- welcome page -->
     <section class="container-fluid" id="heroimage">
-      <img src='/static/images/banner.png' id='herobanner'>
+      <img src='/static/images/banner.png' id='herobanner' alt="heroimage">
 
       <div class="container-fluid pt-3" id='mainbody'>
         <h1>SHARING IS CARING</h1>
@@ -61,9 +61,9 @@
         <button onclick="toggleLoginPanel(this)">
           GET STARTED!
         </button>
-        <img src="/static/images/plus.png" id='plussign'>
-        <img src="/static/images/divide.png" id='dividesign'>
-        <img src="/static/images/pencil.png" id='pencil'>
+        <img src="/static/images/plus.png" id='plussign' alt="plussymbol">
+        <img src="/static/images/divide.png" id='dividesign' alt="dividesymbol">
+        <img src="/static/images/pencil.png" id='pencil' alt="pencil">
       </div>
     </section>
 
@@ -80,11 +80,11 @@
         </div>
         <div id="lform" class="row justify-content-center">
           <div class="mt-5">
-            <label for="loginemail"><i class="fas fa-envelope"></i> :&nbsp;</label>
+            <label><i class="fas fa-envelope"></i> :&nbsp;</label>
             <input type="email" name="loginemail" placeholder="enter your email">
             <br>
             <br>
-            <label for="loginpw"><i class="fas fa-key"></i> :&nbsp;</label>
+            <label><i class="fas fa-key"></i> :&nbsp;</label>
             <input type="password" name="loginpw" placeholder="enter your password">
             <br>
             <br>
@@ -93,15 +93,15 @@
         </div>
         <div id="rform" class="row justify-content-center">
           <div class="mt-5">
-            <label for="registername"><i class="far fa-id-card"></i> :&nbsp;</label>
+            <label><i class="far fa-id-card"></i> :&nbsp;</label>
             <input type="text" name="registername" placeholder="enter a display name">
             <br>
             <br>
-            <label for="registeremail"><i class="fas fa-envelope"></i> :&nbsp;</label>
+            <label><i class="fas fa-envelope"></i> :&nbsp;</label>
             <input type="email" name="registeremail" placeholder="enter your email">
             <br>
             <br>
-            <label for="registerpw"><i class="fas fa-key"></i> :&nbsp;</label>
+            <label><i class="fas fa-key"></i> :&nbsp;</label>
             <input type="password" name="registerpw" placeholder="enter your password">
             <br>
             <br>
@@ -120,7 +120,7 @@
         <nav id="toolbarm">
           <button onclick="displayDropdown()"><i class="fas fa-bars"></i></button>
           <button onclick="hideDropdown()"><i class="fas fa-times"></i></button>
-          <img src="/static/images/bannerlite.png" id="bannerlitem">
+          <img src="/static/images/bannerlite.png" id="bannerlitem" alt="bannermobile">
         </nav>
         <div id="dropdownm">
           <ul>
@@ -148,7 +148,7 @@
 
       <div class="d-none d-md-block col-md-2 p-0">
         <nav id="toolbar">
-          <img src="/static/images/bannerlite.png" id="bannerlite">
+          <img src="/static/images/bannerlite.png" id="bannerlite" alt="banner">
           <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span
               id="displayname">{{username}}</span>&nbsp;</a>
           <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>

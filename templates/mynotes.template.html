@@ -45,11 +45,11 @@
                     <p><b><i class="fas fa-calendar-alt"></i>&nbsp;</b> {{result['date']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
-                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
-                                class="fas fa-user-edit"></i> </button>
+                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
+                            class="fas fa-user-edit"></i>
                     </a>
                     <a onclick="confirmDel( `{{result['_id']}}` )">
-                        <button><i class="fas fa-trash-alt"></i></button>
+                        <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
             </div>
@@ -77,10 +77,11 @@
                     <p><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
-                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
-                                class="fas fa-user-edit"></i> Update</button></a>
-                    <a onclick="confirmDel( `{{result['_id']}}` )"><button><i class="fas fa-trash-alt"></i>
-                            Delete</button></a>
+                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
+                            class="fas fa-user-edit"></i></a>
+                    <a onclick="confirmDel( `{{result['_id']}}` )">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
                 </div>
             </div>
             <hr>
@@ -99,10 +100,11 @@
                     <p><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
-                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><button><i
-                                class="fas fa-user-edit"></i> Update</button></a>
-                    <a onclick="confirmDel( `{{result['_id']}}` )"><button><i class="fas fa-trash-alt"></i>
-                            Delete</button></a>
+                    <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
+                            class="fas fa-user-edit"></i></a>
+                    <a onclick="confirmDel( `{{result['_id']}}` )">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
                 </div>
             </div>
             <hr>
@@ -125,8 +127,8 @@
 
 <div id='confirmpanel'>
     <p><b>Are you sure you want to delete this note?</b></p>
-    <a href=""><button>Yes</button></a>
-    <a onclick="closeConfirmation()" class="ml-5"><button>No</button></a>
+    <a href="">Yes</a>
+    <a onclick="closeConfirmation()" class="ml-2">No</a>
 </div>
 
 <script>

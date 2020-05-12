@@ -300,7 +300,7 @@ a:hover {
 #followlist .viewcard {
     box-shadow: 3px 3px 10px 0px #eeeeee,
         -3px -3px 10px 0px #eeeeee;
-    width: 150px;
+    width: 280px;
     margin: 30px;
     padding: 10px 20px;
 }
@@ -404,12 +404,6 @@ a:hover {
 }
 
 /* mynotes */
-#UDpanel .resultcard .col-sm-4 button {
-    background-color: #ffffff;
-    border: none;
-    padding: 10px;
-}
-
 #UDpanel .resultcard .row {
     border-bottom: 1px solid #212121;
 }
@@ -430,16 +424,16 @@ a:hover {
     text-align: center;
 }
 
-#confirmpanel button {
-    border: none;
+#confirmpanel a {
     padding: 5px 15px;
     font-weight: 500;
     background-color: #212121;
     color: #ffffff;
+    text-decoration: none;
     transition: ease-in-out 0.3s;
 }
 
-#confirmpanel a:hover button {
+#confirmpanel a:hover {
     background-color: #F7781E;
     color: #212121;
 }
@@ -655,12 +649,7 @@ a:hover {
         width: 100vw;
     }
 
-    /* mynotes */
-    #UDpanel .resultcard .col-12 button {
-        background-color: #ffffff;
-        border: none;
-        padding: 10px;
-    }
+
 }
 
 /* medium sized devices */

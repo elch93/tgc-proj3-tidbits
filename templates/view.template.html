@@ -8,7 +8,7 @@
 <section id="followlist">
     {% for i in data %}
     <div class="viewcard">
-        <img src="/static/images/default.png">&nbsp; <a href="{{url_for('profile', userid=i)}}">{{i}}</a>
+        <img src="/static/images/default.png" alt="follow mascot">&nbsp; <a href="{{url_for('profile', userid=i)}}">{{i}}</a>
     </div>
     {% endfor %}
 </section>

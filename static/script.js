@@ -16,7 +16,7 @@ function hideforms() {
     $('#loginpanel').fadeToggle(400);
     setTimeout(function () {
         $('#heroimage, #mainbody').fadeToggle();
-    }, 600)
+    }, 600);
 }
 // toggle Login/Register Panel
 function toggleLoginPanel(x) {
@@ -26,22 +26,21 @@ function toggleLoginPanel(x) {
 
 // toggle heart
 function likePlus(a) {
-    // console.log($(a).parent().children('span').text())
     if ($(a).children('i').css('color') == 'rgb(33, 33, 33)') {
-        $(a).children('i').css('color', 'rgb(255, 0, 0)')
-        newLikes = parseInt($(a).parent().text()) + 1
-        $(a).parent().children('span').text(newLikes.toString())
+        $(a).children('i').css('color', 'rgb(255, 0, 0)');
+        let newLikes = parseInt($(a).parent().text()) + 1;
+        $(a).parent().children('span').text(newLikes.toString());
 
-        newLikes2 = parseInt($("#likesR").text()) + 1
-        $("#likesR").text(newLikes2.toString())
+        let newLikes2 = parseInt($("#likesR").text()) + 1;
+        $("#likesR").text(newLikes2.toString());
 
     } else if ($(a).children('i').css('color') == 'rgb(255, 0, 0)') {
-        $(a).children('i').css('color', 'rgb(33, 33, 33)')
-        newLikes = parseInt($(a).parent().text()) - 1
-        $(a).parent().children('span').text(newLikes.toString())
+        $(a).children('i').css('color', 'rgb(33, 33, 33)');
+        let newLikes = parseInt($(a).parent().text()) - 1;
+        $(a).parent().children('span').text(newLikes.toString());
 
-        newLikes2 = parseInt($("#likesR").text()) - 1
-        $("#likesR").text(newLikes2.toString())
+        let newLikes2 = parseInt($("#likesR").text()) - 1;
+        $("#likesR").text(newLikes2.toString());
     }
 }
 
@@ -49,91 +48,91 @@ function likePlus(a) {
 function toggleFollow(a) {
     // unfollow
     if ($(a).children('i').attr('class') == "fas fa-user-minus") {
-        $(a).children('i').attr('class', 'fas fa-user-plus')
-        $(a).children('span').text("Follow")
-        newFollowers = parseInt($("#profilefollowers").text()) - 1
-        $("#profilefollowers").text(newFollowers.toString())
+        $(a).children('i').attr('class', 'fas fa-user-plus');
+        $(a).children('span').text("Follow");
+        let newFollowers = parseInt($("#profilefollowers").text()) - 1;
+        $("#profilefollowers").text(newFollowers.toString());
     }
     // follow
     else if ($(a).children('i').attr('class') == "fas fa-user-plus") {
-        $(a).children('i').attr('class', 'fas fa-user-minus')
-        $(a).children('span').text("Unfollow")
-        newFollowers = parseInt($("#profilefollowers").text()) + 1
-        $("#profilefollowers").text(newFollowers.toString())
+        $(a).children('i').attr('class', 'fas fa-user-minus');
+        $(a).children('span').text("Unfollow");
+        let newFollowers = parseInt($("#profilefollowers").text()) + 1;
+        $("#profilefollowers").text(newFollowers.toString());
     }
 }
 
 //toggle dropdown
 function displayDropdown(){
-    $('#dropdownm').css('transform','translateY(40px)')
-    $('#toolbarm button').eq(0).hide()
-    $('#toolbarm button').eq(1).show()
+    $('#dropdownm').css('transform','translateY(40px)');
+    $('#toolbarm button').eq(0).hide();
+    $('#toolbarm button').eq(1).show();
 }
 
 function hideDropdown(){
-    $('#dropdownm').css('transform','translateY(-300px)')
-    $('#toolbarm button').eq(1).hide()
-    $('#toolbarm button').eq(0).show()
+    $('#dropdownm').css('transform','translateY(-300px)');
+    $('#toolbarm button').eq(1).hide();
+    $('#toolbarm button').eq(0).show();
 }
 
 // alter topic list in select html
 function onSubjChange() {
-    let chosenSubj = $('#selectsubj').val()
-    let physicstopics = ['All', 'Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism']
-    let chemtopics = ['All', 'Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
-    let geogtopics = ['All', 'Our Dynamic Planet', 'Our Changing World']
-    let mathtopics = ['All', 'Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity']
+    let chosenSubj = $('#selectsubj').val();
+    let physicstopics = ['All', 'Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism'];
+    let chemtopics = ['All', 'Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry'];
+    let geogtopics = ['All', 'Our Dynamic Planet', 'Our Changing World'];
+    let mathtopics = ['All', 'Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity'];
 
     function appendTopics(subj) {
-        for (topic of subj) {
+        for (let topic of subj) {
             $('#selecttopics').append(`
             <option value='${topic}'>${topic}</option>
-        `)
+        `);
         }
     }
 
-    $('#selecttopics').empty()
+    $('#selecttopics').empty();
 
     if (chosenSubj == 'Physics') {
-        appendTopics(physicstopics)
+        appendTopics(physicstopics);
     } else if (chosenSubj == 'Chemistry') {
-        appendTopics(chemtopics)
+        appendTopics(chemtopics);
     } else if (chosenSubj == 'Math') {
-        appendTopics(mathtopics)
+        appendTopics(mathtopics);
     } else if (chosenSubj == 'Geography') {
-        appendTopics(geogtopics)
+        appendTopics(geogtopics);
     } else if (chosenSubj == 'All') {
-        $('#selecttopics').empty()
+        $('#selecttopics').empty();
     }
 
 
 }
 
 function onSubjChange2() {
-    let chosenSubj = $('#selectsubjc').val()
-    let physicstopics = ['Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism']
-    let chemtopics = ['Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry']
-    let geogtopics = ['Our Dynamic Planet', 'Our Changing World']
-    let mathtopics = ['Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity']
+    let chosenSubj = $('#selectsubjc').val();
+    let physicstopics = ['Measurement', 'Newtonian Mechanics', 'Thermal Physics', 'Waves', 'Electricity & Magnetism'];
+    let chemtopics = ['Experimental Chemistry', 'Atomic Structure & Stoichiometry', 'Chemistry of Reactions', 'Periodicity', 'Atmosphere', 'Organic Chemistry'];
+    let geogtopics = ['Our Dynamic Planet', 'Our Changing World'];
+    let mathtopics = ['Number & Algebra', 'Geometry & Measurement', 'Statistics & Probablity'];
 
     function appendTopics(subj) {
-        for (topic of subj) {
+        for (let topic of subj) {
             $('#selecttopicsc').append(`
             <option value='${topic}'>${topic}</option>
-        `)
+        `);
         }
     }
 
-    $('#selecttopicsc').empty()
+    $('#selecttopicsc').empty();
 
     if (chosenSubj == 'Physics') {
-        appendTopics(physicstopics)
+        appendTopics(physicstopics);
     } else if (chosenSubj == 'Chemistry') {
-        appendTopics(chemtopics)
+        appendTopics(chemtopics);
     } else if (chosenSubj == 'Math') {
-        appendTopics(mathtopics)
+        appendTopics(mathtopics);
     } else if (chosenSubj == 'Geography') {
-        appendTopics(geogtopics)
+        appendTopics(geogtopics);
     } 
 
 
@@ -141,10 +140,10 @@ function onSubjChange2() {
 
 $(function () {
     // hide login/register panel
-    $('#loginpanel').hide()
-    $('#rform').hide()
+    $('#loginpanel').hide();
+    $('#rform').hide();
     $('#loginpanel').find('h3').eq(0).css('border-bottom', '#FBB03B 5px solid');
-    $('#toolbarm button').eq(1).hide()
+    $('#toolbarm button').eq(1).hide();
     
 
     // summernote
@@ -172,4 +171,4 @@ $(function () {
 
 
 
-}) //jquery end
+}); //jquery end

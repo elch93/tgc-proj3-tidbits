@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="mt-3 ml-3" id="userheader">
-    <img src="/static/images/default2.png">&nbsp; <b>{{profilename}}</b>
+    <img src="/static/images/default2.png" alt="profile icon">&nbsp; <b>{{profilename}}</b>
     {% if not current_user.displayname == profilename %}
 
     <a href="{{url_for('follow', profile=profilename)}}" onclick="toggleFollow(this)">
@@ -53,27 +53,27 @@
                 <i>"While We Teach, We Learn."</i>
                 <p>- Seneca, Roman Philosopher</p>
                 <p><b>Create a Note!</b></p>
-                <img src="/static/images/create.png" id="createbg">
+                <img src="/static/images/create.png" id="createbg" alt="create mascot">
             </div>
         </a>
         <a href="{{url_for('search')}}">
             <div class="intro">
                 <p><b>Discover Notes Shared By Others</b></p>
-                <img src="/static/images/search.png" id="searchbg">
-                <img src="/static/images/happy.png" id="happybg">
+                <img src="/static/images/search.png" id="searchbg" alt="search mascot">
+                <img src="/static/images/happy.png" id="happybg" alt="happy mascot">
             </div>
         </a>
         <a href="{{url_for('mynotes')}}">
             <div class="intro">
                 <p><b>Edit Your Notes</b></p>
-                <img src="/static/images/mynotes.png" id="mynotesbg">
-                <img src="/static/images/cheer.png" id="cheerbg">
+                <img src="/static/images/mynotes.png" id="mynotesbg" alt="notes mascot">
+                <img src="/static/images/cheer.png" id="cheerbg" alt="cheering mascot">
             </div>
         </a>
         <a href="{{url_for('savednotes')}}">
             <div class="intro">
                 <p><b>Notes You Like</b></p>
-                <img src="/static/images/liked.png" id="likedbg">
+                <img src="/static/images/liked.png" id="likedbg" alt="likes mascot">
             </div>
         </a>
     </div>
