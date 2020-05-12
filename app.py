@@ -118,7 +118,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('profile', userid = logged_in_user.displayname))
+                return redirect(url_for('profile', userid=logged_in_user.displayname))
             else:
                 # if display name is used, prevent creation
                 myalert = 'The display name "' + create_dname + \
@@ -145,7 +145,7 @@ def process_input():
                 logged_in_user.displayname = user_data['displayname']
                 flask_login.login_user(logged_in_user)
 
-                return redirect(url_for('profile', userid = logged_in_user.displayname))
+                return redirect(url_for('profile', userid=logged_in_user.displayname))
             else:
                 myalert = 'Password is wrong. Please try again.'
                 return render_template('index.template.html', myalert=myalert)
@@ -550,7 +550,7 @@ def follow(profile):
                 'followers': flask_login.current_user.displayname
             }
         })
-    
+
     elif profile in userdata['following']:
         client[dbname]['registered_users'].update_one({
             'email': flask_login.current_user.get_id(),
@@ -574,7 +574,6 @@ def follow(profile):
     # else unsaved and minus one like
 
 
-
 # view followers
 @app.route('/followers/', methods=["GET"])
 @flask_login.login_required
@@ -583,7 +582,7 @@ def viewfollowers():
         'email': flask_login.current_user.get_id()
     })
 
-    return render_template('view.template.html', data=userdata['followers'], username=userdata['displayname'], title = "Followers")
+    return render_template('view.template.html', data=userdata['followers'], username=userdata['displayname'], title="Followers")
 
 # view following
 @app.route('/following/', methods=["GET"])
@@ -593,7 +592,7 @@ def viewfollowing():
         'email': flask_login.current_user.get_id()
     })
 
-    return render_template('view.template.html', data=userdata['following'], username=userdata['displayname'], title = "Following")
+    return render_template('view.template.html', data=userdata['following'], username=userdata['displayname'], title="Following")
 
 
 # view saved notes
@@ -773,7 +772,7 @@ def profile(userid):
     else:
         follow = False
 
-    return render_template('profile.template.html',follow=follow, user_liked_notes=user_liked_notes, searchresults=user_notes, username=flask_login.current_user.displayname, profilename=userid, followers = len(userfollowers), following = len(userfollowing), liked = len(userlikes), likes_received = likes_received)
+    return render_template('profile.template.html', follow=follow, user_liked_notes=user_liked_notes, searchresults=user_notes, username=flask_login.current_user.displayname, profilename=userid, followers=len(userfollowers), following=len(userfollowing), liked=len(userlikes), likes_received=likes_received)
 
 
 # logout

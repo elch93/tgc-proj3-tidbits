@@ -6,11 +6,11 @@
 <h1 class="ml-3">{{title}}</h1>
 
 <section id="followlist">
-{% for i in data %}
+    {% for i in data %}
     <div class="viewcard">
         <img src="/static/images/default.png">&nbsp; <a href="{{url_for('profile', userid=i)}}">{{i}}</a>
     </div>
-{% endfor %}
+    {% endfor %}
 </section>
 
 <script>
