@@ -119,6 +119,7 @@
         <nav id="toolbarm">
           <button onclick="displayDropdown()"><i class="fas fa-bars"></i></button>
           <button onclick="hideDropdown()"><i class="fas fa-times"></i></button>
+          <img src="/static/images/bannerlite.png" id="bannerlitem">
         </nav>
         <div id="dropdownm">
           <ul>
@@ -146,6 +147,7 @@
 
       <div class="d-none d-md-block col-md-2 p-0">
         <nav id="toolbar">
+          <img src="/static/images/bannerlite.png" id="bannerlite">
           <a href="{{url_for('profile', userid = username)}}"><i class="fas fa-user-circle"></i>&nbsp; &nbsp;<span
               id="displayname">{{username}}</span>&nbsp;</a>
           <a href="{{url_for('create')}}"><i class="fas fa-plus-circle"></i> <span>CREATE</span></a>

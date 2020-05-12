@@ -164,6 +164,11 @@ a:hover {
 }
 
 /* toolbar */
+#bannerlite {
+    width: 90%;
+    margin: 10px;
+}
+
 #mainpanel {
     overflow-x: hidden;
     height: 100vh;
@@ -540,6 +545,11 @@ a:hover {
 
     #blkcontent {
         overflow-x: hidden;
+    }
+
+    #bannerlitem {
+        width: 30%;
+        margin: 10px auto;
     }
 
     #toolbarm {
