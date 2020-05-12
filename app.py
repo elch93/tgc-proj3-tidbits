@@ -6,7 +6,6 @@ from datetime import datetime
 from bson.objectid import ObjectId
 import flask_login  # for handling logins/logouts
 from passlib.hash import pbkdf2_sha256  # for encrypting password
-from pprint import pprint
 
 # load env file
 load_dotenv()
@@ -468,7 +467,6 @@ def savenote(index):
         }, {
             'likes': 1, '_id': 0
         })
-        print(selected_note['likes'])
         updated_likes = int(selected_note['likes']) + 1
         client[dbname]['notes'].update_one({
             '_id': ObjectId(index)
@@ -528,8 +526,6 @@ def follow(profile):
     userdata = client[dbname]['registered_users'].find_one({
         'email': flask_login.current_user.get_id()
     })
-
-    print(userdata['following'])
 
     # check if user follows this profile
     # if not followed, add to list of follow
