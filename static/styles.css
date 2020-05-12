@@ -287,6 +287,10 @@ a:hover {
     color: #212121;
 }
 
+#userheader img {
+    height: 40px;
+}
+
 #followlist a {
     color: #212121;
     font-weight: 500;
