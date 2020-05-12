@@ -12,6 +12,6 @@
       "**/.hg": true,
       "**/CVS": true,
       "**/.DS_Store": true,
-      "**/.theia": true,
+      "**/.theia": true
    }
 }

@@ -109,7 +109,7 @@
 <!-- if there's only 1 page -->
 {% if pages == 1 %}
 <!-- second nested if-->
-<div class="resulttable" id="page{{pages}}">
+<div class="resulttable">
     {% for result in searchresults %}
     <div class="resultcard">{{result['content']}}
         <div class="mt-5 row justify-content-between">
@@ -130,7 +130,7 @@
 {%elif pages > 1%}
 {% for i in range(pages) %}
 <!-- for pages(range) loop-->
-<div class="resulttable" id="page{{pages}}">
+<div class="resulttable">
     <!-- inner loop -->
     <!-- if there's a remainder -->
     {% if resultslen%5 > 0 and i == pages - 1 %}

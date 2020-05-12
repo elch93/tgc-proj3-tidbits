@@ -283,6 +283,7 @@ def search():
             keyword_query = request.form.get('customsearch')
             subj_query = request.form.get('searchsubject')
             topic_query = request.form.get('searchtopic')
+            custom_search = []
 
             if topic_query != 'All':
                 custom_search = client[dbname]['notes'].find({
@@ -316,6 +317,7 @@ def mynotes():
         if not request.form.get('searchsubject') == "All" and not request.form.get('customsearch'):
             topic_query = request.form.get('searchtopic')
             subj_query = request.form.get('searchsubject')
+            my_notes_query = []
 
             if topic_query != 'All':
                 my_notes_query = client[dbname]['notes'].find({
@@ -360,6 +362,7 @@ def mynotes():
             topic_query = request.form.get('searchtopic')
             subj_query = request.form.get('searchsubject')
             custom_query = request.form.get('customsearch')
+            my_notes_query = []
 
             if topic_query != 'All':
                 my_notes_query = client[dbname]['notes'].find({
