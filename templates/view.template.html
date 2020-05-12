@@ -1,9 +1,15 @@
 {% extends 'index.template.html' %}
 
+
+
 {% block content %}
-<ul id="followlist">
+<h1 class="ml-3">{{title}}</h1>
+
+<section id="followlist">
 {% for i in data %}
-    <li><a href="{{url_for('profile', userid=i)}}">{{i}}</a></li>
+    <div class="viewcard">
+        <img src="/static/images/default.png">&nbsp; <a href="{{url_for('profile', userid=i)}}">{{i}}</a>
+    </div>
 {% endfor %}
-</ul>
+</section>
 {% endblock%}

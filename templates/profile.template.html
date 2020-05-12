@@ -32,7 +32,7 @@
             <b>Following: {{following}}</b>
             {%endif%}
         </div>
-        <div class="col-6 col-sm-3"><b>Likes Received: {{likes_received}}</b></div>
+        <div class="col-6 col-sm-3"><b>Likes Received: <span id="likesR">{{likes_received}}</span></b></div>
         <div class="col-6 col-sm-3">
             {% if current_user.displayname == profilename %}
             <a href="{{url_for('savednotes')}}">

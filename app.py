@@ -580,7 +580,7 @@ def viewfollowers():
         'email': flask_login.current_user.get_id()
     })
 
-    return render_template('view.template.html', data=userdata['followers'], username=userdata['displayname'])
+    return render_template('view.template.html', data=userdata['followers'], username=userdata['displayname'], title = "Followers")
 
 # view following
 @app.route('/following/', methods=["GET"])
@@ -590,7 +590,7 @@ def viewfollowing():
         'email': flask_login.current_user.get_id()
     })
 
-    return render_template('view.template.html', data=userdata['following'], username=userdata['displayname'])
+    return render_template('view.template.html', data=userdata['following'], username=userdata['displayname'], title = "Following")
 
 
 # view saved notes

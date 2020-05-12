@@ -31,10 +31,17 @@ function likePlus(a) {
         $(a).children('i').css('color', 'rgb(255, 0, 0)')
         newLikes = parseInt($(a).parent().text()) + 1
         $(a).parent().children('span').text(newLikes.toString())
+
+        newLikes2 = parseInt($("#likesR").text()) + 1
+        $("#likesR").text(newLikes2.toString())
+
     } else if ($(a).children('i').css('color') == 'rgb(255, 0, 0)') {
         $(a).children('i').css('color', 'rgb(33, 33, 33)')
         newLikes = parseInt($(a).parent().text()) - 1
         $(a).parent().children('span').text(newLikes.toString())
+
+        newLikes2 = parseInt($("#likesR").text()) - 1
+        $("#likesR").text(newLikes2.toString())
     }
 }
 

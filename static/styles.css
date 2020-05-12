@@ -284,10 +284,19 @@ a:hover {
 
 #followlist a {
     color: #212121;
+    font-weight: 500;
 }
 
-#followlist li {
-    list-style: none;
+#followlist .viewcard {
+    box-shadow: 3px 3px 10px 0px #eeeeee,
+    -3px -3px 10px 0px #eeeeee;
+    width: 150px;
+    margin: 30px;
+    padding: 10px 20px;
+}
+
+.viewcard img {
+    height: 30px;
 }
 
 /* create page */
