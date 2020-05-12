@@ -565,6 +565,14 @@ a:hover {
         font-family: 'Ubuntu', sans-serif;
     }
 
+    #displayname {
+        font-size: 16px;
+    }
+
+    #dropdownm a:first-child {
+        padding: 10px;
+    }
+
     #toolbarm button {
         margin: 10px;
         border: none;
