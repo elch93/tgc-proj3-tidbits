@@ -90,6 +90,8 @@ The website is designed such that the user will experience the following sequenc
 - Multiple results can be handled by pagination.
 
 ## Skeleton
+The images below do not represent the actual state of the website as it is constantly improved upon. They are prototype skeletal plans for the initial making of the website. Enter the website to fully enjoy the illustrations and content.
+
 ![Skeleton-Home](readme/skeleton-home.png)
 
 #### Home Page
@@ -118,22 +120,55 @@ Tidbits is a notes sharing website for students. The name depicts how the bite-s
 
 The mascots' design are based on the look of a notebook. Since a notes sharing website will be expected to mainly filled with text, I have decided to implement more images to strike a balance. Additionally, the mascots lighten the mood of studying since it is often viewed as unnerving and daunting to students. The multiple mascots signify the community that comes together and interacting with each other.
 
+The tool bar on the left allows easy access for the user to choose their next course of action. It is for users to easily create or search for notes with a few clicks.
+
 ### Color Scheme
-<!-- The colors used are mainly black background and white text, with orange, red and green to represent confirmed cases, deaths and recovered cases respectively. The black background symbolises the glumness of the COVID-19 pandemic. -->
+The colors of the website are mainly restricted to black, white and orange. Blue and red were intially considered as according to psychology, these two colors can help boost the efficiency of learning. However, I believe that blue will only work, for instance, on the walls of a classroom and red is used for highlighting keywords on the notes itself. Hence these two colors might be not as effective in their effects on a website.
+
+Orange is chosen because I find that not only it meshes well with black and white, but this color also represents feelings of optimism, excitement, enthusiasm and warmth. I hope that this color will fill these emotions with inquisitive and dilligent students as they use the website.
 
 ### User Stories
-<!-- - As a curious visitor, I want to be updated with the daily/total number of cases in a particular country so that I can gain more insight into the situation.
-- As a curious visitor, I want to know the number of cases/ranking in various countries so that I can compare the situation between countries and understand the severity or effectiveness of government strategies in those countries.
-- As a concerned visitor, I want to know the global number of cases to have a grasp on the severity of the situation. -->
+1. As a teacher/student, I will click on the 'Get Started' button to sign in or sign up for an account, so that I can use the functions of this website.
+2. As a content creator, I will click on the create button/panel, so that I can start creating a note and post it online.
+3. As a teacher/student, I will use the options on the search bar, so that I can look for a specific note, or notes under a subject and topic.
+4. As a teacher/student, I will navigate to the search page, so that I can look for a specific note, or notes under a subject and topic.
+5. As a content creator, I will navigate to the my notes page, so that I can view the notes that I have created.
+6. As a student, I will navigate to the liked notes page, so that I can see the notes that I have liked and saved for future references.
+7. As a user, I will click on the logout button on the left panel, so that I can sign out of the website.
+8. As a user, I will click on my followers/following, to view the followers/following users that I might be interested in.
+9. As a user, I will click on the follow/unfollow button in a particular user's profile, so that I can follow that user and easily access his/her notes in the future. 
+10. As a user, I will click on the heart-shaped icon on a note that I like, so that I can save it and view it again in the future.
 
 ## Features
 ### Existing Features
-<!-- - Map Navigation: Search for your country of interest through the Leaflet map. The markers provide an overview of the total and daily confirmed, recovered, death cases (note that daily numbers are in brackets).
-- Search button: Search for the country of interest through a list of available countries. Date-specific results are also available (past 60 days only).
-- Globe button: Check out the global statistics and trend through numbers and charts!
-- List button: Provides the list of available countries with their summarised stats in alphabetical order, or in ranking order.
-- Mobile friendly: Suitable for large devices such as computers and laptops, medium-sized devices such as tablets and small-sized devices such as smartphones.
-- Details button (in mobile/small devices mode): Toggles the detailed statistics panel. -->
+#### Flask Login Module
+Flask Login is implemented on this website. Users have to sign up or login with an account to fully enjoy the features of the website. Flask Login provides basic security and privacy features. To sign up, the display name and email must be unique than those registered users in my Mongo database. It is possible to sign up with a dummy/fake email account (e.g. alpha@codeinstitute.com ) since there is no email verification. A bootstrap alert will appear if the display name or email the user is trying to create already exists in the database and the user has to attempt again. pbkdf2_sha256 from the passlib python module is used to encrypt users' passwords in the database.
+
+#### Profile Info
+- Own profile page
+- Navigating to someone else's profile page
+
+#### Create with Summernote API
+Create a note and share your knowledge with others! The Summernote API provides features such as:
+- subscript superscript (useful for math & sciences)
+- highlight
+- bold, italics, underline, font styles & family, font sizes
+- table
+- list
+- fullscreen view 
+
+#### Search Bar & Results
+Search results are returned in a card form from Mongo database. Search can be done by subject, topic and keywords (or even a partial word). Each card will contain details besides the shared content such as the date posted, note owner, number of likes, subject and topic. Basic pagination allows users to view results in a more organized manner.
+
+#### My Notes
+View your own creations. Update or edit your note by clicking the edit icon on the top right. Delete a note by clicking the trash icon on the top right.
+
+#### Like System
+View your liked/saved notes in the Liked Notes page. Javascript, together with Jinja conditional-wrapped HTML, work together with my Mongo database to update the number of likes real-time (in the profile page & the respective search/my notes/liked notes pages) and will also identify liked notes such that these notes will load with hearts that are already red in color. Likes for the particular notes will appear at the bottom right of each note. Total likes received and number of liked notes by the user can be view on the user's profile page.
+
+#### Followers System
+The profile page will display the number of followers and followed users for the logged in user. Similarly to that of the Like System, Javascript, Jinja and pymongo work together to update the number of followers real-time in the profile page. However, this system is a last-minute addition and an auxiliary feature in the scope of this project. It is more of a potential feature and the pages will look unpolished, although he basic logic and coding of this feature work.
+
 
 ### Features Left to Implement
 <!-- - News widget: Provides news articles for users to read and keep up to date with the current situation
