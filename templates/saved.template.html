@@ -18,7 +18,7 @@
 
     <!-- show page navigation if there are multiple pages -->
     {% if pages > 1 %}
-    <div class='row pt-3 pr-5 mb-3 justify-content-end'>
+    <div class='row pt-3 pr-5 mb-3 justify-content-end' id="pagination">
         <b>Page: &nbsp;</b>
         <a onclick="displayPrev()">Prev &nbsp;</a>
         <!-- page number -->
@@ -132,11 +132,15 @@
     let maxPage = $('.resulttable').length
     let currentPage = 1
 
+    //pagination 
+    $('#pagination a').eq(1).css('font-weight', 'bold')
+
     function displayPage(x) {
         $('.resulttable').hide()
-
         $('.resulttable').eq(x - 1).show()
         currentPage = parseInt(x)
+        $('#pagination a').css('font-weight', 'normal')
+        $('#pagination a').eq(x).css('font-weight', 'bold')
     }
 
     function displayNext() {

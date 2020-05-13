@@ -20,7 +20,7 @@
 
     <!-- show page navigation if there are multiple pages -->
     {% if pages > 1 %}
-    <div class='row pt-3 pr-5 mb-3 justify-content-end'>
+    <div class='row pt-3 pr-5 mb-3 justify-content-end' id="pagination">
         <b>Page: &nbsp;</b>
         <a onclick="displayPrev()">Prev &nbsp;</a>
         <!-- page number -->
@@ -43,6 +43,7 @@
                 <div class="col-12 col-sm-6">
                     <p><b>{{result['subject']}}</b>:&nbsp; {{result['topic']}}</p>
                     <p><b><i class="fas fa-calendar-alt"></i>&nbsp;</b> {{result['date']}}</p>
+                    <p><b><i class="fas fa-heart"></i>&nbsp;</b> {{result['likes']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
@@ -75,6 +76,7 @@
                 <div class="col-12 col-sm-6">
                     <p><b>{{result['subject']}}</b>:&nbsp; {{result['topic']}}</p>
                     <p><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</p>
+                    <p><b><i class="fas fa-heart"></i>&nbsp;</b> {{result['likes']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
@@ -98,6 +100,7 @@
                 <div class="col-12 col-sm-6">
                     <p><b>{{result['subject']}}</b>:&nbsp; {{result['topic']}}</p>
                     <p><i class="fas fa-calendar-alt"></i>&nbsp; {{result['date']}}</p>
+                    <p><b><i class="fas fa-heart"></i>&nbsp;</b> {{result['likes']}}</p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex flex-row justify-content-end">
                     <a href="{{url_for( 'update', index = result['_id'] )}}" class="mr-3"><i
@@ -156,11 +159,15 @@
         $('#confirmpanel').hide()
     }
 
+    //pagination 
+    $('#pagination a').eq(1).css('font-weight', 'bold')
+
     function displayPage(x) {
         $('.resulttable').hide()
-
         $('.resulttable').eq(x - 1).show()
         currentPage = parseInt(x)
+        $('#pagination a').css('font-weight', 'normal')
+        $('#pagination a').eq(x).css('font-weight', 'bold')
     }
 
     function displayNext() {
