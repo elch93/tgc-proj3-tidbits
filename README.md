@@ -1,4 +1,4 @@
-# TIDBITS - Notes Sharing Website for 'O' Levels 
+# TIDBITS - Notes Sharing Website for the GCE 'O' Levels 
 The website can be viewed [here](https://lch-notes-app.herokuapp.com/).
 
 ## Data-Centric Development Milestone Project
@@ -50,7 +50,6 @@ Summernote
 #### Geography
 1. Our Dynamic Planet
 2. Our Changing World
-3. Geographical Skills & Investigations
 
 #### Chemistry
 1. Experimental Chemistry
@@ -73,7 +72,25 @@ Summernote
 3. Statistics & Probablity
 
 ## Structure
+![Structure](readme/structure.jpg)
+
+The website is designed such that the user will experience the following sequence:
+1. Home Page:
+- Gives a brief introduction about the website for users to understand the website's purpose.
+- Displays the brand name and hero image for visitors to know and remember.
+- Provides a login/register link for users to move to the next step.
+
+2. Profile Page:
+- Provides a brief information about the user or other users.
+- The 4 panels will equip the user with knowledge about where to navigate to next and make the best use of the website.
+
+3. CRUD Tools
+- Create/Update Page should allow the user to simply create a note without much hassle.
+- Search/My Notes/Liked Notes Page should allow the user to find notes according to a keyword search or by topics and subjects.
+- Multiple results can be handled by pagination.
+
 ## Skeleton & Surface
+
 ## UX
 ### Concept
 <!-- The target audience for this website are users who are interested in looking at numbers related to the COVID-19 cases in various countries around the world. A Boostrap modal is used to explain the key interactive functions of the website. The website allows users to look for their country of interest through either the Leaflet map, or the search button. The button with a globe as icon provides global statistics while the list icon provides an overview of statistics in each country as a list format. Note: The default map view is set on Singapore.
