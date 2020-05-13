@@ -6,7 +6,7 @@ Build a full-stack website that allows user to manage a common dataset, which in
 
 ## Strategy
 ### Problem
-Many students may not have access to tuition financially or may find it difficult to approach others. An online platform that provides them a degree of anonymity will allow them to have access to academic help or to offer help. 
+Many students may not have access to tuition financially or may find it difficult to approach others for help. As tech-savy youngsters, students these days are more inclined towards finding answers online on their own. An online platform that provides them a degree of anonymity and connection to a larger community online will allow them to have access to academic help or to offer help to others. 
 
 ### Proposed Solution
 Create a web application to provide a self-help platform where anyone(preferably students themselves) can volunteer to teach share notes and tips. For a start, let's limit the scope to the GCE 'O' Levels. Additionally, as the saying goes, the best way to learn something is to teach.  This online platform gives users an opportunity to teach and consolidate their ideas.
@@ -22,6 +22,7 @@ Students/Learners:
 ### Site Owner's Goals
 1. To encourage self-learning and resourcefulness.
 2. Providing a platform for needy students to access notes of anyone who wants to help.
+3. Encourage people to share and create notes as a learning method itself, as the best way to learn is to teach others.
 
 ## Scope
 ### Required Functionalities
@@ -120,12 +121,12 @@ Tidbits is a notes sharing website for students. The name depicts how the bite-s
 
 The mascots' design are based on the look of a notebook. Since a notes sharing website will be expected to mainly filled with text, I have decided to implement more images to strike a balance. Additionally, the mascots lighten the mood of studying since it is often viewed as unnerving and daunting to students. The multiple mascots signify the community that comes together and interacting with each other.
 
-The tool bar on the left allows easy access for the user to choose their next course of action. It is for users to easily create or search for notes with a few clicks.
+The tool/navigation bar on the left allows easy access for the user to choose their next course of action. It is for users to easily create or search for notes with a few clicks.
 
 ### Color Scheme
 The colors of the website are mainly restricted to black, white and orange. Blue and red were intially considered as according to psychology, these two colors can help boost the efficiency of learning. However, I believe that blue will only work, for instance, on the walls of a classroom and red is used for highlighting keywords on the notes itself. Hence these two colors might be not as effective in their effects on a website.
 
-Orange is chosen because I find that not only it meshes well with black and white, but this color also represents feelings of optimism, excitement, enthusiasm and warmth. I hope that this color will fill these emotions with inquisitive and dilligent students as they use the website.
+The color orange was chosen because I find that not only it meshes well with black and white, but this color also represents feelings of optimism, excitement, enthusiasm and warmth. I hope that this color will fill these emotions with inquisitive and dilligent students as they use the website.
 
 ### User Stories
 1. As a teacher/student, I will click on the 'Get Started' button to sign in or sign up for an account, so that I can use the functions of this website.
@@ -145,10 +146,10 @@ Orange is chosen because I find that not only it meshes well with black and whit
 Flask Login is implemented on this website. Users have to sign up or login with an account to fully enjoy the features of the website. Flask Login provides basic security and privacy features. To sign up, the display name and email must be unique than those registered users in my Mongo database. It is possible to sign up with a dummy/fake email account (e.g. alpha@codeinstitute.com ) since there is no email verification. A bootstrap alert will appear if the display name or email the user is trying to create already exists in the database and the user has to attempt again. pbkdf2_sha256 from the passlib python module is used to encrypt users' passwords in the database.
 
 #### Profile Info
-- Own profile page
-- Navigating to someone else's profile page
+- Profile information such as followers, following, liked notes and likes received can be viewed here.
+- Navigating to someone else's profile page allows you to see similar information about their account. But you are not allowed to see their followers and following list.
 
-#### Create with Summernote API
+#### Create Notes with Summernote API!
 Create a note and share your knowledge with others! The Summernote API provides features such as:
 - subscript superscript (useful for math & sciences)
 - highlight
@@ -157,23 +158,29 @@ Create a note and share your knowledge with others! The Summernote API provides 
 - list
 - fullscreen view 
 
-#### Search Bar & Results
-Search results are returned in a card form from Mongo database. Search can be done by subject, topic and keywords (or even a partial word). Each card will contain details besides the shared content such as the date posted, note owner, number of likes, subject and topic. Basic pagination allows users to view results in a more organized manner.
+#### Discover Notes with Search
+Search results are returned in a card form from Mongo database. Search can be done by subject, topic and keywords (or even a partial word). Each card will contain details besides the shared content such as the date posted, note owner, number of likes, subject and topic. Basic pagination allows users to view results in a more organized manner. Current page number will be in bold.
 
 #### My Notes
 View your own creations. Update or edit your note by clicking the edit icon on the top right. Delete a note by clicking the trash icon on the top right.
 
-#### Like System
+#### Like System / Liked Notes
 View your liked/saved notes in the Liked Notes page. Javascript, together with Jinja conditional-wrapped HTML, work together with my Mongo database to update the number of likes real-time (in the profile page & the respective search/my notes/liked notes pages) and will also identify liked notes such that these notes will load with hearts that are already red in color. Likes for the particular notes will appear at the bottom right of each note. Total likes received and number of liked notes by the user can be view on the user's profile page.
 
 #### Followers System
-The profile page will display the number of followers and followed users for the logged in user. Similarly to that of the Like System, Javascript, Jinja and pymongo work together to update the number of followers real-time in the profile page. However, this system is a last-minute addition and an auxiliary feature in the scope of this project. It is more of a potential feature and the pages will look unpolished, although he basic logic and coding of this feature work.
+The profile page will display the number of followers and followed users for the logged in user. Similarly to that of the Like System, Javascript, Jinja and pymongo work together to update the number of followers real-time in the front-end profile page while saving data to the backend database. However, this system is a late addition and I consider this an auxiliary feature in the scope of this project. It is more of a potential feature and the its related pages will look unpolished, although he basic logic and coding of this feature work.
 
+#### Mobile Version
+The website can be viewed and used by medium-sized and small-sized devices such as tablets and smartphones as well. The tool/navigation bar on the left will be replaced by a hamburger menu on the top.
 
 ### Features Left to Implement
-<!-- - News widget: Provides news articles for users to read and keep up to date with the current situation
-- WHO tips & advice: Provides tips and guides on personal hygiene by WHO.
-- Comparison feature: Compares statistics between two countries of interest. -->
+- A more polished Followers System (e.g. detect mutual follow etc)
+- Better Pagination System
+- Forget password, password verification
+- Sorting features (e.g. notes by likes)
+- Sharing feature (to social media or messaging apps)
+- Profile picture feature
+
 
 ## Technologies Used
 - HTML
@@ -184,7 +191,7 @@ The profile page will display the number of followers and followed users for the
 - Python
 - Flask, Pymongo
 - Mongodb
-- Google Fonts ()
+- Google Fonts
 - Font Awesome
 - Visual Studio Code
 - Git
@@ -195,30 +202,57 @@ The profile page will display the number of followers and followed users for the
 
 ## Testing
 ### Website Functions
-<!-- - On page load, a Bootstrap modal will appear and it can be closed by clicking on either the 'Close' button or cross icon on the top right.
+#### Validation
+The multiple template.html were passed through W3 Markup Validation Service. Errors were return because of Jinja templating language. No other major errors were found. No errors were found for my css file. script.js file was passed through Jshint.com. No major errors were found. Unused functions identified by jshint belong to onclick functions in different template.html. 
 
-- Clicking on the grey search button on the top left makes the search options available. Clicking on the yellow search will make the overlap shrink and loads the desired data across the website. If not, clicking on the cross icon on the top left exits the overlay.
+#### Login/Register
+- 'Get Started' button toggles a login/register panel. Clicking on the cross icon closes it.
+- Filling up the Register form creates a new account and logs the user in only if all fields are filled.
+- Filling up the Login form logs the user in as long as the password and email are correct and filled.
+- Entering a display name or email that is already exists in the database will return either "The display name/email is already in use. Please try again."
+- Entering a wrong password while logging in will return "Password is wrong. Please try again." bootstrap alert. 
+- Entering a wrong email while logging in will return "Email is wrong. Please try again." bootstrap alert. 
 
-- Clicking on the globe button displays the global statistics. Clicking on the legends of the World Trend Chart JS filters the graph accordingly. Again, the cross icon will allow the user to exit the overlay.
+#### Left Navigation Panel
+- Clicking on the profile icon brings the user to his/her profile page.
+- Clicking on the create link will bring the user to https://lch-notes-app.herokuapp.com/create.
+- Clicking on the search link brings the user to https://lch-notes-app.herokuapp.com/search.
+- Clicking on the my notes link brings the user to https://lch-notes-app.herokuapp.com/mynotes.
+- Clicking on the liked notes link brings the user to https://lch-notes-app.herokuapp.com/savednotes.
+- Clicking on the logout link brings the user to https://lch-notes-app.herokuapp.com/logout and logs out the user to the home page.
 
-- Clicking on the list button displays the countries in a list format. Clicking on the ranking button will sort the list according to their total cases. Clicking on the 'A-Z' button will sort the list according to alphabetical order. Clicking on the back to top button will bring the user to the top of the list. The cross icon will allow the user to exit the overlay as well.
+#### Profile Page
+- Clicking on followers will allow the user to see a list of their followers at https://lch-notes-app.herokuapp.com/followers/.
+- Clicking on following will allow the user to see a list of the users they are following at https://lch-notes-app.herokuapp.com/following/.
+- Note that you can only view your OWN followers and following list. While visiting other users' profile pages, their followers and following links will be disabled for privacy.
+- Clicking on liked notes will direct the user to https://lch-notes-app.herokuapp.com/savednotes.
+- The four panels are a mirror of the left navigation panel. Clicking on 'create a note!' panel brings the user to https://lch-notes-app.herokuapp.com/create, clicking on the 'Discover notes' panel brings the user to https://lch-notes-app.herokuapp.com/search, clicking on the 'edit my notes' panel brings the user to https://lch-notes-app.herokuapp.com/mynotes and lastly, clicking on the 'Notes you like' panel brings the user to https://lch-notes-app.herokuapp.com/savednotes.
 
-- On click, the markers on the Leaflet map will load the flag image and case results for that particular country on a popup. The zoom controls allow the user to zoom in and out of the map. Clicking the x on the top right of the popup will close the popup.
 
-- The left and right buttons on the carousel will allow the previous and next panels to be shown respectively. Clicking on the indicators below will also display the selected panel. Indicators are lighted up according to the current panel displayed. Indicators and the (prev/next) buttons change color upon hover as well. 
+#### Create Page
+- Creating a note will store a note into the database and the newly created note can be viewed as the last/most recent result in my notes page.
+- Clicking on the create button redirects the user to my notes page.
 
-- Both Chart JS and DC JS graphs will allow the user to see details upon hover along the plotted points in the line. -->
+#### Search Page / Search Bar
+- When no subject is specified, the results returned are all the notes in the database. Similarly, if no topic is specified, all results returned are the notes under the specified subject. Search by keywords return results containing that search term.
+- The search is activated by the magnifying glass icon.
+- Pagination works accordingly. Clicking next will allow the user to view the next page of results, vice versa. The current page number will be bold for easier identification. Clicking on a particular page number will also bring the user to that specific page.
+- Like: clicking on the heart icon adds a like to the note, turns the heart red, and updates the number of likes. Clicking it on a liked note 'unlikes' the note and will cause the heart to turn back to black and reduces the number of likes. The liked note will appear on the Liked Notes page.
+- Clicking on the note's owner name will bring the user to the respective owner's profile page.
+- Content posted by users are in their own formatting and are unaffected by the website's css (e.g. if the user posts the note in New Times Roman font family, the note will remain in that format).
+- The same search bar is deployed for My Notes and Liked Notes page so it functions in the same manner.
+
+#### My Notes Page
+- The heart icon merely shows the owner the number of likes they have for their own notes. It is not clickable.
+- Clicking on the edit icon will allow the user to update the note.
+- Clicking on the trash icon will allow the user to delete the note after clicking 'Yes' in a confirmation panel.
+
+#### Liked Notes Page 
+- Displays the notes liked/saved by the user. Works largely in the same manner as Search page.
 
 ### Known Bugs
-<!-- - For the line chart in the Global Statistics section, the latest plot on the line does not display its details on hover.
-
-- The console will have error messages regarding the initialisation of the Leaflet map but this does not affect the functions of the website or obstruct its goal.
-
-- Since the API by Pomber is updated daily according to his Timezone, I have to deduct 1-2 days from the current date in order to retrieve the 'latest' data due to our Timezone differences. That being said, the numbers shown on the website will definitely be slightly behind that of those reported by the news or governments.
-
-- Certain country names between the 2 APIs are named differently and I had to either manually rename each of them or exclude them from the data. Stats from cruise ships such as Diamond Princess were also excluded.
-
-- I am aware that my codes, especially Javascript codes, can be further optimized. -->
+- Summernote API: tables created may not be mobile responsive.
+- Search includes html tags as content generated by Summernote and stored in database is in html. This is usually not a problem as long as the user uses a more specific keyword instead of something like 'p'. The possibility of a html tag matching the user's search term is very low.
 
 ### Main Challenges
 <!-- - Previously, the statistics on the page usually did not display on the first time the website is loaded. This could be due to the clash in load timings of the map and APIs. To combat this issue, I deployed some setTimeout functions to allow the map to load properly first before appending statistics across the page and this seemed to have worked.
@@ -250,7 +284,7 @@ The profile page will display the number of followers and followed users for the
 
 
 ### Media
-<!-- - Country flags are credited to restcountries API as stated above. -->
+- Orignal artwork and character designs are made by Adobe Illustrator.
 
 ### Acknowledgements
 - This project is inspired by an app called Deepstash and websites like StackOverflow.
