@@ -89,9 +89,30 @@ The website is designed such that the user will experience the following sequenc
 - Search/My Notes/Liked Notes Page should allow the user to find notes according to a keyword search or by topics and subjects.
 - Multiple results can be handled by pagination.
 
-## Skeleton & Surface
+## Skeleton
+![Skeleton-Home](readme/skeleton-home.jpg)
 
-## UX
+#### Home Page
+Essentially, the home page is split into two halves. The top half will provide space for the hero image and brand name, while the second half will display a Hero message and a short introductory paragraph that will not take up too much attention span of students using the website. A 'get started' button is the call to action button that will allow users to login/register.
+
+
+![Skeleton-Profile](readme/skeleton-profile.jpg)
+
+#### Profile Page
+The profile page will give the user a first look inside the website. The toolbar on the left acts as a navigation panel to the CRUD tools available for the website's objectives. The main feature of this page is the 4 panels with mascots that guide the user on their next course of action.
+
+![Skeleton-Create](readme/skeleton-create.jpg)
+
+#### Create/Update Page
+The create and update page will simply provide the user with an interface of a text editor Summernote API to create/edit their notes.
+
+![Skeleton-Read](readme/skeleton-search.jpg)
+
+#### Search/Liked Notes/My Notes Page
+These pages will feature a search bar on top, allowing users to search by subjects, topics and even by keywords. The desired results will then be displayed in the section below.
+
+
+## UX/Surface
 ### Concept
 <!-- The target audience for this website are users who are interested in looking at numbers related to the COVID-19 cases in various countries around the world. A Boostrap modal is used to explain the key interactive functions of the website. The website allows users to look for their country of interest through either the Leaflet map, or the search button. The button with a globe as icon provides global statistics while the list icon provides an overview of statistics in each country as a list format. Note: The default map view is set on Singapore.
 
